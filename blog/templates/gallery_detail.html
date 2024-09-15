@@ -8,11 +8,16 @@
         <div id='content'>
             <div class="container">
                 <div class="card">
-                    <div class="text-center m-2 col-md-12 col-sm-12">
-                        <h1 class="card-title">Gallery of {{ object.country }}</h1>
-                        <h5 class="card-subtitle">{{ object.content }}</h5>
-                    </div>
                     <div class="card-body">
+                        <a href="{% url 'gallery' %}">
+                            <button class="post-back-button btn-sm">
+                                <span>Back to Main Gallery</span>
+                            </button>
+                        </a>
+                        <div class="text-center col-md-12 col-sm-12">
+                            <h1 class="card-title">Gallery of {{ object.country }}</h1>
+                            <p class="card-text">{{ object.content }}</p>
+                        </div>
                         {% for gallery in object.galleries.all %}
                             <h5 class="card-text">{{ gallery }}</h5>
                             <p class="card-text">{{ gallery.description }}</p>
@@ -29,12 +34,11 @@
                                     </a>
                                 {% endfor %}
                             </div>
+
+                            {% if gallery.title != object.galleries.all.last.title %}
+                                <hr class="my-4" />
+                            {% endif %}
                         {% endfor %}
-                        <a href="{% url 'gallery' %}">
-                            <button class="post-back-button btn-sm px-3 py-2">
-                                <span>Back to Main Gallery</span>
-                            </button>
-                        </a>
                     </div>
                 </div>
             </div>

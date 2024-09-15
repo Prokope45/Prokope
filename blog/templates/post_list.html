@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-12 left">
                     {% for post in posts %}
-                        <div class="card mb-4" >
+                        <div class="card mb-2" >
                             <div class="card-body">
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on }} </p>
@@ -31,7 +31,7 @@
                                     {% endfor %}
                                 </div>
                                 <a href="{% url 'post_detail' post.slug  %}">
-                                    <button class="post-button btn-sm px-3 py-2">
+                                    <button class="post-button btn-sm">
                                         <span>Read More </span>
                                     </button>
                                 </a>

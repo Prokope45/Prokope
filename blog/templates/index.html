@@ -19,10 +19,7 @@
                 <div class="overlay"></div>
 
                 <div class="description col-xl-8 col-lg-6 col-md-6 col-sm-10 col-10">
-                    {% if data.hero_image %}
-                        <img id="profile" class="img-fluid" width="250" src="{{ data.hero_image.url }}" />
-                    {% else %}
-                    {% endif %}
+                    <img id="profile" class="img-fluid" width="300" src="{% static '/logo/prokope-p-lg.png' %}" />
 
                     <h1>{{ data.greeting_title }}</h1>
                     <p>{{ data.greeting_description }}</p>
@@ -90,21 +87,28 @@
             </header> <!-- two closing headers for if-else -->
 
             <div class="container features">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5 col-md-5 col-sm-12">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="feature-title">{{ data.plans_title }}</h3>
+                        <p>{{ data.plans_description }}</p>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col">
                         <h3 class="feature-title">{{ data.about_me_title }}</h3>
                         <p>{{ data.about_me_description }}</p>
                     </div>
-
-                    <div class="col-lg-5 col-md-5 col-sm-12">
-                        <h3 class="feature-title">{{ data.plans_title }}</h3>
-                        <p>{{ data.plans_description }}</p>
+                    <div class="col-auto">
+                        {% if data.hero_image %}
+                            <img id="profile" class="img-fluid" width="250" src="{{ data.hero_image.url }}" />
+                        {% else %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
         {% endfor %}
 
-        <div class="container blog-preview">
+        <div class="container blog-preview mb-2">
             <h1 class="row justify-content-center"><span>Recent Activity</span></h1>
             <div class="row justify-content-center">
                 {% for post in posts %}

@@ -7,20 +7,31 @@
         {% include 'navbar.html' %}
         <div id='content'>
             <div class="container">
-                <h1
-                    class="text-center m-3 col-md-12 col-sm-12"
-                >
-                    Travel Gallery
-                </h1>
-                {% for image in gallery_info %}
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <h3 class="card-title">{{ image.country }}</h3>
-                            <p class="card-text">{{ image.content }}</p>
+                <div class="card">
+                    <div class="card-header">
+                        <h1
+                            class="text-center m-3 col-md-12 col-sm-12"
+                        >
+                            Travel Gallery
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                        {% for image in gallery_info %}
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="card-title">{{ image.country }}</h3>
+                                    <p class="card-text">{{ image.content }}</p>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="{% url 'gallery_detail' image.slug  %}">
+                                        <button class="post-button btn-sm">
+                                            <span>See more of {{ image.country }}</span>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
                             {% for gallery in image.galleries.all|slice:":1" %}
-                                <h5 class="card-text">{{ gallery }}</h5>
-                                <p class="card-text">{{ gallery.description }}</p>
-                                <div class="row photo-row mb-2 justify-content-center">
+                                <div class="row photo-row justify-content-center">
                                     {% for photo in gallery.public|slice:":6" %}
                                         <a
                                             title="{{ photo.title }} on {{ photo.date_taken }}"
@@ -36,14 +47,13 @@
                                     {% endfor %}
                                 </div>
                             {% endfor %}
-                            <a href="{% url 'gallery_detail' image.slug  %}">
-                                <button class="post-button btn-sm px-3 py-2">
-                                    <span>See more of {{ image.country }}</span>
-                                </button>
-                            </a>
-                        </div>
+
+                            {% if image.country != gallery_info.last.country %}
+                                <hr class="my-4" />
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
         {% include 'footer.html' %}
