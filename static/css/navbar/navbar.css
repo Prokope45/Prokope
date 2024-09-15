@@ -36,3 +36,6 @@
     transform: scale(.8);
     transition: .1s;
 }
+.navbar-toggler-icon {
+    color: var(--indigo) !important;
+}
