@@ -54,17 +54,17 @@ img {
    position: relative;
 }
 a:visited {
-    color: var(--pink-silver);
+    color: var(--indigo);
     background-color: transparent;
 }
 a:link {
-    color: var(--pink-silver);
+    color: var(--indigo);
     background-color: transparent;
 }
 a:hover {
-    color: var(--cyber-grape);
+    color: var(--tekhelet);
     background-color: transparent;
 }
 a:active {
-    color: var(--cyber-grape);
+    color: var(--iris);
 }
