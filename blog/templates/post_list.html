@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
     <head>
-        <title>JPaubel | Blog</title>
+        <title>Blog</title>
     </head>
     {% include 'navbar.html' %}
     <div id='content'>
         <div class="container">
             <div class="row">
-                <div id="tag" class="m-3 row">
-                    <a class="badge badge-pill mb-1 mr-2" href="{% url 'blog' %}">All Posts</a>
-                    {% for tag in tag %}
-                        <a class="badge badge-pill mb-1 mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
-                    {% endfor %}
+                <div class="col-md-12">
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <h1
+                                class="text-center col-md-12 col-sm-12"
+                            >
+                                Articles
+                            </h1>
+                        </div>
+                        <div id="tag" class="card-body d-flex overflow-auto" style="height: 75px">
+                            <a class="badge badge-pill mr-2" href="{% url 'blog' %}">All Posts</a>
+                            {% for tag in tag %}
+                                <a class="badge badge-pill mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-12 left">
                     {% for post in posts %}
@@ -43,4 +54,4 @@
         </div>
     </div>
     {% include 'footer.html' %}
-{%endblock%}
+{% endblock %}

@@ -2,7 +2,7 @@
 
 {% block content %}
     <head>
-        <title>JPaubel | Search Results</title>
+        <title>Search Results</title>
     </head>
     {% include 'navbar.html' %}
     <div class="container">
@@ -12,8 +12,13 @@
                 {% for post in results %}
                     <li>
                         <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
-                        <p>{{ post.content|striptags|truncatewords:20 }}</p>
-                        <p>Tags: {{ post.tag.all|join:", " }}</p>
+                        <p>{{ post.content|striptags|truncatewords:50 }}</p>
+                        <p>
+                            <string>Tags:</string>
+                            {% for tag in post.tag.all %}
+                                <a class="badge badge-pill mr-2" href="{% url 'posts_by_tag' tag %}">{{ tag }}</a>
+                            {% endfor %}
+                        </p>
                     </li>
                 {% endfor %}
             </ul>
