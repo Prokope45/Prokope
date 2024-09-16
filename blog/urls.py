@@ -4,7 +4,7 @@ from django.urls import path
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
-from .views import index_view
+from .views import index_view, search
 
 urlpatterns = [
     path('', index_view, name='home'),
@@ -14,5 +14,6 @@ urlpatterns = [
     path('gallery/', views.Gallery.as_view(), name='gallery'),
     path('gallery/<slug:slug>/', views.GalleryDetail.as_view(), name='gallery_detail'),
     path('tags/<slug:tag_slug>/', views.TagIndexView.as_view(), name='posts_by_tag'),
+    path('search/', search, name='search'),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
 ]

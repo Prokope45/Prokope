@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
+from django.db.models import Q
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -8,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.views.generic import ListView, DetailView
 
-from taggit.models import Tag
+from taggit.models import Tag, TaggedItem
 from git import Repo
 
 from .forms import ContactForm
@@ -76,6 +77,26 @@ class GalleryDetail(DetailView):
     model = PhotoGallery
     template_name = 'gallery_detail.html'
 
+def search(request):
+    # TODO: Implement search in gallery and index pages.
+    query = request.GET.get('q')
+    results = []
+
+    if query:
+        tag_ids = TaggedItem.objects.filter(tag__name__icontains=query).values_list('object_id', flat=True)
+
+        results = Post.objects.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(id__in=tag_ids)  # Search in tags
+        ).distinct()
+
+    context = {
+        'results': results,
+        'query': query,
+    }
+
+    return render(request, 'search_results.html', context)
 
 # GitHub-to-PythonAnywhere Update Webhook
 @csrf_exempt
