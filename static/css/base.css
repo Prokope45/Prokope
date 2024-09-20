@@ -7,6 +7,7 @@
 @import "contact/media_queries.css";
 @import "index/control.css";
 @import "gallery/gallery.css";
+@import "form/input.css";
 
 html {
     height: 100%;

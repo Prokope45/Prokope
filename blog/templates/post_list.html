@@ -17,9 +17,9 @@
                             </h1>
                         </div>
                         <div id="tag" class="card-body d-flex overflow-auto" style="height: 75px">
-                            <a class="badge badge-pill mr-2" href="{% url 'blog' %}">All Posts</a>
+                            <a class="badge mr-2" href="{% url 'blog' %}">All Posts</a>
                             {% for tag in tag %}
-                                <a class="badge badge-pill mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
+                                <a class="badge mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
                             {% endfor %}
                         </div>
                     </div>
@@ -29,18 +29,40 @@
                         <div class="card mb-2" >
                             <div class="card-body">
                                 <h2 class="card-title">{{ post.title }}</h2>
-                                <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on }} </p>
-
-                                <p class="card-text">{{ post.content | safe | slice:":200" }}...</p>
-
-                                <div id="tag" class="row m-1 mb-2">
-                                    <strong>Tags:</strong>
-                                    {% for tag in post.tag.all %}
-                                         <a class="badge badge-pill m-1" href="{% url 'posts_by_tag' tag.slug %}">
-                                            {{ tag.name }}
-                                         </a>
-                                    {% endfor %}
+                                <div class="card-text">
+                                    <div class="row mb-2">
+                                        <span class="col-auto text-muted pr-0">
+                                            <i class="fa fa-clock-o mr-2"></i>{{ post.created_on }}
+                                        </span>
+                                        {% if post.created_on != post.updated_on %}
+                                            <span class="col-auto text-muted pr-0"><i class="fa fa-pencil mr-2"></i>{{ post.updated_on }}</span>
+                                        {% endif %}
+                                        <span id="tag" class="col ml-3">
+                                            <span class="row">
+                                                <i class="fa fa-tags text-muted my-auto"></i>
+                                                {% for tag in post.tag.all %}
+                                                     <a class="badge m-1" href="{% url 'posts_by_tag' tag.slug %}">
+                                                        {{ tag.name }}
+                                                     </a>
+                                                {% endfor %}
+                                            </span>
+                                        </span>
+                                    </div>
+                                    {% if post.thumb %}
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-6 col-sm-12">
+                                                <p>{{ post.content | safe | slice:":450" }}...</p>
+                                            </div>
+                                            <img class="post-image img-fluid col-lg-4 col-md-4 col-sm-12 mx-auto"
+                                                style="max-width: 250px;"
+                                                src="{{ post.thumb.url }}"
+                                            />
+                                        </div>
+                                    {% else %}
+                                        <p>{{ post.content | safe | slice:":450" }}{% if post.content|length >= 450 %}...{% endif %}</p>
+                                    {% endif %}
                                 </div>
+
                                 <a href="{% url 'post_detail' post.slug  %}">
                                     <button class="post-button btn-sm">
                                         <span>Read More </span>

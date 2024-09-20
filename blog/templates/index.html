@@ -10,11 +10,11 @@
     <body>
         {% for data in index_data %}
             {% if data.hero_banner %}
-            <header class="page-header header container-fluid"
+            <header class="page-header header container-fluid mb-4"
                 style="background-image: url({{ data.hero_banner.url }});"
             >
             {% else %}
-            <header class="page-header header container-fluid">
+            <header class="page-header header container-fluid mb-4">
             {% endif %}
                 <div class="overlay"></div>
 
@@ -114,15 +114,21 @@
                 {% for post in posts %}
                     <div class="card col-md-5 mb-4 mx-1">
                         <div class="card-body">
-                            <h2 class="card-title">{{ post.title }}</h2>
-                            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on }} </p>
-
-                            <p class="card-text">
-                                {{ post.content | safe | slice:":200" }}
-                                <a  href="{% url 'post_detail' post.slug  %}">
-                                    Read more...
-                                </a>
+                            <a  href="{% url 'post_detail' post.slug  %}">
+                                <h2 class="card-title">{{ post.title }}<i class="fa fa-lightbulb-o my-auto ml-2"></i></h2>
+                            </a>
+                            <p class="card-text text-muted">
+                                {% if post.updated_on > post.created_on %}
+                                    <i class="fa fa-pencil mr-2"></i>{{ post.updated_on }}
+                                {% else %}
+                                    <i class="fa fa-clock-o fa-lg mr-2"></i>{{ post.created_on }}
+                                {% endif %}
                             </p>
+
+                            <p class="card-text">{{ post.content | safe | slice:":400" }}</p>
+                            <a  href="{% url 'post_detail' post.slug  %}">
+                                Read more...
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

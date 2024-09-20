@@ -10,15 +10,19 @@
         {% if results %}
             <ul>
                 {% for post in results %}
-                    <li>
+                    <li class="mb-2">
                         <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
                         <p>{{ post.content|striptags|truncatewords:50 }}</p>
-                        <p>
-                            <string>Tags:</string>
+                        <span id="tag" class="d-inline">
+                            <i class="fa fa-tags text-muted"></i>
                             {% for tag in post.tag.all %}
-                                <a class="badge badge-pill mr-2" href="{% url 'posts_by_tag' tag %}">{{ tag }}</a>
+                                <a class="badge" href="{% url 'posts_by_tag' tag %}">{{ tag }}</a>
                             {% endfor %}
-                        </p>
+                        </span>
+
+                        {% if post.id != results.last.id %}
+                            <hr />
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>
