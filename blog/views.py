@@ -66,33 +66,58 @@ class PostDetail(DetailView):
 
 
 # Gallery Page
-class Gallery(ListView):
+class CountryGallery(ListView):
     model = PhotoGallery
     template_name = 'gallery.html'
     queryset = PhotoGallery.objects.all().order_by('country')
     context_object_name = 'gallery_info'
 
 
-class GalleryDetail(DetailView):
+class CountryGalleryDetail(DetailView):
     model = PhotoGallery
     template_name = 'gallery_detail.html'
 
 def search(request):
     # TODO: Implement search in gallery and index pages.
     query = request.GET.get('q')
-    results = []
+    blog_results = []
+    gallery_results = []
+    photo_results = []
 
     if query:
+        about_me_results = IndexDescription.objects.filter(
+            Q(about_me_title__icontains=query) |
+            Q(about_me_description__icontains=query)
+        )
+        plans_results = IndexDescription.objects.filter(
+            Q(plans_title__icontains=query) |
+            Q(plans_description__icontains=query)
+        )
+
         tag_ids = TaggedItem.objects.filter(tag__name__icontains=query).values_list('object_id', flat=True)
 
-        results = Post.objects.filter(
+        blog_results = Post.objects.filter(
             Q(title__icontains=query) |
             Q(content__icontains=query) |
             Q(id__in=tag_ids)  # Search in tags
         ).distinct()
 
+        gallery_results = PhotoGallery.objects.filter(
+            Q(country__icontains=query) |
+            Q(content__icontains=query) |
+            Q(galleries__title__icontains=query)
+        ).distinct()
+
+        for gallery in PhotoGallery.objects.all():
+            print(gallery.galleries.all())
+
     context = {
-        'results': results,
+        'index_results': {
+            'about_me': about_me_results,
+            'plans': plans_results,
+        },
+        'blog_results': blog_results,
+        'gallery_results': gallery_results,
         'query': query,
     }
 
