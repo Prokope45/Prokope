@@ -16,11 +16,80 @@
                                 Articles
                             </h1>
                         </div>
-                        <div id="tag" class="card-body d-flex overflow-auto" style="height: 75px">
+                        <!-- <div id="tag" class="card-body d-flex overflow-auto" style="height: 75px">
                             <a class="badge mr-2" href="{% url 'blog' %}">All Posts</a>
                             {% for tag in tag %}
                                 <a class="badge mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
                             {% endfor %}
+                        </div> -->
+                        <div class="card-body row">
+                            <div class="col-md-6">
+                                <div class="sort-buttons">
+                                    <form method="get" action="{% url 'blog' %}">
+                                        <!-- Sort by Date Created -->
+                                        <button type="submit" class="btn btn-primary" name="sort" value="created_on">
+                                            Created
+                                            {% if request.GET.sort == 'created_on' %}
+                                                {% if request.GET.order == 'asc' %}
+                                                    <i class="fa fa-arrow-up"></i> <!-- Ascending icon -->
+                                                {% else %}
+                                                    <i class="fa fa-arrow-down"></i> <!-- Descending icon -->
+                                                {% endif %}
+                                            {% else %}
+                                                <i class="fa fa-sort"></i> <!-- Default icon if no sort field is selected -->
+                                            {% endif %}
+                                        </button>
+                                
+                                        <!-- Sort by Date Updated -->
+                                        <button type="submit" class="btn btn-primary" name="sort" value="updated_on">
+                                            Recent
+                                            {% if request.GET.sort == 'updated_on' %}
+                                                {% if request.GET.order == 'asc' %}
+                                                    <i class="fa fa-arrow-up"></i> <!-- Ascending icon -->
+                                                {% else %}
+                                                    <i class="fa fa-arrow-down"></i> <!-- Descending icon -->
+                                                {% endif %}
+                                            {% else %}
+                                                <i class="fa fa-sort"></i> <!-- Default icon if no sort field is selected -->
+                                            {% endif %}
+                                        </button>
+                                
+                                        <!-- Sort by Title -->
+                                        <button type="submit" class="btn btn-primary" name="sort" value="title">
+                                            Title
+                                            {% if request.GET.sort == 'title' %}
+                                                {% if request.GET.order == 'asc' %}
+                                                    <i class="fa fa-arrow-up"></i> <!-- Ascending icon -->
+                                                {% else %}
+                                                    <i class="fa fa-arrow-down"></i> <!-- Descending icon -->
+                                                {% endif %}
+                                            {% else %}
+                                                <i class="fa fa-sort"></i> <!-- Default icon if no sort field is selected -->
+                                            {% endif %}
+                                        </button>
+                                    </form>
+                                </div>
+                                
+                                <!-- Optional: Sort Order Toggle Links -->
+                                <div class="sort-order-buttons">
+                                    {% if request.GET.sort %}
+                                        <a href="?sort={{ request.GET.sort }}&order=asc" class="btn btn-link">
+                                            <i class="fa fa-arrow-up"></i> Ascending
+                                        </a>
+                                        <a href="?sort={{ request.GET.sort }}&order=desc" class="btn btn-link">
+                                            <i class="fa fa-arrow-down"></i> Descending
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="tag" class="card-body d-flex overflow-auto" style="height: 75px">
+                                    <a class="badge mr-2" href="{% url 'blog' %}">All Posts</a>
+                                    {% for tag in tag %}
+                                        <a class="badge mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,6 +140,33 @@
                             </div>
                         </div>
                     {% endfor %}
+                    {% if is_paginated %}
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% for page_num in paginator.page_range %}
+                                    <li class="page-item {% if page_num == page_obj.number %}active{% endif %}">
+                                        <a class="page-link" href="?page={{ page_num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                                            {{ page_num }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
                 </div>
             </div>
         </div>

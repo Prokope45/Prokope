@@ -58,6 +58,34 @@ class PostList(TagMixin, ListView):
     template_name = 'post_list.html'
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     context_object_name = 'posts'
+    '''
+    model = Post
+    template_name = 'post_list.html'
+    # queryset = Post.objects.filter(status=1).order_by('-created_on')
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Post.objects.filter(status=1)
+
+        sort_field = self.request.GET.get('sort', 'created_on')
+        sort_order = self.request.GET.get('order', 'desc')
+
+        # Handle sorting
+        if sort_field in ['title', 'created_on', 'updated_on']:
+            if sort_order == 'asc':
+                queryset = queryset.order_by(sort_field)
+            else:
+                queryset = queryset.order_by(f'-{sort_field}')
+
+        # Handle tag filtering
+        # tags = self.request.GET.getlist('tag')
+        # if tags:
+        #     queryset = queryset.filter(tag__name__in=tags).distinct()
+
+        return queryset
+
+    '''
 
 
 class PostDetail(DetailView):
