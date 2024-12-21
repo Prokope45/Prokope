@@ -83,12 +83,23 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div id="tag" class="card-body d-flex overflow-auto" style="height: 75px">
-                                    <a class="badge mr-2" href="{% url 'blog' %}">All Posts</a>
-                                    {% for tag in tag %}
-                                        <a class="badge mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
-                                    {% endfor %}
-                                </div>
+                                <form class="d-flex" method="get" action="{% url 'blog' %}">
+                                    <!-- Multi-Select for Tags -->
+                                    <select name="tags" multiple class="form-select" size=3 style="width: 300px;">
+                                        <option value="" disabled>Select Tags</option>
+                                        {% for tag in tag %}
+                                            <option value="{{ tag.name }}" {% if tag.name in request.GET.tags %}selected{% endif %}>
+                                                {{ tag.name }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                
+                                    <!-- Sorting buttons here -->
+                                
+                                    <button type="submit" class="btn btn-primary my-auto">
+                                        <i class="fa fa-filter"></i> Filter
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
