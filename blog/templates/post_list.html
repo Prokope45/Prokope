@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <head>
         <title>Blog</title>
+        <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     </head>
     {% include 'navbar.html' %}
     <div id='content'>
@@ -16,76 +20,36 @@
                                 Articles
                             </h1>
                         </div>
-                        <!-- <div id="tag" class="card-body d-flex overflow-auto" style="height: 75px">
-                            <a class="badge mr-2" href="{% url 'blog' %}">All Posts</a>
-                            {% for tag in tag %}
-                                <a class="badge mr-2" href="{% url 'posts_by_tag' tag.slug %}">{{ tag.name }}</a>
-                            {% endfor %}
-                        </div> -->
                         <div class="card-body row">
                             <div class="col-md-6">
-                                <div class="sort-buttons">
+                                <div class="sort-buttons row">
                                     <form method="get" action="{% url 'blog' %}">
-                                        <!-- Sort by Date Created -->
-                                        <button type="submit" class="btn btn-primary" name="sort" value="created_on">
-                                            Created
-                                            {% if request.GET.sort == 'created_on' %}
-                                                {% if request.GET.order == 'asc' %}
-                                                    <i class="fa fa-arrow-up"></i> <!-- Ascending icon -->
-                                                {% else %}
-                                                    <i class="fa fa-arrow-down"></i> <!-- Descending icon -->
-                                                {% endif %}
-                                            {% else %}
-                                                <i class="fa fa-sort"></i> <!-- Default icon if no sort field is selected -->
-                                            {% endif %}
-                                        </button>
-                                
-                                        <!-- Sort by Date Updated -->
-                                        <button type="submit" class="btn btn-primary" name="sort" value="updated_on">
-                                            Recent
-                                            {% if request.GET.sort == 'updated_on' %}
-                                                {% if request.GET.order == 'asc' %}
-                                                    <i class="fa fa-arrow-up"></i> <!-- Ascending icon -->
-                                                {% else %}
-                                                    <i class="fa fa-arrow-down"></i> <!-- Descending icon -->
-                                                {% endif %}
-                                            {% else %}
-                                                <i class="fa fa-sort"></i> <!-- Default icon if no sort field is selected -->
-                                            {% endif %}
-                                        </button>
-                                
-                                        <!-- Sort by Title -->
-                                        <button type="submit" class="btn btn-primary" name="sort" value="title">
-                                            Title
-                                            {% if request.GET.sort == 'title' %}
-                                                {% if request.GET.order == 'asc' %}
-                                                    <i class="fa fa-arrow-up"></i> <!-- Ascending icon -->
-                                                {% else %}
-                                                    <i class="fa fa-arrow-down"></i> <!-- Descending icon -->
-                                                {% endif %}
-                                            {% else %}
-                                                <i class="fa fa-sort"></i> <!-- Default icon if no sort field is selected -->
-                                            {% endif %}
-                                        </button>
+                                        <div class="input-group">
+                                            <select name="sort" class="form-select" onchange="this.form.submit()">
+                                                <option value="created_on" {% if request.GET.sort == 'created_on' %}selected{% endif %}>Created</option>
+                                                <option value="updated_on" {% if request.GET.sort == 'updated_on' %}selected{% endif %}>Updated</option>
+                                                <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Title</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary btn-sm" type="button">
+                                                    <a href="?sort={{ request.GET.sort }}&order=asc" class="btn btn-link">
+                                                        <i class="fa fa-arrow-up"></i>
+                                                    </a>
+                                                </button>
+                                                <button class="btn btn-outline-secondary btn-sm" type="button">
+                                                    <a href="?sort={{ request.GET.sort }}&order=desc" class="btn btn-link">
+                                                        <i class="fa fa-arrow-down"></i>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </form>
-                                </div>
-                                
-                                <!-- Optional: Sort Order Toggle Links -->
-                                <div class="sort-order-buttons">
-                                    {% if request.GET.sort %}
-                                        <a href="?sort={{ request.GET.sort }}&order=asc" class="btn btn-link">
-                                            <i class="fa fa-arrow-up"></i> Ascending
-                                        </a>
-                                        <a href="?sort={{ request.GET.sort }}&order=desc" class="btn btn-link">
-                                            <i class="fa fa-arrow-down"></i> Descending
-                                        </a>
-                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <form class="d-flex" method="get" action="{% url 'blog' %}">
                                     <!-- Multi-Select for Tags -->
-                                    <select name="tags" multiple class="form-select" size=3 style="width: 300px;">
+                                    <select name="tags" multiple class="selectpicker" data-live-search="true" style="width: 300px;">
                                         <option value="" disabled>Select Tags</option>
                                         {% for tag in tag %}
                                             <option value="{{ tag.name }}" {% if tag.name in request.GET.tags %}selected{% endif %}>
@@ -97,7 +61,7 @@
                                     <!-- Sorting buttons here -->
                                 
                                     <button type="submit" class="btn btn-primary my-auto">
-                                        <i class="fa fa-filter"></i> Filter
+                                        <i class="fa fa-filter"></i>
                                     </button>
                                 </form>
                             </div>
@@ -182,5 +146,24 @@
             </div>
         </div>
     </div>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+    ></script>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"
+    ></script>
+
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     {% include 'footer.html' %}
 {% endblock %}
