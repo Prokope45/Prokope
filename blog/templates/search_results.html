@@ -29,7 +29,9 @@
                     </li>
                 </ul>
             {% endfor %}
-        {% elif blog_results %}
+        {% endif %}
+
+        {% if blog_results %}
             <ul>
                 {% for post in blog_results %}
                     <li class="mb-2">
@@ -48,7 +50,9 @@
                     </li>
                 {% endfor %}
             </ul>
-        {% elif gallery_results %}
+        {% endif %}
+
+        {% if gallery_results %}
             <h3>Galleries</h3>
             <ul>
                 {% for result in gallery_results %}

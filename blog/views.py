@@ -82,7 +82,6 @@ def search(request):
     query = request.GET.get('q')
     blog_results = []
     gallery_results = []
-    photo_results = []
 
     if query:
         about_me_results = IndexDescription.objects.filter(
@@ -105,11 +104,9 @@ def search(request):
         gallery_results = PhotoGallery.objects.filter(
             Q(country__icontains=query) |
             Q(content__icontains=query) |
-            Q(galleries__title__icontains=query)
+            Q(galleries__title__icontains=query) |
+            Q(galleries__description__icontains=query)
         ).distinct()
-
-        for gallery in PhotoGallery.objects.all():
-            print(gallery.galleries.all())
 
     context = {
         'index_results': {
