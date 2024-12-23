@@ -89,18 +89,18 @@
             <div class="container features">
                 <div class="row">
                     <div class="col">
-                        <h3 class="feature-title">{{ data.plans_title }}</h3>
+                        <h3 id="{{ data.plans_title }}" class="feature-title">{{ data.plans_title }}</h3>
                         <p>{{ data.plans_description }}</p>
                     </div>
                 </div>
-                <div class="row my-4">
-                    <div class="col">
-                        <h3 class="feature-title">{{ data.about_me_title }}</h3>
+                <div class="row align-items-center my-4">
+                    <h3 id="{{ data.about_me_title }}" class="col-12 feature-title">{{ data.about_me_title }}</h3>
+                    <div class="col-12 col-lg-8 order-2 order-lg-1">
                         <p>{{ data.about_me_description }}</p>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-12 col-lg-4 text-center order-1 order-lg-2 mb-2">
                         {% if data.hero_image %}
-                            <img id="profile" class="img-fluid" width="250" src="{{ data.hero_image.url }}" />
+                            <img id="profile" class="img-fluid my-auto" src="{{ data.hero_image.url }}" />
                         {% else %}
                         {% endif %}
                     </div>
