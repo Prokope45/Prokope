@@ -77,8 +77,13 @@ class PostList(TagMixin, ListView):
         tags = self.request.GET.getlist('tags')
         if tags:
             queryset = queryset.filter(tag__name__in=tags).distinct()
-
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add selected tags to the context for the template
+        context['selected_tags'] = self.request.GET.getlist('tags')
+        return context
 
 
 class PostDetail(DetailView):
