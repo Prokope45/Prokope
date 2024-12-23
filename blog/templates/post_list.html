@@ -16,61 +16,55 @@
                 >
                     Articles
                 </h1>
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="sort-buttons">
-                            <form method="get" action="{% url 'blog' %}">
-                                <div class="input-group">
-                                    <select name="sort" class="form-control" onchange="this.form.submit()">
-                                        <option value="" disabled selected>Sort by...</option>
-                                        <option value="created_on" {% if request.GET.sort == 'created_on' %}selected{% endif %}>Created</option>
-                                        <option value="updated_on" {% if request.GET.sort == 'updated_on' %}selected{% endif %}>Updated</option>
-                                        <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Title</option>
-                                    </select>
-                                    <div class="input-group-append">
-                                        <a
-                                            href="?sort={{ request.GET.sort }}&order=asc"
-                                            class="btn btn-outline-secondary"
-                                        >
-                                            <i class="fa fa-arrow-up"></i>
-                                        </a>
-                                        <a
-                                            href="?sort={{ request.GET.sort }}&order=desc"
-                                            class="btn btn-outline-secondary"
-                                        >
-                                            <i class="fa fa-arrow-down"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <form class="d-flex" method="get" action="{% url 'blog' %}">
-                            <div class="input-group">
-                                <select
-                                    name="tags"
-                                    multiple
-                                    class="selectpicker"
-                                    data-live-search="true"
-                                    title="Filter by tags"
+                <div class="d-flex justify-content-end">
+                    <form class="mr-2" method="get" action="{% url 'blog' %}">
+                        <div class="input-group">
+                            <select class="form-select" name="sort" onchange="this.form.submit()">
+                                <option value="" disabled selected>Sort by...</option>
+                                <option value="created_on" {% if request.GET.sort == 'created_on' %}selected{% endif %}>Created</option>
+                                <option value="updated_on" {% if request.GET.sort == 'updated_on' %}selected{% endif %}>Updated</option>
+                                <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Title</option>
+                            </select>
+                            <div class="input-group-append">
+                                <a
+                                    href="?sort={{ request.GET.sort }}&order=asc"
+                                    class="btn btn-outline-secondary"
                                 >
-                                    <option value="" disabled>Select Tags</option>
-                                    {% for tag in tag %}
-                                        <option value="{{ tag.name }}" {% if tag.name in selected_tags %}selected{% endif %}>
-                                            {{ tag.name }}
-                                        </option>
-                                    {% endfor %}
-                                </select>
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-outline-secondary my-auto">
-                                        <i class="fa fa-filter"></i>
-                                    </button>
-                                </div>
+                                    <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                                <a
+                                    href="?sort={{ request.GET.sort }}&order=desc"
+                                    class="btn btn-outline-secondary"
+                                >
+                                    <i class="fa fa-sort-amount-desc"></i>
+                                </a>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+
+                    <form method="get" action="{% url 'blog' %}">
+                        <div class="input-group">
+                            <select
+                                name="tags"
+                                class="selectpicker"
+                                data-live-search="true"
+                                title="Filter by tags"
+                                multiple
+                            >
+                                <option value="" disabled>Select Tags</option>
+                                {% for tag in tag %}
+                                    <option value="{{ tag.name }}" {% if tag.name in selected_tags %}selected{% endif %}>
+                                        {{ tag.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-secondary my-auto">
+                                    <i class="fa fa-filter"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 

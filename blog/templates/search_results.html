@@ -7,6 +7,11 @@
     {% include 'navbar.html' %}
     <div class="container">
         <h2>Search Results for "{{ query }}"</h2>
+
+        {% if not index_results.about_me and not index_results.plans and not blog_results and not gallery_results %}
+            <p>No results found.</p>
+        {% endif %}
+
         {% if index_results.about_me or index_results.plans %}
             <h3>Home</h3>
             {% for about in index_results.about_me %}
@@ -32,6 +37,7 @@
         {% endif %}
 
         {% if blog_results %}
+            <h3>Blog</h3>
             <ul>
                 {% for post in blog_results %}
                     <li class="mb-2">
@@ -75,8 +81,6 @@
                     </li>
                 {% endfor %}
             </ul>
-        {% else %}
-            <p>No results found.</p>
         {% endif %}
     </div>
     {% include 'footer.html' %}
