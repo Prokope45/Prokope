@@ -26,18 +26,22 @@
                                 <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Title</option>
                             </select>
                             <div class="input-group-append">
-                                <a
-                                    href="?sort={{ request.GET.sort }}&order=asc"
+                                <button
+                                    type="button"
+                                    onclick="location.href='?sort={{ request.GET.sort }}&order=asc';"
                                     class="btn btn-outline-secondary"
+                                    {% if not request.GET.sort %} disabled {% endif %}
                                 >
                                     <i class="fa fa-sort-amount-asc"></i>
-                                </a>
-                                <a
-                                    href="?sort={{ request.GET.sort }}&order=desc"
+                                </button>
+                                <button
+                                    type="button"
+                                    onclick="location.href='?sort={{ request.GET.sort }}&order=desc';"
                                     class="btn btn-outline-secondary"
+                                    {% if not request.GET.sort %} disabled {% endif %}
                                 >
                                     <i class="fa fa-sort-amount-desc"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </form>
