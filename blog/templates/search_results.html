@@ -7,9 +7,39 @@
     {% include 'navbar.html' %}
     <div class="container">
         <h2>Search Results for "{{ query }}"</h2>
-        {% if results %}
+
+        {% if not index_results.about_me and not index_results.plans and not blog_results and not gallery_results %}
+            <p>No results found.</p>
+        {% endif %}
+
+        {% if index_results.about_me or index_results.plans %}
+            <h3>Home</h3>
+            {% for about in index_results.about_me %}
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}#{{ about.about_me_title }}">
+                            {{ about.about_me_title }}
+                        </a>
+                        <p>{{ about.about_me_description|truncatewords:30 }}</p>
+                    </li>
+                </ul>
+            {% endfor %}
+            {% for plan in index_results.plans %}
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}#{{ plan.plans_title }}">
+                            {{ plan.plans_title }}
+                        </a>
+                        <p>{{ plan.plans_description|truncatewords:30 }}</p>
+                    </li>
+                </ul>
+            {% endfor %}
+        {% endif %}
+
+        {% if blog_results %}
+            <h3>Blog</h3>
             <ul>
-                {% for post in results %}
+                {% for post in blog_results %}
                     <li class="mb-2">
                         <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
                         <p>{{ post.content|striptags|truncatewords:50 }}</p>
@@ -26,8 +56,31 @@
                     </li>
                 {% endfor %}
             </ul>
-        {% else %}
-            <p>No results found.</p>
+        {% endif %}
+
+        {% if gallery_results %}
+            <h3>Galleries</h3>
+            <ul>
+                {% for result in gallery_results %}
+                    <li>
+                        <h4 class="mb-2">
+                            <a href="{% url 'gallery_detail' result.slug  %}">{{ result.country }}</a>
+                        </h4>
+                        <div class="mb-2">
+                            {% for gallery in result.galleries.all %}
+                                {% for photo in gallery.public|slice:":6" %}
+                                    <img
+                                        class="travel-photo m-1 "
+                                        src="{{ photo.get_thumbnail_url }}"
+                                        alt="{{ photo.title }}: {{ photo.caption }}"
+                                    >
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                        <p>{{ result.content|truncatewords:20 }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
         {% endif %}
     </div>
     {% include 'footer.html' %}
