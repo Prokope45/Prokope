@@ -17,6 +17,8 @@ from .models import IndexDescription, Post, PhotoGallery
 
 from photologue.models import Gallery, Photo
 
+import re
+
 # Custom Error Pages
 def custom_page_not_found_view(request, exception):
     return render(request, "errors/404.html", {})
@@ -105,14 +107,17 @@ class CountryGalleryDetail(DetailView):
 
 def search(request):
     # TODO: Implement search in gallery and index pages.
-    query = request.GET.get('q')
+    query = request.GET.get('q', '').strip()
+
+    about_me_results = []
+    plans_results = []
     blog_results = []
     gallery_results = []
     error_message = None
 
     if query:
         forbidden_patterns = re.compile(r'(DROP|SELECT|INSERT|DELETE|UPDATE|;|--)', re.IGNORECASE)
-        
+
         if forbidden_patterns.search(query):
             error_message = "Invalid search query. Please refine your input."
             query = ''  # Clear the query to prevent further processing
