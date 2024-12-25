@@ -51,7 +51,7 @@
                             <span id="tag" class="d-inline">
                                 <i class="fa fa-tags text-muted"></i>
                                 {% for tag in post.tag.all %}
-                                    <a class="badge" href="{% url 'posts_by_tag' tag %}">{{ tag }}</a>
+                                    <a class="badge" href="{% url 'posts_by_tag' tag.slug %}">{{ tag }}</a>
                                 {% endfor %}
                             </span>
 

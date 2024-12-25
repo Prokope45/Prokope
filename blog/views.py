@@ -106,7 +106,6 @@ class CountryGalleryDetail(DetailView):
     template_name = 'gallery_detail.html'
 
 def search(request):
-    # TODO: Implement search in gallery and index pages.
     query = request.GET.get('q', '').strip()
 
     about_me_results = []
