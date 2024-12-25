@@ -25,7 +25,7 @@
                             {% if post.created_on != post.updated_on %}
                                 <span class="col-auto text-muted pr-0"><i class="fa fa-pencil mr-2"></i>{{ post.updated_on }}</span>
                             {% endif %}
-                            <span id="tag" class="col ml-3">
+                            <span id="tag" class="col-auto col-xs-12 ml-3">
                                 <span class="row">
                                     <i class="fa fa-tags text-muted my-auto"></i>
                                     {% for tag in post.tag.all %}

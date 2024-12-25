@@ -91,7 +91,7 @@
                                 {% if post.created_on != post.updated_on %}
                                     <span class="col-auto text-muted pr-0"><i class="fa fa-pencil mr-2"></i>{{ post.updated_on }}</span>
                                 {% endif %}
-                                <span id="tag" class="col ml-3">
+                                <span id="tag" class="col-auto col-xs-12 ml-3">
                                     <span class="row">
                                         <i class="fa fa-tags text-muted my-auto"></i>
                                         {% for tag in post.tag.all %}
@@ -157,13 +157,11 @@
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"
     ></script>
-
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"
     ></script>
-
     <script
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
