@@ -108,31 +108,38 @@ def search(request):
     query = request.GET.get('q')
     blog_results = []
     gallery_results = []
+    error_message = None
 
     if query:
-        about_me_results = IndexDescription.objects.filter(
-            Q(about_me_title__icontains=query) |
-            Q(about_me_description__icontains=query)
-        )
-        plans_results = IndexDescription.objects.filter(
-            Q(plans_title__icontains=query) |
-            Q(plans_description__icontains=query)
-        )
+        forbidden_patterns = re.compile(r'(DROP|SELECT|INSERT|DELETE|UPDATE|;|--)', re.IGNORECASE)
+        
+        if forbidden_patterns.search(query):
+            error_message = "Invalid search query. Please refine your input."
+            query = ''  # Clear the query to prevent further processing
+        else:
+            about_me_results = IndexDescription.objects.filter(
+                Q(about_me_title__icontains=query) |
+                Q(about_me_description__icontains=query)
+            )
+            plans_results = IndexDescription.objects.filter(
+                Q(plans_title__icontains=query) |
+                Q(plans_description__icontains=query)
+            )
 
-        tag_ids = TaggedItem.objects.filter(tag__name__icontains=query).values_list('object_id', flat=True)
+            tag_ids = TaggedItem.objects.filter(tag__name__icontains=query).values_list('object_id', flat=True)
 
-        blog_results = Post.objects.filter(
-            Q(title__icontains=query) |
-            Q(content__icontains=query) |
-            Q(id__in=tag_ids)  # Search in tags
-        ).distinct()
+            blog_results = Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(content__icontains=query) |
+                Q(id__in=tag_ids)  # Search in tags
+            ).distinct()
 
-        gallery_results = PhotoGallery.objects.filter(
-            Q(country__icontains=query) |
-            Q(content__icontains=query) |
-            Q(galleries__title__icontains=query) |
-            Q(galleries__description__icontains=query)
-        ).distinct()
+            gallery_results = PhotoGallery.objects.filter(
+                Q(country__icontains=query) |
+                Q(content__icontains=query) |
+                Q(galleries__title__icontains=query) |
+                Q(galleries__description__icontains=query)
+            ).distinct()
 
     context = {
         'index_results': {
@@ -142,6 +149,7 @@ def search(request):
         'blog_results': blog_results,
         'gallery_results': gallery_results,
         'query': query,
+        'error_message': error_message,
     }
 
     return render(request, 'search_results.html', context)
