@@ -7,15 +7,17 @@
         {% include 'navbar.html' %}
         <div id='content'>
             <div class="container">
+                <div class="mb-2">
+                    <a href="{% url 'gallery' %}">
+                        <button class="post-back-button btn-sm">
+                            <span>Back to Gallery</span>
+                        </button>
+                    </a>
+                </div>
                 <div class="card">
                     <div class="card-body">
-                        <a href="{% url 'gallery' %}">
-                            <button class="post-back-button btn-sm">
-                                <span>Back to Main Gallery</span>
-                            </button>
-                        </a>
-                        <div class="text-center col-md-12 col-sm-12">
-                            <h1 class="card-title">Gallery of {{ object.country }}</h1>
+                        <div class="col-md-12 col-sm-12 mb-2">
+                            <h1 class="text-center card-title">{{ object.country }}</h1>
                             <p class="card-text">{{ object.content }}</p>
                         </div>
                         {% for gallery in object.galleries.all %}

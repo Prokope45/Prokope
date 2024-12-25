@@ -7,6 +7,9 @@
     border: 1px #E3E7EB;
     width: 500px;
 }
+.post-image-preview {
+    border-radius: 16px;
+}
 html {
     --tag-bg-color: var(--tekhelet);
     --tag-font-color: var(--pale-purple);
@@ -30,4 +33,20 @@ html {
 #tag a:active {
     transform: scale(.8);
     transition: .1s;
+}
+#filter-button {
+    background-color: var(--pale-purple);
+    color: var(--iris);
+}
+.pagination .page-link:focus {
+    box-shadow: 0 0 0 0.2rem var(--iris);
+}
+.pagination .page-link:hover {
+    background-color: var(--pale-purple);
+    color: var(--tekhelet);
+}
+.pagination .page-item.active .page-link {
+    background-color: var(--pale-purple);
+    color: var(--tekhelet);
+    border: 1px solid var(--iris);
 }

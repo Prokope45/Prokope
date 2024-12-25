@@ -19,15 +19,8 @@
                         {% for image in gallery_info %}
                             <div class="row mb-2">
                                 <div class="col">
-                                    <h3 class="card-title">{{ image.country }}</h3>
+                                    <h3 class="card-title"><a href="{% url 'gallery_detail' image.slug  %}">{{ image.country }}</a></h3>
                                     <p class="card-text">{{ image.content }}</p>
-                                </div>
-                                <div class="col-auto">
-                                    <a href="{% url 'gallery_detail' image.slug  %}">
-                                        <button class="post-button btn-sm">
-                                            <span>See more of {{ image.country }}</span>
-                                        </button>
-                                    </a>
                                 </div>
                             </div>
                             {% for gallery in image.galleries.all|slice:":1" %}

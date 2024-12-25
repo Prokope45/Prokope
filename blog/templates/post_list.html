@@ -16,10 +16,10 @@
                 >
                     Articles
                 </h1>
-                <div class="d-flex justify-content-end">
-                    <form class="mr-2" method="get" action="{% url 'blog' %}">
+                <div class="d-flex flex-wrap justify-content-end">
+                    <form class="w-auto w-100 mb-2 mb-md-0 mr-md-2" method="get" action="{% url 'blog' %}">
                         <div class="input-group">
-                            <select class="form-select" name="sort" onchange="this.form.submit()">
+                            <select class="selectpicker" name="sort" onchange="this.form.submit()">
                                 <option value="" disabled selected>Sort by...</option>
                                 <option value="created_on" {% if request.GET.sort == 'created_on' %}selected{% endif %}>Created</option>
                                 <option value="updated_on" {% if request.GET.sort == 'updated_on' %}selected{% endif %}>Updated</option>
@@ -28,6 +28,7 @@
                             <div class="input-group-append">
                                 <button
                                     type="button"
+                                    id="filter-button"
                                     onclick="location.href='?sort={{ request.GET.sort }}&order=asc';"
                                     class="btn btn-outline-secondary"
                                     {% if not request.GET.sort %} disabled {% endif %}
@@ -36,6 +37,7 @@
                                 </button>
                                 <button
                                     type="button"
+                                    id="filter-button"
                                     onclick="location.href='?sort={{ request.GET.sort }}&order=desc';"
                                     class="btn btn-outline-secondary"
                                     {% if not request.GET.sort %} disabled {% endif %}
@@ -46,12 +48,13 @@
                         </div>
                     </form>
 
-                    <form method="get" action="{% url 'blog' %}">
+                    <form class="w-auto w-100" method="get" action="{% url 'blog' %}">
                         <div class="input-group">
                             <select
                                 name="tags"
                                 class="selectpicker"
                                 data-live-search="true"
+                                data-actions-box="true"
                                 title="Filter by tags"
                                 multiple
                             >
@@ -63,7 +66,11 @@
                                 {% endfor %}
                             </select>
                             <div class="input-group-append">
-                                <button type="submit" class="btn btn-outline-secondary my-auto">
+                                <button
+                                    type="submit"
+                                    id="filter-button"
+                                    class="btn btn-outline-secondary my-auto"
+                                >
                                     <i class="fa fa-filter"></i>
                                 </button>
                             </div>
@@ -75,7 +82,7 @@
             {% for post in posts %}
                 <div class="card mb-2" >
                     <div class="card-body">
-                        <h2 class="card-title">{{ post.title }}</h2>
+                        <h2 class="card-title"><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></h2>
                         <div class="card-text">
                             <div class="row mb-2">
                                 <span class="col-auto text-muted pr-0">
@@ -96,11 +103,11 @@
                                 </span>
                             </div>
                             {% if post.thumb %}
-                                <div class="row">
+                                <div class="row mb-4">
                                     <div class="col-lg-8 col-md-6 col-sm-12">
                                         <p>{{ post.content | safe | slice:":450" }}...</p>
                                     </div>
-                                    <img class="post-image img-fluid col-lg-4 col-md-4 col-sm-12 mx-auto"
+                                    <img class="post-image-preview img-fluid col-lg-4 col-md-4 col-sm-12 mx-auto"
                                         style="max-width: 250px;"
                                         src="{{ post.thumb.url }}"
                                     />
@@ -111,9 +118,7 @@
                         </div>
 
                         <a href="{% url 'post_detail' post.slug  %}">
-                            <button class="post-button btn-sm">
-                                <span>Read More </span>
-                            </button>
+                            Read More
                         </a>
                     </div>
                 </div>
