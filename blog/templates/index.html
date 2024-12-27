@@ -20,7 +20,13 @@
                 <div class="overlay"></div>
 
                 <div class="description col-xl-8 col-lg-6 col-md-6 col-sm-10 col-10">
-                    <img id="profile" class="img-fluid" width="300" src="{% static '/logo/prokope-p-lg.png' %}" />
+                    <img
+                        id="profile"
+                        class="img-fluid"
+                        width="300"
+                        src="{% static '/logo/prokope-p-lg.png' %}"
+                        loading="lazy"
+                    />
 
                     <h1>{{ data.greeting_title }}</h1>
                     <p>{{ data.greeting_description }}</p>
