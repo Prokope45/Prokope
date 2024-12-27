@@ -36,6 +36,9 @@
     transform: scale(.8);
     transition: .1s;
 }
-.navbar-toggler-icon {
+.custom-toggler-icon {
     color: var(--indigo) !important;
+}
+.custom-toggler.navbar-toggler {
+    border-color: var(--indigo) !important;
 }

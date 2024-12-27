@@ -50,3 +50,15 @@ html {
     color: var(--tekhelet);
     border: 1px solid var(--iris);
 }
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: var(--pale-purple);
+    color: var(--tekhelet);
+}
+.dropdown-menu .dropdown-item.active {
+    background-color: var(--iris); /* Custom active color */
+    color: var(--pale-purple); /* Text color for active option */
+}
+.bootstrap-select .btn.dropdown-toggle {
+    outline-color: var(--iris) !important;
+}
