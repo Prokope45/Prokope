@@ -1,3 +1,9 @@
+<style>
+    #search-bar:focus {
+        border-color: var(--iris);
+        box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
+    }
+</style>
 <form class="d-flex" method="GET" action="{% url 'search' %}">
-    <input class="form-control mr-2" type="search" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+    <input id="search-bar" class="form-control mr-2" type="search" name="q" placeholder="Search..." value="{{ request.GET.q }}">
 </form>

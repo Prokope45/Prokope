@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_head_links %}
+    <link rel="stylesheet" href="{% static '/css/base.css' %}" />
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}" />
+    <link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+{% endblock %}
 {% block gallery %}
     <head>
         <title>Gallery</title>
@@ -52,3 +61,7 @@
         {% include 'footer.html' %}
     </body>
 {% endblock gallery %}
+
+{% block extra_script_links %}
+    <script src="{% static 'lightbox/js/lightbox-plus-jquery.js' %}"></script>
+{% endblock %}
