@@ -73,15 +73,18 @@
                                 <a href="{% url 'gallery_detail' result.slug  %}">{{ result.country }}</a>
                             </h4>
                             <div class="mb-2">
-                                {% for gallery in result.galleries.all %}
-                                    {% for photo in gallery.public|slice:":6" %}
-                                        <img
-                                            class="travel-photo m-1 "
-                                            src="{{ photo.get_thumbnail_url }}"
-                                            alt="{{ photo.title }}: {{ photo.caption }}"
-                                        >
+                                <div class="row photo-row justify-content-center">
+                                    {% for gallery in result.galleries.all %}
+                                        {% for photo in gallery.public|slice:":6" %}
+                                            <img
+                                                class="travel-photo m-2 "
+                                                src="{{ photo.get_thumbnail_url }}"
+                                                alt="{{ photo.title }}: {{ photo.caption }}"
+                                                loading="lazy"
+                                            >
+                                        {% endfor %}
                                     {% endfor %}
-                                {% endfor %}
+                                </div>
                             </div>
                             <p>{{ result.content|truncatewords:20 }}</p>
                         </li>

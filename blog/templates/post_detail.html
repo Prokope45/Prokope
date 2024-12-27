@@ -31,7 +31,7 @@
                                     <i class="fa fa-tags text-muted my-auto"></i>
                                     {% for tag in post.tag.all %}
                                             <a class="badge m-1" href="{% url 'posts_by_tag' tag.slug %}">
-                                            {{ tag.name }}
+                                                {{ tag.name }}
                                             </a>
                                     {% endfor %}
                                 </span>
@@ -39,8 +39,10 @@
                         </div>
                         {% if post.thumb %}
                             <div class="mx-auto col-lg-6 col-md-8 col-sm-10">
-                                <img class="post-image img-fluid"
-                                        src="{{ post.thumb.url }}"
+                                <img
+                                    class="post-image img-fluid"
+                                    src="{{ post.thumb.url }}"
+                                    loading="lazy"
                                 />
                             </div>
                         {% endif %}
