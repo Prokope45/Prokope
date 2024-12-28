@@ -1,17 +1,17 @@
 .nav-link:visited {
-    color: var(--indigo) !important;
+    color: var(--indigo);
     background-color: transparent;
 }
 .nav-link:link {
-    color: var(--indigo) !important;
+    color: var(--indigo);
     background-color: transparent;
 }
 .nav-link:hover {
-    color: var(--tekhelet) !important;
+    color: var(--tekhelet);
     background-color: transparent;
 }
 .nav-link:active {
-    color: var(--iris) !important;
+    color: var(--iris);
 }
 .navbar {
     background: var(--platinum);
