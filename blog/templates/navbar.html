@@ -1,6 +1,90 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_head_links %}
+<style>
+    :root {
+      --background-color: var(--platinum);
+      --text-color: #000000;
+      --navbar-bg-color: var(--platinum);
+      --navbar-text-color: var(--iris);
+    }
+  
+    [data-theme="dark"] {
+      --background-color: var(--russian-violet);
+      --text-color: #ffffff;
+      --navbar-bg-color: var(--iris);
+      --navbar-text-color: var(--platinum);
+    }
+
+    html {
+      background-color: var(--background-color) !important;
+      color: var(--text-color) !important;
+    }
+    body {
+      background-color: var(--background-color) !important;
+      color: var(--text-color) !important;
+    }
+    container {
+      background-color: var(--background-color) !important;
+      color: var(--text-color) !important;
+    }
+    #content {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+    }
+  
+    .navbar {
+      background-color: var(--navbar-bg-color) !important;
+      color: var(--navbar-text-color) !important;
+    }
+  
+    .navbar a {
+      color: var(--navbar-text-color) !important;
+    }
+
+    .button-custom {
+        background-color: var(--navbar-bg-color);
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+    }
+    .button-custom:hover {
+        background-color: var(--text-color);
+        color: var(--navbar-bg-color);
+    }
+
+    .card {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Dark mode card styles */
+    [data-theme="dark"] .card {
+        background-color: var(--pale-purple); /* Slightly lighter than the dark background */
+        color: var(--tekhelet);
+        border: 1px solid var(--iris); /* Subtle border for dark mode */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #darkModeToggle {
+        border: none;
+        background: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-color);
+    }
+
+    #darkModeToggle:hover {
+        opacity: 0.8;
+    }
+    #darkModeToggle:active {
+        border: none;
+    }
+  </style>
+{% endblock %}
+
 {% block navbar %}
 <body>
     <nav class="navbar navbar-expand-sm">
@@ -45,6 +129,11 @@
                     <li class="nav-item mr-3 my-auto">
                         {% include 'search.html' %}
                     </li>
+                    <li class="nav-item my-auto mr-3">
+                        <button id="darkModeToggle" class="btn btn-outline-secondary">
+                            <i id="darkModeIcon" class="fa fa-moon-o"></i>
+                        </button>
+                    </li>
                 </ul>
             </div>
         {% endwith %}
@@ -70,4 +159,28 @@
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"
     ></script>
+    <script>
+        const body = document.body;
+        const toggleButton = document.getElementById('darkModeToggle');
+        const icon = document.getElementById('darkModeIcon');
+      
+        // Load the user's preference from localStorage
+        const storedTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', storedTheme);
+      
+        // Set initial icon based on the stored theme
+        icon.className = storedTheme === 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o';
+      
+        toggleButton.addEventListener('click', () => {
+          const currentTheme = body.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+          // Update theme and icon
+          body.setAttribute('data-theme', newTheme);
+          icon.className = newTheme === 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o';
+      
+          // Save preference to localStorage
+          localStorage.setItem('theme', newTheme);
+        });
+    </script>
 {% endblock %}

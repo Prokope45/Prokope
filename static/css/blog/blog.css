@@ -10,10 +10,6 @@
 .post-image-preview {
     border-radius: 16px;
 }
-html {
-    --tag-bg-color: var(--tekhelet);
-    --tag-font-color: var(--pale-purple);
-}
 #tag a {
     transition: all .2s ease-in-out;
 }

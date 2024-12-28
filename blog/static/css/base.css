@@ -14,7 +14,7 @@ html {
     background-color: var(--platinum);
 }
 body {
-   background-color: var(--platinum) !important;
+   background-color: var(--platinum);
    margin:0;
    padding:0;
    height:100%;
