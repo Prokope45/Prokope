@@ -14,14 +14,12 @@
     transition: all .2s ease-in-out;
 }
 #tag a:link {
-    background-color: var(--tag-bg-color);
-    color: var(--tag-font-color);
-    /* box-shadow: 2px 1px 2px var(--mystic-purple); */
+    background-color: var(--tag-bg-color) !important;
+    color: var(--tag-font-color) !important;
 }
 #tag a:visited {
     background-color: var(--tag-bg-color);
     color: var(--tag-font-color);
-    /* box-shadow: 2px 1px 2px var(--mystic-purple); */
 }
 #tag a:hover {
     transform: scale(1.1);
@@ -57,4 +55,80 @@
 }
 .bootstrap-select .btn.dropdown-toggle {
     outline-color: var(--iris) !important;
+}
+
+.bootstrap-select {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border: 1px solid var(--select-border-color) !important;
+}
+
+.bootstrap-select .dropdown-toggle {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border: 1px solid var(--select-border-color) !important;
+    border-radius: 1%;
+}
+
+.btn.dropdown-toggle.btn-light {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border-color: var(--select-border-color) !important;
+    transition: all 0.3s ease;
+  }
+
+.btn.dropdown-toggle.btn-light:focus {
+    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
+}
+
+.btn.dropdown-toggle.btn-light.bs-placeholder {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border-color: var(--select-border-color) !important;
+    transition: all 0.3s ease;
+}
+
+.btn.dropdown-toggle.btn-light.bs-placeholder:focus {
+    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
+}
+
+.bootstrap-select .dropdown-menu {
+    background-color: var(--select-bg-color);
+    color: var(--select-text-color);
+}
+.bootstrap-select .dropdown-menu .dropdown-item {
+    color: var(--select-text-color);
+}
+
+.bootstrap-select .dropdown-menu .dropdown-item:hover,
+.bootstrap-select .dropdown-menu .dropdown-item:focus {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color);
+}
+
+[data-theme="dark"] .bs-searchbox input {
+    border: 1px solid #555;
+    background-color: #333;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.bs-actionsbox .btn {
+    background-color: var(--cyber-grape);
+    color: var(--pale-purple);
+    border: 1px solid var(--iris);
+}
+
+[data-theme="dark"] .bs-actionsbox .btn:hover {
+    background-color: var(--iris);
+    color: var(--pale-purple);
+}
+
+[data-theme="dark"] .dropdown-menu .no-results {
+    background-color: var(--cyber-grape);
+}
+
+[data-theme="dark"] .bs-searchbox input:focus {
+    border-color: var(--iris);
+    box-shadow: 0 0 0 0.2rem var(--iris);
 }

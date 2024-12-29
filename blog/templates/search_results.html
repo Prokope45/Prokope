@@ -7,7 +7,7 @@
     </head>
     {% include 'navbar.html' %}
     <div id="content" class="mt-4">
-        <div class="container">
+        <div id="search" class="container">
             {% if error_message %}
                 <div class="alert alert-danger">
                     {{ error_message }}
@@ -50,8 +50,8 @@
                             <li class="mb-2">
                                 <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
                                 <p>{{ post.content|striptags|truncatewords:50 }}</p>
-                                <span id="tag" class="d-inline">
-                                    <i class="fa fa-tags text-muted"></i>
+                                <span id="tag" class="d-inline blog-details">
+                                    <i class="fa fa-tags"></i>
                                     {% for tag in post.tag.all %}
                                         <a class="badge" href="{% url 'posts_by_tag' tag.slug %}">{{ tag }}</a>
                                     {% endfor %}
