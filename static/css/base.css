@@ -8,6 +8,7 @@
 @import "index/control.css";
 @import "gallery/gallery.css";
 @import "form/input.css";
+@import "search.css";
 
 img {
     pointer-events: none;
@@ -83,7 +84,7 @@ a:active {
 
     --select-bg-color: var(--white);
     --select-text-color: var(--dark-gray);
-    --select-border-color: var(--platinum);
+    --select-border-color: var(--roman-silver);
 }
 
 [data-theme="dark"] {

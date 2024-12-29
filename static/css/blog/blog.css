@@ -102,8 +102,8 @@
 
 .bootstrap-select .dropdown-menu .dropdown-item:hover,
 .bootstrap-select .dropdown-menu .dropdown-item:focus {
-    background-color: var(--select-bg-color) !important;
-    color: var(--select-text-color);
+    background-color: var(--cyber-grape);
+    color: var(--pale-purple);
 }
 
 [data-theme="dark"] .bs-searchbox input {
