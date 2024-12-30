@@ -84,14 +84,20 @@ a:active {
 
     --select-bg-color: var(--white);
     --select-text-color: var(--dark-gray);
-    --select-border-color: var(--iris);
+    --select-border-color: var(--white);
+
+    --multi-select-actions-bg-color: var(--iris);
+    --multi-select-actions-text-color: var(--pale-purple);
+
+    --button-bg-color: var(--pale-purple);
+    --button-text-color: var(--iris);
 }
 
 [data-theme="dark"] {
     --background-color: var(--delft-blue);
     --text-color: var(--pale-purple);
     --navbar-bg-color: var(--delft-blue);
-    --navbar-text-color: var(--pale-purple);
+    --navbar-text-color: var(--wisteria);
 
     --footer-bg-color: var(--cyber-grape);
     --footer-text-color: var(--pale-purple);
@@ -108,6 +114,12 @@ a:active {
     --select-bg-color: #333;
     --select-text-color: var(--pale-purple);
     --select-border-color: var(--iris);
+
+    --multi-select-actions-bg-color: var(--iris);
+    --multi-select-actions-text-color: var(--wisteria);
+
+    --button-bg-color: var(--iris);
+    --button-text-color: var(--wisteria);
 }
 
 html, body {
@@ -133,17 +145,19 @@ body.dark-theme img {
     color: var(--card-details-color);
 }
 #content, html, body {
-background-color: var(--background-color) !important;
-color: var(--text-color) !important;
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    transition: all 0.3s ease;
 }
 
 .navbar {
-background-color: var(--navbar-bg-color) !important;
-color: var(--navbar-text-color) !important;
+    background-color: var(--navbar-bg-color) !important;
+    color: var(--navbar-text-color) !important;
+    transition: all 0.3s ease;
 }
 
 .nav-link:link {
-color: var(--navbar-text-color) !important;
+    color: var(--navbar-text-color) !important;
 }
 
 .button-custom {
@@ -161,6 +175,7 @@ color: var(--navbar-text-color) !important;
     color: var(--card-text-color);
     border: 1px solid var(--card-text-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 [data-theme="dark"] #search a {
@@ -170,10 +185,12 @@ color: var(--navbar-text-color) !important;
 .card a {
     color: var(--card-text-color) !important;
     text-decoration: none; /* Remove underline by default */
+    transition: all 0.3s ease;
 }
 
 .card p {
     color: var(--card-text-color) !important;
+    transition: all 0.3s ease;
 }
 
 .page-link {
@@ -181,6 +198,7 @@ color: var(--navbar-text-color) !important;
 }
 h1, h2, h3 {
     color: var(--heading-font-color) !important;
+    transition: all 0.3s ease;
 }
 
 #darkModeToggle {
@@ -188,7 +206,7 @@ h1, h2, h3 {
     background: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--text-color);
+    color: var(--navbar-text-color);
 }
 
 #darkModeToggle:hover {

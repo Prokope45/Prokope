@@ -42,3 +42,12 @@
 .custom-toggler.navbar-toggler {
     border-color: var(--indigo) !important;
 }
+#search-bar {
+    border-color: var(--select-bg-color) !important;
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+}
+#search-bar:focus {
+    border-color: var(--iris) !important;
+    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25) !important;
+}

@@ -29,38 +29,47 @@
     transition: .1s;
 }
 #filter-button {
-    background-color: var(--pale-purple);
-    color: var(--iris);
+    border-color: var(--button-bg-color);
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    transition: all 0.3s ease;
+}
+.pagination .page-item {
+    border-color: var(--button-text-color) !important;
+    transition: all 0.3s ease;
 }
 .pagination .page-link:focus {
     box-shadow: 0 0 0 0.2rem var(--iris);
 }
 .pagination .page-link:hover {
     background-color: var(--pale-purple);
-    color: var(--tekhelet);
+    color: var(--iris);
 }
 .pagination .page-item.active .page-link {
-    background-color: var(--pale-purple);
-    color: var(--tekhelet);
-    border: 1px solid var(--iris);
+    background-color: var(--button-bg-color);
+    color: var(--button) !important;
+    border: 1px solid var(--button-text-color);
 }
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus {
-    background-color: var(--pale-purple);
-    color: var(--tekhelet);
+    background-color: var(--select-bg-color);
+    color: var(--select-text-color);
 }
 .dropdown-menu .dropdown-item.active {
-    background-color: var(--iris); /* Custom active color */
-    color: var(--pale-purple); /* Text color for active option */
+    background-color: var(--iris);
+    color: var(--pale-purple) !important;
 }
 .bootstrap-select .btn.dropdown-toggle {
     outline-color: var(--iris) !important;
+    transition: all 0.3s ease;
 }
 
 .bootstrap-select {
     background-color: var(--select-bg-color) !important;
     color: var(--select-text-color) !important;
-    border: 1px solid var(--select-border-color) !important;
+    border-color: var(--select-border-color) !important;
+    border-radius: 1%;
+    transition: all 0.3s ease;
 }
 
 .bootstrap-select .dropdown-toggle {
@@ -102,8 +111,29 @@
 
 .bootstrap-select .dropdown-menu .dropdown-item:hover,
 .bootstrap-select .dropdown-menu .dropdown-item:focus {
-    background-color: var(--cyber-grape);
+    background-color: var(--iris);
     color: var(--pale-purple);
+}
+
+.bs-actionsbox .btn {
+    background-color: var(--multi-select-actions-bg-color);
+    color: var(--multi-select-actions-text-color);
+    border: 1px solid var(--multi-select-actions-bg-color);
+}
+
+.bs-actionsbox .btn:hover {
+    background-color: var(--pale-purple);
+    color: var(--iris);
+    border-color: var(--pale-purple);
+}
+
+.dropdown-menu .no-results {
+    background-color: var(--multi-select-actions-bg-color);
+}
+
+.bs-searchbox input:focus {
+    border-color: var(--multi-select-actions-bg-color);
+    box-shadow: 0 0 0 0.2rem var(--multi-select-actions-bg-color);
 }
 
 [data-theme="dark"] .bs-searchbox input {
@@ -111,24 +141,4 @@
     background-color: #333;
     color: #fff;
     transition: all 0.3s ease;
-}
-
-.bs-actionsbox .btn {
-    background-color: var(--cyber-grape);
-    color: var(--pale-purple);
-    border: 1px solid var(--iris);
-}
-
-[data-theme="dark"] .bs-actionsbox .btn:hover {
-    background-color: var(--iris);
-    color: var(--pale-purple);
-}
-
-[data-theme="dark"] .dropdown-menu .no-results {
-    background-color: var(--cyber-grape);
-}
-
-[data-theme="dark"] .bs-searchbox input:focus {
-    border-color: var(--iris);
-    box-shadow: 0 0 0 0.2rem var(--iris);
 }
