@@ -9,7 +9,14 @@
                 <a class="nav-link {% if url_name == 'home' %} active {% endif %}"
                    href="{% url 'home' %}"
                 >
-                    <img class="img-fluid" width="150" src="{% static '/logo/prokope.png' %}" />
+                    <img
+                        id="brand-logo"
+                        class="img-fluid"
+                        width="150"
+                        src="{% static '/logo/prokope-light.png' %}"
+                        data-light-logo="{% static '/logo/prokope-light.png' %}" 
+                        data-dark-logo="{% static '/logo/prokope-dark.png' %}"
+                    />
                 </a>
             </div>
 
@@ -42,8 +49,13 @@
                             Gallery
                         </a>
                     </li>
-                    <li class="nav-item mr-3 my-auto">
-                        {% include 'search.html' %}
+                    <li class="nav-item d-flex align-items-center">
+                        <span style="width: 100%;">
+                            {% include 'search.html' %}
+                        </span>
+                        <button id="darkModeToggle" class="btn btn-outline-secondary">
+                            <i id="darkModeIcon" class="fa fa-moon-o"></i>
+                        </button>
                     </li>
                 </ul>
             </div>

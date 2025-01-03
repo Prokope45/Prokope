@@ -8,17 +8,8 @@
 @import "index/control.css";
 @import "gallery/gallery.css";
 @import "form/input.css";
+@import "search.css";
 
-html {
-    height: 100%;
-    background-color: var(--platinum);
-}
-body {
-   background-color: var(--platinum) !important;
-   margin:0;
-   padding:0;
-   height:100%;
-}
 img {
     pointer-events: none;
 }
@@ -54,18 +45,123 @@ img {
    min-height:100%;
    position: relative;
 }
+
+:root {
+    --background-color: var(--platinum);
+    --text-color: var(--dark-gray);
+
+    --navbar-bg-color: var(--platinum);
+    --navbar-text-color: var(--iris);
+
+    --footer-bg-color: var(--iris);
+    --footer-text-color: var(--platinum);
+
+    --card-bg-color: var(--white);
+    --card-text-color: var(--dark-gray);
+    --card-details-color: var(--roman-silver);
+
+    --tag-bg-color: var(--tekhelet);
+    --tag-font-color: var(--pale-purple);
+
+    --heading-font-color: var(--dark-gray);
+
+    --select-bg-color: var(--white);
+    --select-text-color: var(--dark-gray);
+    --select-border-color: var(--white);
+
+    --multi-select-actions-bg-color: var(--iris);
+    --multi-select-actions-text-color: var(--pale-purple);
+
+    --button-bg-color: var(--pale-purple);
+    --button-border-color: var(--iris);
+    --button-text-color: var(--iris);
+}
+
+[data-theme="dark"] {
+    --background-color: var(--delft-blue);
+    --text-color: var(--pale-purple);
+    --navbar-bg-color: var(--delft-blue);
+    --navbar-text-color: var(--wisteria);
+
+    --footer-bg-color: var(--cyber-grape);
+    --footer-text-color: var(--pale-purple);
+
+    --card-bg-color: var(--cyber-grape);
+    --card-text-color: var(--pale-purple);
+    --card-details-color: var(--roman-silver);
+
+    --tag-bg-color: var(--pale-purple);
+    --tag-font-color: var(--cyber-grape);
+
+    --heading-font-color: var(--wisteria);
+    
+    /* #495057 */
+    --select-bg-color: #333;
+    --select-text-color: var(--pale-purple);
+    --select-border-color: var(--iris);
+
+    --multi-select-actions-bg-color: var(--iris);
+    --multi-select-actions-text-color: var(--pale-purple);
+
+    --button-bg-color: var(--iris);
+    --button-border-color: var(--iris);
+    --button-text-color: var(--wisteria);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure the elements take up at least the full height of the viewport */
+    width: 100%;  /* Ensure the elements span the full width of the viewport */
+    box-sizing: border-box; /* Include padding and border in width and height calculations */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+    min-height: 100%; /* Extend body height to ensure it covers all content */
+}
+
 a:visited {
-    color: var(--indigo);
+    color: var(--navbar-text-color);
     background-color: transparent;
 }
 a:link {
-    color: var(--indigo);
+    color: var(--navbar-text-color);
     background-color: transparent;
 }
 a:hover {
-    color: var(--tekhelet);
+    color: var(--cyber-grape) !important;
     background-color: transparent;
 }
 a:active {
     color: var(--iris);
+}
+
+body.dark-theme img {
+    filter: brightness(.8) contrast(1.2);
+}
+
+.blog-details {
+    color: var(--card-details-color);
+}
+#content, html, body {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    transition: all 0.3s ease;
+}
+
+.button-custom {
+    background-color: var(--navbar-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+.button-custom:hover {
+    background-color: var(--text-color);
+    color: var(--navbar-bg-color);
+}
+h1, h2, h3 {
+    color: var(--heading-font-color) !important;
+    transition: all 0.3s ease;
 }

@@ -1,5 +1,20 @@
 .card {
-    box-shadow: 0 0 10px 3px rgba(0,0,0,0.1);
+    background-color: var(--card-bg-color) !important;
+    color: var(--card-text-color);
+    border: 1px solid var(--card-text-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card a {
+    color: var(--navbar-text-color) !important;
+    text-decoration: none; /* Remove underline by default */
+    transition: all 0.3s ease;
+}
+
+.card p {
+    color: var(--card-text-color) !important;
+    transition: all 0.3s ease;
 }
 .post-image {
     box-shadow: 10px 10px 5px #E3E7EB;
@@ -10,22 +25,16 @@
 .post-image-preview {
     border-radius: 16px;
 }
-html {
-    --tag-bg-color: var(--tekhelet);
-    --tag-font-color: var(--pale-purple);
-}
 #tag a {
     transition: all .2s ease-in-out;
 }
 #tag a:link {
-    background-color: var(--tag-bg-color);
-    color: var(--tag-font-color);
-    /* box-shadow: 2px 1px 2px var(--mystic-purple); */
+    background-color: var(--tag-bg-color) !important;
+    color: var(--tag-font-color) !important;
 }
 #tag a:visited {
     background-color: var(--tag-bg-color);
     color: var(--tag-font-color);
-    /* box-shadow: 2px 1px 2px var(--mystic-purple); */
 }
 #tag a:hover {
     transform: scale(1.1);
@@ -34,31 +43,141 @@ html {
     transform: scale(.8);
     transition: .1s;
 }
-#filter-button {
-    background-color: var(--pale-purple);
-    color: var(--iris);
+.pagination .page-item {
+    transition: all 0.3s ease;
 }
 .pagination .page-link:focus {
-    box-shadow: 0 0 0 0.2rem var(--iris);
+    box-shadow: 0 0 0 0.2rem var(--button-text-color);
 }
 .pagination .page-link:hover {
-    background-color: var(--pale-purple);
-    color: var(--tekhelet);
+    background-color: var(--button-bg-color) !important;
+    color: var(--button-text-color) !important;
+}
+.pagination .page-item .page-link {
+    color: var(--button-text-color) !important;
+    border-color: var(--wisteria) !important;
 }
 .pagination .page-item.active .page-link {
-    background-color: var(--pale-purple);
-    color: var(--tekhelet);
-    border: 1px solid var(--iris);
+    background-color: var(--button-bg-color) !important;
+    color: var(--button-text-color) !important;
+    border: 1px solid var(--button-text-color);
 }
+
+#filter-button {
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--button-border-color);
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    transition: all 0.3s ease;
+}
+
+/* Dropdown item highlight */
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus {
-    background-color: var(--pale-purple);
-    color: var(--tekhelet);
+    background-color: var(--select-bg-color);
+    color: var(--select-text-color);
 }
+
+/* Selected item highlight */
 .dropdown-menu .dropdown-item.active {
-    background-color: var(--iris); /* Custom active color */
-    color: var(--pale-purple); /* Text color for active option */
+    background-color: var(--iris);
+    color: var(--pale-purple) !important;
 }
 .bootstrap-select .btn.dropdown-toggle {
     outline-color: var(--iris) !important;
+    transition: all 0.3s ease;
+}
+
+
+/* .bootstrap-select {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border-color: var(--select-border-color) !important;
+    border-radius: 1%;
+    transition: all 0.3s ease;
+} */
+
+ /* Select field bg and text style */
+.bootstrap-select .dropdown-toggle {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border: 1px solid var(--select-border-color) !important;
+    border-radius: 1%;
+    transition: all 0.3s ease;
+}
+
+/* .btn.dropdown-toggle.btn-light {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border-color: var(--select-border-color) !important;
+    transition: all 0.3s ease;
+}
+
+
+.btn.dropdown-toggle.btn-light:focus {
+    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
+} */
+
+
+/* Select field placeholder text */
+/* .btn.dropdown-toggle.btn-light.bs-placeholder {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    border-color: var(--select-border-color) !important;
+    transition: all 0.3s ease;
+} */
+
+.btn.dropdown-toggle.btn-light.bs-placeholder:focus {
+    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
+}
+
+/* Dropdown menu bg */
+.bootstrap-select .dropdown-menu { 
+    background-color: var(--select-bg-color);
+}
+
+/* Dropdown menu item text color */
+.bootstrap-select .dropdown-menu .dropdown-item {
+    color: var(--select-text-color);
+}
+
+/* Dropdown menu item highlight */
+.bootstrap-select .dropdown-menu .dropdown-item:hover,
+.bootstrap-select .dropdown-menu .dropdown-item:focus {
+    background-color: var(--iris);
+    color: var(--pale-purple) !important;
+}
+
+/* Dropdown action buttons */
+.bs-actionsbox .btn {
+    background-color: var(--multi-select-actions-bg-color);
+    color: var(--multi-select-actions-text-color);
+    border: 1px solid var(--multi-select-actions-bg-color);
+}
+
+/* Dropdown action buttons highlight */
+.bs-actionsbox .btn:hover {
+    background-color: var(--pale-purple);
+    color: var(--iris);
+    border-color: var(--pale-purple);
+}
+
+/* Dropdown search box */
+.bs-searchbox input {
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color);
+    transition: all 0.3s ease;
+}
+
+/* Dropdown search box highlight */
+.bs-searchbox input:focus {
+    border-color: var(--multi-select-actions-bg-color) !important;
+    box-shadow: 0 0 0 0.2rem var(--multi-select-actions-bg-color);
+}
+
+/* No results found */
+.dropdown-menu .no-results {
+    background-color: var(--multi-select-actions-text-color);
+    color: var(--multi-select-actions-bg-color)
 }
