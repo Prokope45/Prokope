@@ -1,5 +1,5 @@
 .nav-link:visited {
-    color: var(--cyber-grape);
+    color: var(--navbar-text-color);
     background-color: transparent;
 }
 .nav-link:link {
