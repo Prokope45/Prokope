@@ -1,20 +1,22 @@
 .nav-link:visited {
-    color: var(--indigo);
+    color: var(--cyber-grape);
     background-color: transparent;
 }
 .nav-link:link {
-    color: var(--indigo);
+    color: var(--navbar-text-color);
     background-color: transparent;
 }
 .nav-link:hover {
-    color: var(--tekhelet);
+    color: var(--cyber-grape);
     background-color: transparent;
 }
 .nav-link:active {
     color: var(--iris);
 }
-.navbar {
-    background: var(--platinum);
+.nav {
+    background-color: var(--navbar-bg-color);
+    color: var(--navbar-text-color);
+    transition: all 0.3s ease;
 }
 .nav-link,
 .navbar-brand {
@@ -42,13 +44,35 @@
 .custom-toggler.navbar-toggler {
     border-color: var(--indigo) !important;
 }
+
 #search-bar {
     border-color: var(--select-bg-color) !important;
     background-color: var(--select-bg-color) !important;
     color: var(--select-text-color) !important;
     transition: all 0.3s ease;
 }
+
+#search-bar::placeholder {
+    color: var(--select-text-color) !important;
+}
+
 #search-bar:focus {
     border-color: var(--iris) !important;
     box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25) !important;
+}
+
+#darkModeToggle {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--navbar-text-color);
+}
+
+#darkModeToggle:hover {
+    color: var(--cyber-grape);
+    opacity: 0.8;
+}
+#darkModeToggle:active {
+    border: none;
 }

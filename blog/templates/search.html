@@ -1,3 +1,11 @@
 <form class="d-flex" method="GET" action="{% url 'search' %}">
-    <input id="search-bar" class="form-control mr-2" type="search" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+    <input
+        id="search-bar"
+        class="form-control mr-2"
+        type="search"
+        name="q"
+        placeholder="Search..."
+        value="{{ request.GET.q }}"
+        required
+    >
 </form>

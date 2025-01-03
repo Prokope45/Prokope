@@ -4,3 +4,7 @@ hr {
     margin: 1.5rem 0; /* Space around the line */
     transition: all 0.3s ease;
 }
+
+/* [data-theme="dark"] #search a {
+    color: var(--heading-font-color) !important;
+} */

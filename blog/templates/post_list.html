@@ -60,7 +60,7 @@
                                 title="Filter by tags"
                                 multiple
                             >
-                                <option value="" disabled>Select Tags</option>
+                                <option class="select-placeholder" value="" disabled>Select Tags</option>
                                 {% for tag in tag %}
                                     <option value="{{ tag.name }}" {% if tag.name in selected_tags %}selected{% endif %}>
                                         {{ tag.name }}

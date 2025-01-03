@@ -31,9 +31,9 @@
     background-color: transparent;
 }
 #footer a:hover {
-    color: var(--tekhelet);
+    color: var(--wisteria);
     background-color: transparent;
 }
 #footer a:active {
-    color: var(--tekhelet);
+    color: var(--wisteria);
 }
