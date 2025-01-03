@@ -39,10 +39,10 @@
     transition: .1s;
 }
 .custom-toggler-icon {
-    color: var(--indigo) !important;
+    color: var(--navbar-text-color) !important;
 }
 .custom-toggler.navbar-toggler {
-    border-color: var(--indigo) !important;
+    border-color: var(--navbar-text-color) !important;
 }
 
 #search-bar {
