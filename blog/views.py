@@ -18,6 +18,7 @@ from .models import IndexDescription, Post, PhotoGallery
 from photologue.models import Gallery, Photo
 
 import re
+import random
 
 # Custom Error Pages
 def custom_page_not_found_view(request, exception):
@@ -29,11 +30,16 @@ def custom_error_view(request, exception=None):
 def custom_bad_request_view(request, exception=None):
     return render(request, "errors/400.html", {})
 
+
 # Index/Home Page
 def index_view(request):
+    random_gallery = random.choice(PhotoGallery.objects.all())
+    random_album = random.choice(random_gallery.galleries.all())
     context = {
         'index_data': IndexDescription.objects.all(),
-        'posts': Post.objects.filter(status=1).order_by('-updated_on')[:2]
+        'posts': Post.objects.filter(status=1).order_by('-updated_on')[:2],
+        'carousel_gallery_name': random_gallery,
+        'carousel_photos': random_album,
     }
     return render(request, 'index.html', context)
 
