@@ -153,7 +153,7 @@
                 <div class="carousel-inner">
                     {% for photo in carousel_photos.photos.all %}
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img src="{{ photo.get_display_url }}" class="d-block w-100" alt="{{ photo.title }}">
+                            <img src="{{ photo.image.url }}" class="d-block w-100" alt="{{ photo.title }}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>{{ photo.title }}</h5>
                                 <p>{{ photo.caption }}</p>
