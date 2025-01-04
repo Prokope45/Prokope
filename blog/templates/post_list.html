@@ -12,90 +12,88 @@
     {% include 'navbar.html' %}
     <div id='content' class="mt-4">
         <div class="container">
-            <div class="mb-2">
-                <h1
-                    class="text-center"
-                >
-                    Articles
-                </h1>
-                <div class="d-flex flex-wrap justify-content-end">
-                    <form class="w-auto w-100 mb-2 mb-md-0 mr-md-2" method="get" action="{% url 'blog' %}">
-                        <div class="input-group">
-                            <select class="selectpicker" name="sort" onchange="this.form.submit()">
-                                <option value="" disabled selected>Sort by...</option>
-                                <option value="created_on" {% if request.GET.sort == 'created_on' %}selected{% endif %}>Created</option>
-                                <option value="updated_on" {% if request.GET.sort == 'updated_on' %}selected{% endif %}>Updated</option>
-                                <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Title</option>
-                            </select>
-                            <div class="input-group-append">
-                                <button
-                                    type="button"
-                                    id="filter-button"
-                                    onclick="location.href='?sort={{ request.GET.sort }}&order=asc';"
-                                    class="btn btn-outline-secondary"
-                                    {% if not request.GET.sort %} disabled {% endif %}
-                                >
-                                    <i class="fa fa-sort-amount-asc"></i>
-                                </button>
-                                <button
-                                    type="button"
-                                    id="filter-button"
-                                    onclick="location.href='?sort={{ request.GET.sort }}&order=desc';"
-                                    class="btn btn-outline-secondary"
-                                    {% if not request.GET.sort %} disabled {% endif %}
-                                >
-                                    <i class="fa fa-sort-amount-desc"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form class="w-auto w-100" method="get" action="{% url 'blog' %}">
-                        <div class="input-group">
-                            <select
-                                name="tags"
-                                class="selectpicker"
-                                data-live-search="true"
-                                data-actions-box="true"
-                                title="Filter by tags"
-                                multiple
+            <h1
+                class="text-center"
+            >
+                Articles
+            </h1>
+            <div class="d-flex flex-wrap justify-content-end mb-2">
+                <form class="w-auto w-100 mb-2 mb-md-0 mr-md-2" method="get" action="{% url 'blog' %}">
+                    <div class="input-group">
+                        <select class="selectpicker" name="sort" onchange="this.form.submit()">
+                            <option value="" disabled selected>Sort by...</option>
+                            <option value="created_on" {% if request.GET.sort == 'created_on' %}selected{% endif %}>Created</option>
+                            <option value="updated_on" {% if request.GET.sort == 'updated_on' %}selected{% endif %}>Updated</option>
+                            <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Title</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button
+                                type="button"
+                                id="filter-button"
+                                onclick="location.href='?sort={{ request.GET.sort }}&order=asc';"
+                                class="btn btn-outline-secondary"
+                                {% if not request.GET.sort %} disabled {% endif %}
                             >
-                                <option class="select-placeholder" value="" disabled>Select Tags</option>
-                                {% for tag in tag %}
-                                    <option value="{{ tag.name }}" {% if tag.name in selected_tags %}selected{% endif %}>
-                                        {{ tag.name }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                            <div class="input-group-append">
-                                <button
-                                    type="submit"
-                                    id="filter-button"
-                                    class="btn btn-outline-secondary my-auto"
-                                >
-                                    <i class="fa fa-filter"></i>
-                                </button>
-                            </div>
+                                <i class="fa fa-sort-amount-asc"></i>
+                            </button>
+                            <button
+                                type="button"
+                                id="filter-button"
+                                onclick="location.href='?sort={{ request.GET.sort }}&order=desc';"
+                                class="btn btn-outline-secondary"
+                                {% if not request.GET.sort %} disabled {% endif %}
+                            >
+                                <i class="fa fa-sort-amount-desc"></i>
+                            </button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+
+                <form class="w-auto w-100" method="get" action="{% url 'blog' %}">
+                    <div class="input-group">
+                        <select
+                            name="tags"
+                            class="selectpicker"
+                            data-live-search="true"
+                            data-actions-box="true"
+                            title="Filter by tags"
+                            multiple
+                        >
+                            <option class="select-placeholder" value="" disabled>Select Tags</option>
+                            {% for tag in tag %}
+                                <option value="{{ tag.name }}" {% if tag.name in selected_tags %}selected{% endif %}>
+                                    {{ tag.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="input-group-append">
+                            <button
+                                type="submit"
+                                id="filter-button"
+                                class="btn btn-outline-secondary my-auto"
+                            >
+                                <i class="fa fa-filter"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
             {% for post in posts %}
-                <div class="card mb-2" >
-                    <div class="card-body">
-                        <h2 class="card-title"><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></h2>
+                <div id="blog" class="card mb-2">
+                    <div class="card-body" onclick="location.href='/blog/{{ post.slug }}';">
+                        <h2 class="card-title">{{ post.title }}</h2>
                         <div class="card-text">
                             <div class="row mb-2">
-                                <span class="col-auto blog-details pr-0">
+                                <span class="col-auto text-muted pr-0">
                                     <i class="fa fa-clock-o mr-2"></i>{{ post.created_on }}
                                 </span>
                                 {% if post.created_on != post.updated_on %}
-                                    <span class="col-auto blog-details pr-0"><i class="fa fa-pencil mr-2"></i>{{ post.updated_on }}</span>
+                                    <span class="col-auto text-muted pr-0"><i class="fa fa-pencil mr-2"></i>{{ post.updated_on }}</span>
                                 {% endif %}
                                 <span id="tag" class="col-auto col-xs-12 ml-3">
-                                    <span id="tag" class="row blog-details">
-                                        <i class="fa fa-tags my-auto"></i>
+                                    <span id="tag" class="row">
+                                        <i class="fa fa-tags text-muted my-auto"></i>
                                         {% for tag in post.tag.all %}
                                             <a class="badge m-1" href="{% url 'posts_by_tag' tag.slug %}">
                                                 {{ tag.name }}
@@ -121,9 +119,7 @@
                             {% endif %}
                         </div>
 
-                        <a href="{% url 'post_detail' post.slug  %}">
-                            Read More
-                        </a>
+                        <span class="read-more">Read More...</span>
                     </div>
                 </div>
             {% endfor %}

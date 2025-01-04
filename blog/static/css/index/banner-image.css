@@ -2,7 +2,7 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    box-shadow: 5px 5px 5px gray;
+    box-shadow: var(--banner-box-shadow);
 }
 .overlay {
     position: absolute;
@@ -11,9 +11,4 @@
     left: 0;
     top: 0;
     background: rgba(0, 0, 0, 0.6);
-}
-banner-img {
-    max-width: 100%;
-    height: auto;
-    box-shadow: 10px 10px 10px 3px black;
 }

@@ -1,5 +1,5 @@
 .nav-link:visited {
-    color: var(--cyber-grape);
+    color: var(--navbar-text-color);
     background-color: transparent;
 }
 .nav-link:link {
@@ -7,11 +7,11 @@
     background-color: transparent;
 }
 .nav-link:hover {
-    color: var(--cyber-grape);
+    color: var(--navbar-text-hover-color) !important;
     background-color: transparent;
 }
-.nav-link:active {
-    color: var(--iris);
+.nav-link.active {
+    color: var(--navbar-text-active-color);
 }
 .nav {
     background-color: var(--navbar-bg-color);
@@ -38,11 +38,12 @@
     transform: scale(.8);
     transition: .1s;
 }
+
 .custom-toggler-icon {
-    color: var(--indigo) !important;
+    color: var(--navbar-text-color) !important;
 }
 .custom-toggler.navbar-toggler {
-    border-color: var(--indigo) !important;
+    border-color: var(--navbar-text-color) !important;
 }
 
 #search-bar {
@@ -70,9 +71,8 @@
 }
 
 #darkModeToggle:hover {
-    color: var(--cyber-grape);
-    opacity: 0.8;
+    color: var(--navbar-text-hover-color);
 }
-#darkModeToggle:active {
+#darkModeToggle.active {
     border: none;
 }

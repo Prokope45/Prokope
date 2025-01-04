@@ -50,8 +50,8 @@
                             <li class="mb-2">
                                 <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
                                 <p>{{ post.content|striptags|truncatewords:50 }}</p>
-                                <span id="tag" class="d-inline blog-details">
-                                    <i class="fa fa-tags"></i>
+                                <span id="tag" class="d-inline">
+                                    <i class="fa text-muted fa-tags"></i>
                                     {% for tag in post.tag.all %}
                                         <a class="badge" href="{% url 'posts_by_tag' tag.slug %}">{{ tag }}</a>
                                     {% endfor %}

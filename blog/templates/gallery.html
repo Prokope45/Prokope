@@ -13,19 +13,13 @@
         {% include 'navbar.html' %}
         <div id='content' class="mt-4">
             <div class="container">
+                <h1 class="text-center mb-4">Travel Gallery</h1>
                 <div class="card">
-                    <div class="card-header">
-                        <h1
-                            class="text-center m-3 col-md-12 col-sm-12"
-                        >
-                            Travel Gallery
-                        </h1>
-                    </div>
                     <div class="card-body">
                         {% for image in gallery_info %}
                             <div class="row mb-2">
                                 <div class="col">
-                                    <h3 class="card-title"><a href="{% url 'gallery_detail' image.slug  %}">{{ image.country }}</a></h3>
+                                    <h2 class="card-title"><a href="{% url 'gallery_detail' image.slug  %}">{{ image.country }}</a></h2>
                                     <p class="card-text">{{ image.content }}</p>
                                 </div>
                             </div>

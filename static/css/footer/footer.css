@@ -22,18 +22,18 @@
         margin: 1em;
     }
 }
-#footer a:visited {
-    color: var(--pale-purple);
+#footer a:link {
+    color: var(--footer-link-color);
     background-color: transparent;
 }
-#footer a:link {
-    color: var(--pale-purple);
+#footer a:visited {
+    color: var(--footer-link-color);
     background-color: transparent;
 }
 #footer a:hover {
-    color: var(--wisteria);
+    color: var(--footer-link-hover-color);
     background-color: transparent;
 }
 #footer a:active {
-    color: var(--wisteria);
+    color: var(--footer-link-hover-color);
 }

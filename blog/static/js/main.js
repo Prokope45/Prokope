@@ -53,13 +53,10 @@ const getInitialTheme = () => {
     const storedTheme = localStorage.getItem('theme');
     // updateHeroBannerBackground(storedTheme);
     if (storedTheme) {
-    console.log("Using stored theme:", storedTheme);
     return storedTheme; // User manually selected a theme
     } else if (prefersDarkScheme.matches) {
-    console.log("Using system preference: Dark");
     return 'dark'; // System preference is dark
     } else {
-    console.log("Using system preference: Light");
     return 'light'; // System preference is light
     }
 };
@@ -72,7 +69,6 @@ setTheme(initialTheme);
 toggleButton.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    console.log("Toggled Theme Manually:", newTheme);
     setTheme(newTheme, true); // Save preference on manual toggle
 });
 
@@ -80,7 +76,6 @@ toggleButton.addEventListener('click', () => {
 prefersDarkScheme.addEventListener('change', (event) => {
     if (!isManualToggle) { // Only apply system changes if the user hasn't toggled manually
         const systemTheme = event.matches ? 'dark' : 'light';
-        console.log("System Theme Change Detected:", systemTheme);
         setTheme(systemTheme);
         // updateHeroBannerBackground(systemTheme);
     }

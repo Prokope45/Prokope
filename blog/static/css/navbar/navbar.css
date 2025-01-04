@@ -7,11 +7,11 @@
     background-color: transparent;
 }
 .nav-link:hover {
-    color: var(--cyber-grape);
+    color: var(--navbar-text-hover-color) !important;
     background-color: transparent;
 }
-.nav-link:active {
-    color: var(--iris);
+.nav-link.active {
+    color: var(--navbar-text-active-color);
 }
 .nav {
     background-color: var(--navbar-bg-color);
@@ -38,6 +38,7 @@
     transform: scale(.8);
     transition: .1s;
 }
+
 .custom-toggler-icon {
     color: var(--navbar-text-color) !important;
 }
@@ -70,9 +71,8 @@
 }
 
 #darkModeToggle:hover {
-    color: var(--cyber-grape);
-    opacity: 0.8;
+    color: var(--navbar-text-hover-color);
 }
-#darkModeToggle:active {
+#darkModeToggle.active {
     border: none;
 }

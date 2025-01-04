@@ -1,9 +1,16 @@
 .post-button {
-    color: var(--iris);
-    background-color: var(--pale-purple);
-    border-color: var(--russian-violet);
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 1px solid var(--button-bg-color);
     text-align: center;
     transition: all 0.2s ease-in-out;
+}
+
+.post-button.btn-outline-secondary:hover {
+    background-color: var(--button-text-color);
+    color: var(---button-bg-color);
+    border: 1px solid var(--button-text-color);
+    text-align: center;
 }
 
 .post-button:active {
@@ -23,7 +30,7 @@
   opacity: 0;
   top: 0;
   right: -20px;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .post-button:hover span {
@@ -35,12 +42,19 @@
     right: 0;
 }
 
-.post-back-button {
-    color: var(--iris);
-    background-color: var(--pale-purple);
-    border-color: var(--russian-violet);
+.post-back-button.btn-outline-secondary {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 1px solid var(--button-border-color);
     text-align: center;
     transition: all 0.2s ease-in-out;
+}
+
+.post-back-button.btn-outline-secondary:hover {
+    background-color: var(--button-text-color);
+    color: var(--button-bg-color);
+    border: 1px solid var(--button-text-color);
+    text-align: center;
 }
 
 .post-back-button:active {
@@ -60,7 +74,7 @@
     opacity: 0;
     top: 0;
     left: -5px;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 
 .post-back-button:hover span {

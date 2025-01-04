@@ -3,9 +3,10 @@
 	position: relative;
 }
 .feature-title {
-	color: #333;
+	color: var(--heading-font-color);
 	font-size: 1.3rem;
 	font-weight: 700;
 	margin-bottom: 20px;
 	text-transform: uppercase;
+	transition: all 0.3s ease;
 }
