@@ -16,8 +16,7 @@ h2.card-title a:hover {
     transition: all 0.3s ease;
 }
 
-.card img {
-    width: 100%;
+#blog-detail.card img {
     height: auto;
     display: block;
     margin: 0 auto;
