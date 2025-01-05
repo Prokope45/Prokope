@@ -30,9 +30,10 @@
                                             title="{{ photo.title }} on {{ photo.date_taken }}"
                                             href="{{ photo.get_display_url }}"
                                             data-lightbox="{{ gallery }}"
+                                            class="m-2"
                                         >
                                             <img
-                                                class="travel-photo m-2"
+                                                class="travel-photo"
                                                 src="{{ photo.get_thumbnail_url }}"
                                                 alt="{{ photo.title }}: {{ photo.caption }}"
                                                 loading="lazy"

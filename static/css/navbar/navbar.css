@@ -22,6 +22,9 @@
 .navbar-brand {
     cursor: pointer;
 }
+#brand-logo {
+    padding-left: 8px;
+}
 .nav-link {
     font-size: 25px;
 }
@@ -66,6 +69,7 @@
     border: none;
     background: none;
     font-size: 1.5rem;
+    min-width: 48px;
     cursor: pointer;
     color: var(--navbar-text-color);
 }
