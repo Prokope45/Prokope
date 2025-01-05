@@ -15,6 +15,16 @@ h2.card-title a:hover {
     border: 1px solid var(--card-text-color);
     transition: all 0.3s ease;
 }
+
+#blog-detail.card img {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: var(--image-box-shadow);
+    border-radius: 16px;
+    border: 1px var(--text-color);
+}
+
 .read-more {
     visibility: hidden;
 }
@@ -54,9 +64,6 @@ h2.card-title a:hover {
 }
 
 .post-image {
-    box-shadow: var(--image-box-shadow);
-    border-radius: 16px;
-    border: 1px var(--text-color);
     width: 500px;
 }
 .post-image-preview {

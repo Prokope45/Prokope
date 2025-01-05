@@ -35,11 +35,36 @@ img {
         justify-content: center;
     }
 }
-#container {
-   min-height:100%;
-   position: relative;
+/* .container {
+	overflow-y: scroll;
+	scroll-snap-type: y mandatory;
+} */
+.index-section {
+	/* scroll-snap-align: start; */
+    margin-top: 60px !important;
 }
-
+.carousel-inner {
+    border: 8px solid var(--white) !important;
+}
+[data-theme="dark"] .carousel-inner {
+    color: var(--pale-purple);
+    border: 8px solid var(--pale-purple) !important;
+    transition: all 0.3s ease;
+}
+.carousel-caption {
+    color: var(--white);
+}
+[data-theme="dark"] .carousel-caption {
+    color: var(--pale-purple);
+    transition: all 0.3s ease;
+}
+.carousel-indicators > li.active {
+    color: var(--white);
+}
+[data-theme="dark"] .carousel-indicators > li.active {
+    color: var(--pale-purple);
+    transition: all 0.3s ease;
+}
 :root {
     --background-color: var(--platinum);
     --text-color: var(--dark-gray);
@@ -80,6 +105,10 @@ img {
 
     --tag-bg-color: var(--iris);
     --tag-font-color: var(--pale-purple);
+
+    --code-animation-font-color: var(--platinum);
+    --code-animation-var-highlight-color: var(--light-blue);
+    --code-animation-string-highlight-color: var(--wisteria);
 }
 
 [data-theme="dark"] {
@@ -121,6 +150,8 @@ img {
 
     --tag-bg-color: var(--pale-purple);
     --tag-font-color: var(--iris);
+
+    --code-animation-font-color: var(--pale-purple);
 }
 
 html, body {
