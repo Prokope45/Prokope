@@ -80,3 +80,115 @@ prefersDarkScheme.addEventListener('change', (event) => {
         // updateHeroBannerBackground(systemTheme);
     }
 });
+
+function setupTypewriter(t) {
+    try {
+
+        var HTML = t.innerHTML;
+    
+        t.innerHTML = "";
+    
+        var cursorPosition = 0,
+            tag = "",
+            writingTag = false,
+            tagOpen = false,
+            typeSpeed = 100,
+            tempTypeSpeed = 0;
+    
+        var type = function() {
+            // Skip the img block
+            if (HTML.slice(cursorPosition, cursorPosition + 4) === "<img") {
+                // Extract the <img> tag
+                let imgTag = "";
+                while (HTML[cursorPosition] !== ">" && cursorPosition < HTML.length) {
+                    imgTag += HTML[cursorPosition];
+                    cursorPosition++;
+                }
+                imgTag += ">"; // Include the closing ">"
+    
+                // Append the <img> element to the DOM
+                const div = document.createElement("div");
+                div.innerHTML = imgTag;
+                t.appendChild(div.firstChild);
+    
+                cursorPosition++; // Move past the closing ">"
+                return type(); // Restart the typing loop
+            }
+    
+            // Detect and skip the <a> tag
+            if (HTML.slice(cursorPosition, cursorPosition + 2) === "<a") {
+                let linkTag = "";
+                while (HTML.slice(cursorPosition, cursorPosition + 4) !== "</a" && cursorPosition < HTML.length) {
+                    linkTag += HTML[cursorPosition];
+                    cursorPosition++;
+                }
+                // Include the closing </a> tag
+                linkTag += "</a>";
+                cursorPosition += 4; // Move past the closing </a>
+    
+                // Append the link to the DOM
+                const newSpan = document.createElement("span"); // Use a container span
+                newSpan.innerHTML = linkTag;
+                t.appendChild(newSpan);
+                // FIXME: `undefined` rendered at end of animation
+                return type(); // Restart the typing loop
+            }
+            
+            if (writingTag === true) {
+                tag += HTML[cursorPosition];
+            }
+    
+            if (HTML[cursorPosition] === "<") {
+                tempTypeSpeed = 0;
+                if (tagOpen) {
+                    tagOpen = false;
+                    writingTag = true;
+                } else {
+                    tag = "";
+                    tagOpen = true;
+                    writingTag = true;
+                    tag += HTML[cursorPosition];
+                }
+            }
+            if (!writingTag && tagOpen) {
+                tag.innerHTML += HTML[cursorPosition];
+            }
+            if (!writingTag && !tagOpen) {
+                if (HTML[cursorPosition] === " ") {
+                    tempTypeSpeed = 0;
+                }
+                else {
+                    tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+                }
+                t.innerHTML += HTML[cursorPosition];
+            }
+            if (writingTag === true && HTML[cursorPosition] === ">") {
+                tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+                writingTag = false;
+                if (tagOpen) {
+                    var newSpan = document.createElement("span");
+                    t.appendChild(newSpan);
+                    newSpan.innerHTML = tag;
+                    tag = newSpan.firstChild;
+                }
+            }
+    
+            cursorPosition += 1;
+            if (cursorPosition < HTML.length - 1) {
+                setTimeout(type, tempTypeSpeed);
+            }
+        };
+    
+        return {
+            type: type
+        };
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+var typer = document.getElementById('typewriter');
+
+typewriter = setupTypewriter(typer);
+
+typewriter.type();

@@ -36,7 +36,7 @@ def index_view(request):
     random_gallery = random.choice(PhotoGallery.objects.all())
     random_album = random.choice(random_gallery.galleries.all())
     context = {
-        'index_data': IndexDescription.objects.all(),
+        'index_data': IndexDescription.objects.first(),
         'posts': Post.objects.filter(status=1).order_by('-updated_on')[:2],
         'carousel_gallery_name': random_gallery,
         'carousel_photos': random_album,
