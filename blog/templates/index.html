@@ -32,31 +32,6 @@
         <span class="string-highlight">'{{ index_data.greeting_title }}'</span>,
         <span class="string-highlight">'{{ index_data.greeting_description }}'</span>
     ],
-    contact: [
-        <a
-            class="github icon icon-fill"
-            href="https://github.com/Prokope45"
-            target="_blank"
-            rel="noopener noreferrer"
-            role="button"
-        >
-            <i class="fa fa-github"></i>
-        </a>,<a class="linkedin icon icon-fill"
-        href="https://linkedin.com/in/jared-paubel"
-        target="_blank"
-        rel="noopener noreferrer"
-        role="button"
-        >
-            <i class="fa fa-linkedin"></i>
-        </a>,<a class="medium icon icon-fill"
-        href="https://medium.com/@jpaubel"
-        target="_blank"
-        rel="noopener noreferrer"
-        role="button"
-        >
-            <i class="fa fa-medium"></i>
-        </a>
-    ]
 };
 </pre>
             </div>
@@ -64,41 +39,35 @@
         </header> <!-- two closing headers for if-else -->
 
         <div class="container">
+            <h3 class="text-center">Interested in My Work?</h3>
             <div id="links">
-                <div class="container">
-                    <div class="row justify-content-center text-center">
-                        <div class="contact-button">
-                            <a class="github icon icon-fill"
-                            href="https://github.com/Prokope45"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            role="button"
-                            >
-                                <i class="fa fa-github"></i>
-                            </a>
-                        </div>
-    
-                        <div class="contact-button">
-                            <a class="linkedin icon icon-fill"
-                            href="https://linkedin.com/in/jared-paubel"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            role="button"
-                            >
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                        </div>
-                        <div class="contact-button">
-                            <a class="medium icon icon-fill"
-                            href="https://medium.com/@jpaubel"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            role="button"
-                            >
-                                <i class="fa fa-medium"></i>
-                            </a>
-                        </div>
-                    </div>
+                <div class="row justify-content-center text-center">
+                    <a class="github icon icon-fill"
+                        href="https://github.com/Prokope45"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="button"
+                    >
+                        <i class="fa fa-github"></i>
+                    </a>
+
+                    <a class="linkedin icon icon-fill"
+                        href="https://linkedin.com/in/jared-paubel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="button"
+                    >
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+
+                    <a class="medium icon icon-fill"
+                        href="https://medium.com/@jpaubel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="button"
+                    >
+                        <i class="fa fa-medium"></i>
+                    </a>
                 </div>
             </div>
 
@@ -114,7 +83,7 @@
                     <div class="col-12 col-lg-8 order-2 order-lg-1">
                         <p>{{ index_data.about_me_description }}</p>
                     </div>
-                    <div class="col-12 col-lg-4 text-center order-1 order-lg-2 mb-2">
+                    <div class="col-12 col-lg-4 order-1 text-center order-lg-2 mb-2 p-0">
                         {% if index_data.hero_image %}
                             <img id="profile" class="img-fluid my-auto" src="{{ index_data.hero_image.url }}" />
                         {% else %}
@@ -155,12 +124,12 @@
                 </div>
                 <div id="photoCarousel" class="carousel slide rounded mx-auto" data-ride="carousel" style="max-width: 700px;">
                     <ol class="carousel-indicators">
-                        {% for photo in carousel_photos.photos.all %}
+                        {% for photo in carousel_photos.photos.all|slice:":10" %}
                             <li data-target="#photoCarousel" data-slide-to="{{ photo.title }}" class="{% if forloop.first %}active{% endif %}"></li>
                         {% endfor %}
                     </ol>
                     <div class="carousel-inner rounded">
-                        {% for photo in carousel_photos.photos.all %}
+                        {% for photo in carousel_photos.photos.all|slice:":10" %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <img
                                     src="{{ photo.image.url }}"

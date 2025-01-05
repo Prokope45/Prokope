@@ -114,25 +114,6 @@ function setupTypewriter(t) {
                 cursorPosition++; // Move past the closing ">"
                 return type(); // Restart the typing loop
             }
-    
-            // Detect and skip the <a> tag
-            if (HTML.slice(cursorPosition, cursorPosition + 2) === "<a") {
-                let linkTag = "";
-                while (HTML.slice(cursorPosition, cursorPosition + 4) !== "</a" && cursorPosition < HTML.length) {
-                    linkTag += HTML[cursorPosition];
-                    cursorPosition++;
-                }
-                // Include the closing </a> tag
-                linkTag += "</a>";
-                cursorPosition += 4; // Move past the closing </a>
-    
-                // Append the link to the DOM
-                const newSpan = document.createElement("span"); // Use a container span
-                newSpan.innerHTML = linkTag;
-                t.appendChild(newSpan);
-                // FIXME: `undefined` rendered at end of animation
-                return type(); // Restart the typing loop
-            }
             
             if (writingTag === true) {
                 tag += HTML[cursorPosition];

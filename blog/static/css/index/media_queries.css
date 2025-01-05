@@ -14,19 +14,14 @@
         margin: 0;
     }
     #profile {
-        width: 150px;
-        margin-top: 5em;
-    }
-    .contact-button {
-        width: 25%;
+        width: 300px;
     }
 }
 
 
 @media (max-width: 300px) {
     #profile {
-        width: 125px;
-        margin-top: 5em;
+        width: 250px;
     }
     p, h1 {
         font-size: 15px;
