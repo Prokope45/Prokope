@@ -19,7 +19,6 @@ h2.card-title a:hover {
 .card img {
     width: 100%;
     height: auto;
-    max-width: 100%;
     display: block;
     margin: 0 auto;
     box-shadow: var(--image-box-shadow);
@@ -66,9 +65,6 @@ h2.card-title a:hover {
 }
 
 .post-image {
-    box-shadow: var(--image-box-shadow);
-    border-radius: 16px;
-    border: 1px var(--text-color);
     width: 500px;
 }
 .post-image-preview {
