@@ -96,25 +96,6 @@ function setupTypewriter(t) {
             tempTypeSpeed = 0;
     
         var type = function() {
-            // Skip the img block
-            if (HTML.slice(cursorPosition, cursorPosition + 4) === "<img") {
-                // Extract the <img> tag
-                let imgTag = "";
-                while (HTML[cursorPosition] !== ">" && cursorPosition < HTML.length) {
-                    imgTag += HTML[cursorPosition];
-                    cursorPosition++;
-                }
-                imgTag += ">"; // Include the closing ">"
-    
-                // Append the <img> element to the DOM
-                const div = document.createElement("div");
-                div.innerHTML = imgTag;
-                t.appendChild(div.firstChild);
-    
-                cursorPosition++; // Move past the closing ">"
-                return type(); // Restart the typing loop
-            }
-            
             if (writingTag === true) {
                 tag += HTML[cursorPosition];
             }
