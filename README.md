@@ -5,3 +5,7 @@ TODO:
 * Complete outstanding issues that need development.
 * Incorporate python-stock-analysis project as a webpage of this project.
 * Develop gallery page which shows map of the world where user can select location and observe a series of pictures from that location that I photographed.
+
+
+## Setup
+1. Make setup.sh and runserver.sh executable: `chmod +x setup.sh` then run as `./setup.sh` and `./runserver_debug.sh`
