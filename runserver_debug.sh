@@ -1,25 +1,5 @@
 #!/bin/bash
 
-# Function to generate a random SECRET_KEY
-generate_secret_key() {
-    python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
-}
-
-# Check if .env file exists; if not, create it
-if [ ! -f .env ]; then
-    echo ".env file not found, creating it..."
-    touch .env
-fi
-
-# Generate a new SECRET_KEY and add it to .env
-SECRET_KEY=$(generate_secret_key)
-
-# Write the SECRET_KEY to .env file
-echo "SECRET_KEY='$SECRET_KEY'" > .env
-
-# Confirm the action
-echo "Generated and stored new SECRET_KEY in .env"
-
 # Get the directory of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 

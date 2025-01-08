@@ -52,4 +52,35 @@ else
     echo "mysqlclient installed successfully."
 fi
 
+echo "Creating debug secrets..."
+
+# Function to generate a random SECRET_KEY
+generate_secret_key() {
+    python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+}
+
+# Check if .env file exists; if not, create it
+if [ ! -f .env ]; then
+    echo ".env file not found, creating it..."
+    touch .env
+fi
+
+# Write the SECRET_KEY to .env file
+{
+    echo "SECRET_KEY=$(generate_secret_key)"
+    echo "EMAIL_BACKEND=''"
+    echo "EMAIL_HOST=''"
+    echo "EMAIL_HOST_USER=''"
+    echo "EMAIL_HOST_PASSWORD=''"
+    echo "EMAIL_PORT=''"
+    echo "EMAIL_USE_SSL=''"
+    echo "DEFAULT_FROM_EMAIL=''"
+    echo "HCAPTCHA_SITEKEY=''"
+    echo "HCAPTCHA_SECRET=''"
+    echo "VERIFY_URL=''"
+} > .env
+
+# Confirm the action
+echo "Generated and stored debug secrets in .env"
+
 echo "Setup completed successfully."
