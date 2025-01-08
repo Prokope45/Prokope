@@ -35,7 +35,7 @@ if ! pip install mysqlclient; then
         sudo apt-get install -y pkg-config python3-dev default-libmysqlclient-dev build-essential
     elif command -v dnf > /dev/null; then
         echo "Detected dnf package manager. Installing necessary system dependencies..."
-        sudo dnf install -y pkgconf-pkg-config python3-devel mariadb-connector-c-devel gcc
+        sudo dnf install -y pkgconf-pkg-config python3-devel Kernel-devel gcc gcc-c++
     else
         echo "Error: Unsupported package manager. Please install the necessary dependencies manually."
         deactivate
