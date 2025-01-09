@@ -67,3 +67,14 @@ fi
 # Run the Django development server
 echo "Starting the Django development server..."
 python3 ./manage.py runserver
+
+ ____                 __                                  
+/\  _`\              /\ \                                 
+\ \ \L\ \ _ __   ___ \ \ \/'\      ___    _____      __   
+ \ \ ,__//\`'__\/ __`\\ \ , <     / __`\ /\ '__`\  /'__`\ 
+  \ \ \/ \ \ \//\ \L\ \\ \ \\`\  /\ \L\ \\ \ \L\ \/\  __/ 
+   \ \_\  \ \_\\ \____/ \ \_\ \_\\ \____/ \ \ ,__/\ \____\
+    \/_/   \/_/ \/___/   \/_/\/_/ \/___/   \ \ \/  \/____/
+                                            \ \_\         
+                                             \/_/         
+echo "Server is Running; enjoy :-)"
