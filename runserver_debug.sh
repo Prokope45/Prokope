@@ -66,8 +66,7 @@ fi
 
 # Run the Django development server
 echo "Starting the Django development server..."
-python3 ./manage.py runserver
-
+cat << "EOF"
  ____                 __                                  
 /\  _`\              /\ \                                 
 \ \ \L\ \ _ __   ___ \ \ \/'\      ___    _____      __   
@@ -77,4 +76,6 @@ python3 ./manage.py runserver
     \/_/   \/_/ \/___/   \/_/\/_/ \/___/   \ \ \/  \/____/
                                             \ \_\         
                                              \/_/         
-echo "Server is Running; enjoy :-)"
+EOF
+
+python3 ./manage.py runserver
