@@ -65,7 +65,7 @@ if [ ! -f .env ]; then
     touch .env
 fi
 
-# Write the SECRET_KEY to .env file
+# Write default secrets to .env file
 {
     echo "SECRET_KEY=$(generate_secret_key)"
     echo "EMAIL_BACKEND=''"
@@ -82,5 +82,8 @@ fi
 
 # Confirm the action
 echo "Generated and stored debug secrets in .env"
+
+echo "Activating Prokope Admin Theme"
+python3 manage.py loaddata blog/fixtures/admin_interface_theme_Prokope.json
 
 echo "Setup completed successfully."
