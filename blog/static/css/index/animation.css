@@ -90,11 +90,15 @@
 }
 
 #typewriter {
-  font-size: 2vw;
+  font-size: 24px;
   font-family: "Courier New";
   color: var(--code-animation-font-color);
   transition: all 0.3s ease;
   padding-top: 10vh;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  max-width: 100%;
+  box-sizing: border-box;
 
   &:after {
       content: "|";
@@ -117,18 +121,13 @@
   100%{opacity: 1;}
 }
 
-@media screen and (max-width: 992px) {
-  #typewriter {
-      font-size: 3vw;
-  }
-}
 @media screen and (max-width: 768px) {
   #typewriter {
-      font-size: 4vw;
+      font-size: 20px;
   }
 }
-@media screen and (max-width: 576) {
+@media screen and (max-width: 480px) {
   #typewriter {
-      font-size: 5vw;
+      font-size: 16px;
   }
 }

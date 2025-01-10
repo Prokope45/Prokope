@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="index-section">
                 <h1 class="row justify-content-center">Recent Articles</h1>
                 <div class="row justify-content-center">
@@ -107,7 +107,7 @@
                                     {% else %}
                                         <i class="fa fa-clock-o fa-lg text-muted mr-2"></i>{{ post.created_on }}
                                     {% endif %}
-    
+
                                     <p>{{ post.content | safe | slice:":400" }}</p>
                                 </div>
                                 <div class="read-more mt-auto">Read More...</div>
@@ -116,7 +116,7 @@
                     {% endfor %}
                 </div>
             </div>
-    
+
             <div class="index-section">
                 <div class="d-block justify-content-center text-center">
                     <h1>Photography</h1>
@@ -135,7 +135,6 @@
                                     src="{{ photo.image.url }}"
                                     class="d-block w-100 img-fluid"
                                     alt="{{ photo.title }}"
-                                    loading="lazy"
                                 >
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>{{ photo.title }}</h5>

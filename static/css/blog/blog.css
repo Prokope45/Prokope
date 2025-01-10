@@ -16,9 +16,10 @@ h2.card-title a:hover {
     transition: all 0.3s ease;
 }
 
-#blog.card img {
+#blog-detail.card img {
+    width: 100%;
+    max-width: 100%;
     height: auto;
-    display: block;
     margin: 0 auto;
     box-shadow: var(--image-box-shadow);
     border-radius: 16px;
@@ -188,7 +189,7 @@ h2.card-title a:hover {
 }
 
 /* Dropdown menu bg */
-.bootstrap-select .dropdown-menu { 
+.bootstrap-select .dropdown-menu {
     background-color: var(--select-bg-color);
 }
 

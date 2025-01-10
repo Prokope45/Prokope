@@ -44,15 +44,15 @@
                                 </span>
                             </div>
                             {% if post.thumb %}
-                                <div class="mx-auto col-lg-6 col-md-8 col-sm-10 my-4">
+                                <div class="col-lg-6 col-md-8 col-sm-10 my-4">
                                     <img
-                                        class="post-image img-fluid"
+                                        class="post-image img-fluid mx-auto"
                                         src="{{ post.thumb.url }}"
                                         loading="lazy"
                                     />
                                 </div>
                             {% endif %}
-        
+
                             <p class="mt-3">{{ object.content | safe }}</p>
                         </div>
                     </div>
@@ -74,6 +74,7 @@
                 const lightboxLink = document.createElement('a');
                 lightboxLink.href = imageUrl;
                 lightboxLink.setAttribute('data-lightbox', 'article-images');
+                lightboxLink.style.display = 'inline-block';
                 image.parentNode.insertBefore(lightboxLink, image);
                 lightboxLink.appendChild(image);
             });
