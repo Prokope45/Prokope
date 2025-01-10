@@ -8,22 +8,38 @@ from photologue.models import Gallery, Photo
 
 
 # Index Page
-class IndexDescription(models.Model):
+class Index(models.Model):
     hero_banner = models.ImageField(blank=True)
     hero_image = models.ImageField(blank=True)
 
-    greeting_title = models.CharField(max_length=200, default='', null=True)
-    greeting_description = models.TextField(default='', null=True)
+    greeting_title = models.CharField(max_length=200, default='Welcome to Prokope.io!', null=True)
+    greeting_description = models.TextField(
+        default='My personal portfolio for my thoughts and achievements.',
+        null=True
+    )
 
-    about_me_title = models.CharField(max_length=200, default='', null=True)
-    about_me_description = models.TextField(default='', null=True)
+    about_me_title = models.CharField(max_length=200, default='About Jay', null=True)
+    about_me_description = models.TextField(
+        default='I\'m from Kansas, served in the Marines, and work as a software developer intern while studying at Kansas State University',
+        null=True
+    )
 
-    plans_title = models.CharField(max_length=200, default='', null=True)
-    plans_description = models.TextField(default='', null=True)
+    about_prokope_title = models.CharField(
+        max_length=200,
+        default="What is 'Prokope'",
+        null=True
+    )
+    about_prokope_description = models.TextField(
+        default="Prokope means 'to chop down what gets in the way'",
+        null=True
+    )
 
     def __str__(self):
-        return "Greeting, About Me & Future Plans"
+        return "Greeting, About Me & Prokope.io"
 
+    class Meta:
+        verbose_name = "Index"
+        verbose_name_plural = "Index"
 
 # Blog Page
 class Post(models.Model):

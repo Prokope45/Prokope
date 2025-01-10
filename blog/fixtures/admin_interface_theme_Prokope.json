@@ -1,7 +1,6 @@
 [
 {
     "model": "admin_interface.theme",
-    "pk": 2,
     "fields": {
         "name": "Prokope",
         "active": true,

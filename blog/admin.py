@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.conf import settings
 from django_summernote.admin import SummernoteModelAdmin
 
-from .models import IndexDescription, Post, Contact, PhotoGallery
+from .models import Index, Post, Contact, PhotoGallery
 
 
 class PostAdmin(SummernoteModelAdmin):
@@ -15,15 +15,17 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 class IndexAdmin(admin.ModelAdmin):
-    if not settings.DEBUG:
-        def has_delete_permission(self, request, obj=None):
-            return False
+    def has_delete_permission(self, request, obj=Index.greeting_title):
+        return False
 
-        def has_add_permission(self, request):
-            return False
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=Index.greeting_title):
+        return True
 
 
-admin.site.register(IndexDescription, IndexAdmin)
+admin.site.register(Index, IndexAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(PhotoGallery, GalleryAdmin)
 admin.site.register(Contact)

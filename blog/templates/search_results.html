@@ -19,7 +19,7 @@
                     <p>No results found.</p>
                 {% endif %}
     
-                {% if index_results.about_me or index_results.plans %}
+                {% if index_results.about_me or index_results.about_prokope %}
                     <h3>Home</h3>
                     {% for about in index_results.about_me %}
                         <ul>
@@ -31,13 +31,13 @@
                             </li>
                         </ul>
                     {% endfor %}
-                    {% for plan in index_results.plans %}
+                    {% for data in index_results.about_prokope %}
                         <ul>
                             <li>
-                                <a href="{% url 'home' %}#{{ plan.plans_title }}">
-                                    {{ plan.plans_title }}
+                                <a href="{% url 'home' %}#{{ data.about_prokope_title }}">
+                                    {{ data.about_prokope_title }}
                                 </a>
-                                <p>{{ plan.plans_description|truncatewords:30 }}</p>
+                                <p>{{ data.about_prokope_description|truncatewords:30 }}</p>
                             </li>
                         </ul>
                     {% endfor %}
