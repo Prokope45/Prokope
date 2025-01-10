@@ -13,7 +13,7 @@ from taggit.models import Tag, TaggedItem
 from git import Repo
 
 from .forms import ContactForm
-from .models import IndexDescription, Post, PhotoGallery
+from .models import Index, Post, PhotoGallery
 
 from photologue.models import Gallery, Photo
 
@@ -33,14 +33,14 @@ def custom_bad_request_view(request, exception=None):
 
 # Index/Home Page
 def index_view(request):
-    random_gallery = random.choice(PhotoGallery.objects.all())
-    random_album = random.choice(random_gallery.galleries.all())
     context = {
-        'index_data': IndexDescription.objects.first(),
+        'index_data': Index.objects.first(),
         'posts': Post.objects.filter(status=1).order_by('-updated_on')[:2],
-        'carousel_gallery_name': random_gallery,
-        'carousel_photos': random_album,
     }
+    if (len(PhotoGallery.objects.all()) > 0):
+        random_gallery = random.choice(PhotoGallery.objects.all())
+        context['carousel_gallery_name'] =  random_gallery
+        context['carousel_photos'] = random.choice(random_gallery.galleries.all())
     return render(request, 'index.html', context)
 
 
@@ -127,13 +127,13 @@ def search(request):
             error_message = "Invalid search query. Please refine your input."
             query = ''  # Clear the query to prevent further processing
         else:
-            about_me_results = IndexDescription.objects.filter(
+            about_me_results = Index.objects.filter(
                 Q(about_me_title__icontains=query) |
                 Q(about_me_description__icontains=query)
             )
-            plans_results = IndexDescription.objects.filter(
-                Q(plans_title__icontains=query) |
-                Q(plans_description__icontains=query)
+            about_prokope_results = Index.objects.filter(
+                Q(about_prokope_title__icontains=query) |
+                Q(about_prokope_description__icontains=query)
             )
 
             tag_ids = TaggedItem.objects.filter(tag__name__icontains=query).values_list('object_id', flat=True)
@@ -154,7 +154,7 @@ def search(request):
     context = {
         'index_results': {
             'about_me': about_me_results,
-            'plans': plans_results,
+            'about_prokope': about_prokope_results,
         },
         'blog_results': blog_results,
         'gallery_results': gallery_results,
