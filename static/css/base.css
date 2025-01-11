@@ -206,3 +206,26 @@ h1, h3 {
     color: var(--heading-font-color);
     transition: all 0.3s ease;
 }
+
+#backToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 16px;
+    outline: none;
+    background-color: var(--button-bg-color);
+    border: 1px solid var(--button-text-color);
+    color: var(--button-text-color);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    scroll-behavior: smooth;
+}
+
+#backToTopBtn:hover {
+    background-color: var(--button-text-color);
+    border: 1px solid var(--button-bg-color);
+    color: var(--button-bg-color);
+}

@@ -9,6 +9,9 @@
           rel="stylesheet"
         >
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <script src="{% static 'js/ThemeSwitcher/LoadDefaultTheme.js' %}"></script>
+
         <link rel="stylesheet" href="{% static '/css/base.css' %}" />
         <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}" />
         <link rel="stylesheet"
@@ -16,33 +19,9 @@
         />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         {% block extra_head_links %}
-            <style>
-                #backToTopBtn {
-                    display: none;
-                    position: fixed;
-                    bottom: 20px;
-                    right: 30px;
-                    z-index: 99;
-                    font-size: 16px;
-                    outline: none;
-                    background-color: var(--button-bg-color);
-                    border: 1px solid var(--button-border-color);
-                    color: var(--button-text-color);
-                    cursor: pointer;
-                    padding: 10px;
-                    border-radius: 4px;
-                    scroll-behavior: smooth;
-                }
-        
-                #backToTopBtn:hover {
-                    background-color: var(--button-text-color);
-                    border: 1px solid var(--button-bg-color);
-                    color: var(--button-bg-color);
-                }
-            </style>
         {% endblock %}
     </head>
-    <body data-theme="light">
+    <body>
         {% block navbar %}
         {% endblock navbar %}
 
@@ -67,29 +46,8 @@
 
         {% block extra_script_links %}
             <script src="{% static 'js/main.js' %}"></script>
-            <script>
-                // Get the button
-                let topButton = document.getElementById("backToTopBtn");
-                
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function() {scrollFunction()};
-                
-                function scrollFunction() {
-                  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    topButton.style.display = "block";
-                  } else {
-                    topButton.style.display = "none";
-                  }
-                }
-                
-                // When the user clicks on the button, scroll to the top of the document
-                function topFunction() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth" // Enables smooth scrolling
-                    });
-                }
-            </script>
+            <script src="{% static 'js/ToTopButton.js' %}"></script>
+            <script src="{% static 'js/ThemeSwitcher/ThemeSwitcher.js' %}"></script>
         {% endblock %}
     </body>
     {% block footer %}
