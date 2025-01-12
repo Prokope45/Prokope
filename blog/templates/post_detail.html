@@ -44,9 +44,9 @@
                                 </span>
                             </div>
                             {% if post.thumb %}
-                                <div class="col-lg-6 col-md-8 col-sm-10 my-4">
+                                <div class="col-lg-6 col-md-8 col-sm-10 my-4 mx-auto">
                                     <img
-                                        class="post-image img-fluid mx-auto"
+                                        class="post-image img-fluid"
                                         src="{{ post.thumb.url }}"
                                         loading="lazy"
                                     />
@@ -64,21 +64,6 @@
 {% endblock content %}
 {% block extra_script_links %}
     <script src="{% static 'lightbox/js/lightbox-plus-jquery.js' %}"></script>
-    <script>
-        // Blog post image lightbox effect
-        document.addEventListener('DOMContentLoaded', function() {
-            // Automatically wrap all images in links for lightbox
-            const images = document.querySelectorAll('.card-body img');
-            images.forEach(image => {
-                const imageUrl = image.src;
-                const lightboxLink = document.createElement('a');
-                lightboxLink.href = imageUrl;
-                lightboxLink.setAttribute('data-lightbox', 'article-images');
-                lightboxLink.style.display = 'inline-block';
-                image.parentNode.insertBefore(lightboxLink, image);
-                lightboxLink.appendChild(image);
-            });
-        });
-    </script>
+    <script src="{% static 'js/BlogPostImageLightbox.js' %}"></script>
 {% endblock %}
 
