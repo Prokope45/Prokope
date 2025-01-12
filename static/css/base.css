@@ -90,7 +90,7 @@ img {
     --card-border-color: var(--iris);
     --card-text-color: var(--dark-gray);
     --card-details-color: var(--roman-silver);
-    --card-heading-color: var(--cyber-grape);
+    --card-heading-color: var(--iris);
     --card-heading-hover-color: var(--iris);
 
     --heading-font-color: var(--dark-gray);
@@ -109,6 +109,9 @@ img {
     --code-animation-font-color: var(--platinum);
     --code-animation-var-highlight-color: var(--light-blue);
     --code-animation-string-highlight-color: var(--wisteria);
+
+    --search-link-color: var(--iris);
+    --search-link-hover-color: var(--wisteria);
 }
 
 [data-theme="dark"] {
@@ -135,7 +138,7 @@ img {
     --card-text-color: var(--pale-purple);
     --card-details-color: var(--roman-silver);
     --card-heading-color: var(--wisteria);
-    --card-heading-hover-color: var(--pale-purple);
+    --card-heading-hover-color: var(--wisteria);
 
     --heading-font-color: var(--wisteria);
     
@@ -152,6 +155,9 @@ img {
     --tag-font-color: var(--iris);
 
     --code-animation-font-color: var(--pale-purple);
+
+    --search-link-color: var(--wisteria);
+    --search-link-hover-color: var(--pale-purple);
 }
 
 html, body {

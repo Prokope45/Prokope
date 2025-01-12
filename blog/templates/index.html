@@ -17,23 +17,7 @@
         {% endif %}
             <div class="overlay"></div>
             <div id="greeting" class="container col-10 px-0">
-<pre id="typewriter" class="unselectable">
-<span class="var-highlight">var</span> portfolio = {
-    name: <span class="string-highlight">'Jay'</span>,
-    type: <span class="string-highlight">'Software Developer'</span>,
-    location: <span class="string-highlight">'Manhattan, KS'</span>,
-    logo: <img
-            id="logo"
-            class="img-fluid"
-            src="{% static '/logo/prokope-p.png' %}"
-            loading="lazy"
-        />,
-    properties:[
-        <span class="string-highlight">'{{ index_data.greeting_title }}'</span>,
-        <span class="string-highlight">'{{ index_data.greeting_description }}'</span>
-    ],
-};
-</pre>
+                {% include 'typewriter.html' %}
             </div>
         </header>
         </header> <!-- two closing headers for if-else -->
