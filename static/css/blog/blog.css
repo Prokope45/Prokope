@@ -1,3 +1,7 @@
+h2.card-title {
+    color: var(--card-heading-color) !important;
+    transition: all 0.3s ease;
+}
 h2.card-title a{
     color: var(--card-heading-color) !important;
     transition: all 0.3s ease;
@@ -16,7 +20,7 @@ h2.card-title a:hover {
     transition: all 0.3s ease;
 }
 
-#blog-detail.card img {
+#blog-detail.card img, #blog.card img {
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -32,26 +36,15 @@ h2.card-title a:hover {
 #blog.card:hover {
     > .card-body > .read-more {
         visibility: visible;
-        color: var(--card-heading-hover-color);
-        transition: all 0.3s ease;
+        color: var(--card-heading-hover-color) !important;
+        transition: all 0.1s ease;
     }
     box-shadow: var(--card-box-shadow);
     margin-top: 28px;
     transform: translate(0, -12px);
-    color: var(--card-heading-hover-color) !important;
-    border-color: var(--card-border-color);
+    border-color: var(--card-border-color) !important;
     border-width: 1px;
     transition: all 0.3s ease;
-    cursor: pointer;
-}
-#index-blog.card:hover {
-    > .card-body > .read-more {
-        visibility: visible;
-        color: var(--card-heading-hover-color);
-        transition: all 0.3s ease;
-        margin-top: auto;
-    }
-    box-shadow: var(--card-box-shadow);
     cursor: pointer;
 }
 .card a {

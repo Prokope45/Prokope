@@ -138,7 +138,7 @@ img {
     --card-text-color: var(--pale-purple);
     --card-details-color: var(--roman-silver);
     --card-heading-color: var(--wisteria);
-    --card-heading-hover-color: var(--pale-purple);
+    --card-heading-hover-color: var(--wisteria);
 
     --heading-font-color: var(--wisteria);
     
@@ -211,4 +211,17 @@ a:active {
 h1, h3 {
     color: var(--heading-font-color);
     transition: all 0.3s ease;
+}
+#index-blog.card:hover {
+    > .card-body > .read-more {
+        visibility: visible;
+        color: var(--card-heading-hover-color) !important;
+        transition: all 0.3s ease;
+        margin-top: auto;
+    }
+    box-shadow: var(--card-box-shadow);
+    border-color: var(--card-border-color) !important;
+    border-width: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
