@@ -90,7 +90,7 @@ img {
     --card-border-color: var(--iris);
     --card-text-color: var(--dark-gray);
     --card-details-color: var(--roman-silver);
-    --card-heading-color: var(--cyber-grape);
+    --card-heading-color: var(--iris);
     --card-heading-hover-color: var(--iris);
 
     --heading-font-color: var(--dark-gray);
@@ -211,17 +211,4 @@ a:active {
 h1, h3 {
     color: var(--heading-font-color);
     transition: all 0.3s ease;
-}
-#index-blog.card:hover {
-    > .card-body > .read-more {
-        visibility: visible;
-        color: var(--card-heading-hover-color) !important;
-        transition: all 0.3s ease;
-        margin-top: auto;
-    }
-    box-shadow: var(--card-box-shadow);
-    border-color: var(--card-border-color) !important;
-    border-width: 1px;
-    transition: all 0.3s ease;
-    cursor: pointer;
 }

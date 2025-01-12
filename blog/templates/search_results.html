@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extra_head_links %}
-<link href="{% static 'css/search.css' %}" rel="stylesheet" />
-{% endblock %}
-
 {% block content %}
     <head>
         <title>Search Results</title>
@@ -25,6 +21,10 @@
                 color: var(--search-link-color) !important;
             }
         </style>
+        {% block extra_head_links %}
+            <link href="{% static 'css/search.css' %}" rel="stylesheet" />
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+        {% endblock %}
     </head>
     {% include 'navbar.html' %}
     <div id="content" class="mt-4">
@@ -37,7 +37,16 @@
                 <h2>Search Results for "{{ query }}"</h2>
     
                 {% if not index_results.about_me and not index_results.plans and not blog_results and not gallery_results %}
-                    <p>No results found.</p>
+                    <h3>No results found.</h3>
+                    <dotlottie-player
+                        id="links"
+                        class="mx-auto"
+                        src="https://lottie.host/9c2c19f7-9b81-463f-a47a-7c90425f1f90/Qbzk1DIKrd.lottie"
+                        background="transparent"
+                        speed="1"
+                        style="width: 300px; height: 300px"
+                        loop autoplay
+                    ></dotlottie-player>
                 {% endif %}
     
                 {% if index_results.about_me or index_results.about_prokope %}

@@ -6,6 +6,7 @@
   -o-animation: fadeIn 2s;
   -ms-animation: fadeIn 2s;
 }
+/* TODO: make animation generic */
 #links {
   animation: fadeIn 5s;
   -webkit-animation: fadeIn 5s;
