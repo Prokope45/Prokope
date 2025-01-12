@@ -109,6 +109,9 @@ img {
     --code-animation-font-color: var(--platinum);
     --code-animation-var-highlight-color: var(--light-blue);
     --code-animation-string-highlight-color: var(--wisteria);
+
+    --search-link-color: var(--iris);
+    --search-link-hover-color: var(--wisteria);
 }
 
 [data-theme="dark"] {
@@ -152,6 +155,9 @@ img {
     --tag-font-color: var(--iris);
 
     --code-animation-font-color: var(--pale-purple);
+
+    --search-link-color: var(--wisteria);
+    --search-link-hover-color: var(--pale-purple);
 }
 
 html, body {
