@@ -84,6 +84,6 @@ fi
 echo "Generated and stored debug secrets in .env"
 
 echo "Activating Prokope Admin Theme"
-python3 manage.py loaddata blog/fixtures/admin_interface_theme_Prokope.json
+python3 manage.py loaddata blog/fixtures/admin_interface_theme_prokope.json
 
 echo "Setup completed successfully."
