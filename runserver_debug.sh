@@ -3,7 +3,7 @@
 # Get the directory of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-PROJECT_DIR="$SCRIPT_DIR/mysite"
+PROJECT_DIR="$SCRIPT_DIR/prokope"
 SETTINGS_FILE="$PROJECT_DIR/settings.py"
 
 if [ ! -d "$PROJECT_DIR" ]; then
