@@ -9,8 +9,14 @@ from photologue.models import Gallery, Photo
 
 # Index Page
 class Index(models.Model):
-    hero_banner = models.ImageField(blank=True)
-    hero_image = models.ImageField(blank=True)
+    hero_banner = models.ImageField(
+        upload_to="images",
+        default="/images/default/default_hero_banner.png"
+    )
+    hero_image = models.ImageField(
+        upload_to="images",
+        default="/images/default/default_hero_image.png"
+    )
 
     greeting_title = models.CharField(max_length=200, default='Welcome to Prokope.io!', null=True)
     greeting_description = models.TextField(
