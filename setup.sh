@@ -83,6 +83,7 @@ fi
 # Confirm the action
 echo "Generated and stored debug secrets in .env"
 
+./apply_migrations.sh
 echo "3. Activating Prokope Admin Theme"
 python3 manage.py loaddata blog/fixtures/admin_interface_theme_prokope.json
 
