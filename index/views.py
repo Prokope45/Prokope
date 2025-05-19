@@ -15,6 +15,18 @@ from blog.models import Post
 from gallery.models import PhotoGallery
 
 
+def custom_page_not_found_view(request, exception):
+    return render(request, "errors/404.html", {})
+
+
+def custom_error_view(request, exception=None):
+    return render(request, "errors/500.html", {})
+
+
+def custom_bad_request_view(request, exception=None):
+    return render(request, "errors/400.html", {})
+
+
 def index_view(request: HttpRequest) -> HttpResponse:
     """Function-based view that sends index data to template.
 

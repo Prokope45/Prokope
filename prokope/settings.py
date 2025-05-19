@@ -19,6 +19,8 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+PRODUCTION = False
+TESTING = not DEBUG and not PRODUCTION
 
 ALLOWED_HOSTS = ['www.jpaubel.tech', 'www.prokope.io', 'localhost', '127.0.0.1']
 
@@ -92,7 +94,7 @@ WSGI_APPLICATION = 'prokope.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if DEBUG:
+if DEBUG or TESTING:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

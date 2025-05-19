@@ -11,19 +11,7 @@ from django.views.generic import ListView, DetailView
 from taggit.models import Tag
 from git import Repo
 
-from .forms import ContactForm
 from .models import Post
-
-
-# Custom Error Pages
-def custom_page_not_found_view(request, exception):
-    return render(request, "errors/404.html", {})
-
-def custom_error_view(request, exception=None):
-    return render(request, "errors/500.html", {})
-
-def custom_bad_request_view(request, exception=None):
-    return render(request, "errors/400.html", {})
 
 
 # Blog Page

@@ -11,9 +11,9 @@ from django.conf.urls import (
 if not settings.DEBUG:
     admin.site.__class__ = OTPAdminSite
 
-handler404 = 'blog.views.custom_page_not_found_view'
-handler500 = 'blog.views.custom_error_view'
-handler400 = 'blog.views.custom_bad_request_view'
+handler404 = 'index.views.custom_page_not_found_view'
+handler500 = 'index.views.custom_error_view'
+handler400 = 'index.views.custom_bad_request_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
