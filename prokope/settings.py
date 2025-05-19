@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'hcaptcha',
     'crispy_forms',
     'django_summernote',
+    'common',
     'index',
     'blog',
     'gallery',

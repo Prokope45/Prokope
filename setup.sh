@@ -88,7 +88,7 @@ echo "Generated and stored debug secrets in .env"
 
 ./apply_migrations.sh
 echo "3. Activating Prokope Admin Theme"
-python3 manage.py loaddata index/fixtures/admin_interface_theme_prokope.json
+python3 manage.py loaddata common/fixtures/admin_interface_theme_prokope.json
 
 echo "4. Creating test superuser"
 python3 manage.py createsuperuser --no-input

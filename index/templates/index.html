@@ -69,6 +69,7 @@
                     </div>
                     <div class="col-12 col-lg-4 order-1 text-center order-lg-2 mb-2 p-0">
                         {% if index_data.hero_image %}
+                            <!-- FIXME: Filter causes delay during theme switch -->
                             <img id="profile" class="img-fluid my-auto" src="{{ index_data.hero_image.url }}" />
                         {% else %}
                         {% endif %}

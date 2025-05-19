@@ -1,4 +1,4 @@
-"""Index models.
+"""Index admin.
 
 Author: Jared Paubel
 Version: 0.1
