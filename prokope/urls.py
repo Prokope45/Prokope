@@ -18,7 +18,8 @@ handler400 = 'blog.views.custom_bad_request_view'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('index.urls')),
-    path('blog/', include('blog.urls')),
+    path('blog', include('blog.urls')),
+    path('gallery', include('gallery.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('photologue/', include('photologue.urls', namespace='photologue')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \

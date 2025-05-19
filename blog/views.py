@@ -13,7 +13,7 @@ from taggit.models import Tag, TaggedItem
 from git import Repo
 
 from .forms import ContactForm
-from .models import Post, PhotoGallery
+from .models import Post
 from index.models import Index
 
 import re
@@ -82,19 +82,6 @@ class PostList(TagMixin, ListView):
 class PostDetail(DetailView):
     model = Post
     template_name = 'post_detail.html'
-
-
-# Gallery Page
-class CountryGallery(ListView):
-    model = PhotoGallery
-    template_name = 'gallery.html'
-    queryset = PhotoGallery.objects.all().order_by('country')
-    context_object_name = 'gallery_info'
-
-
-class CountryGalleryDetail(DetailView):
-    model = PhotoGallery
-    template_name = 'gallery_detail.html'
 
 def search(request):
     query = request.GET.get('q', '').strip()

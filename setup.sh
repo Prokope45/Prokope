@@ -78,6 +78,9 @@ fi
     echo "HCAPTCHA_SITEKEY=''"
     echo "HCAPTCHA_SECRET=''"
     echo "VERIFY_URL=''"
+    echo "DJANGO_SUPERUSER_USERNAME='prokope'"
+    echo "DJANGO_SUPERUSER_EMAIL='user@example.com'"
+    echo "DJANGO_SUPERUSER_PASSWORD='testuser123'"
 } > .env
 
 # Confirm the action
@@ -87,4 +90,7 @@ echo "Generated and stored debug secrets in .env"
 echo "3. Activating Prokope Admin Theme"
 python3 manage.py loaddata blog/fixtures/admin_interface_theme_prokope.json
 
-echo "4. Setup completed successfully."
+echo "4. Creating test superuser"
+python3 manage.py createsuperuser --no-input
+
+echo "5. Setup completed successfully."

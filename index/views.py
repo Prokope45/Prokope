@@ -8,7 +8,8 @@ import random
 from django.http import HttpRequest, HttpResponse
 
 from index.models import Index
-from blog.models import PhotoGallery, Post
+from blog.models import Post
+from gallery.models import PhotoGallery
 
 
 def index_view(request: HttpRequest) -> HttpResponse:
