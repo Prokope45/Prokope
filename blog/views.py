@@ -13,12 +13,10 @@ from taggit.models import Tag, TaggedItem
 from git import Repo
 
 from .forms import ContactForm
-from .models import Index, Post, PhotoGallery
-
-from photologue.models import Gallery, Photo
+from .models import Post, PhotoGallery
+from index.models import Index
 
 import re
-import random
 
 # Custom Error Pages
 def custom_page_not_found_view(request, exception):
@@ -29,19 +27,6 @@ def custom_error_view(request, exception=None):
 
 def custom_bad_request_view(request, exception=None):
     return render(request, "errors/400.html", {})
-
-
-# Index/Home Page
-def index_view(request):
-    context = {
-        'index_data': Index.objects.first(),
-        'posts': Post.objects.filter(status=1).order_by('-updated_on')[:2],
-    }
-    if (len(PhotoGallery.objects.all()) > 0):
-        random_gallery = random.choice(PhotoGallery.objects.all())
-        context['carousel_gallery_name'] = random_gallery
-        context['carousel_photos'] = random.choice(random_gallery.galleries.all())
-    return render(request, 'index.html', context)
 
 
 # Blog Page

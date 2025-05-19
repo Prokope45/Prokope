@@ -9,6 +9,7 @@ venv/
 /static/ckeditor/ckeditor/skins/
 .DS_Store
 /blog/migrations/
+/index/migrations/
 db.sqlite3
 .idea/
 __pycache__

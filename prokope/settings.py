@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_summernote',
     'blog',
+    'index',
     'photologue',
     'sortedm2m',
     'django_otp',

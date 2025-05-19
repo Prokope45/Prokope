@@ -4,10 +4,9 @@ from django.urls import path
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
-from .views import index_view, search
+from .views import search
 
 urlpatterns = [
-    path('', index_view, name='home'),
     path('update_server/', views.update, name='update'),
     path('blog/', views.PostList.as_view(), name='blog'),
     path('blog/<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
