@@ -24,6 +24,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_on']
+        verbose_name = "Blog"
+        verbose_name_plural = "Blogs"
 
     def __str__(self):
         return self.title

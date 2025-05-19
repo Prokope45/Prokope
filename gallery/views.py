@@ -1,9 +1,16 @@
+"""Gallery view.
+
+Author: Jared Paubel
+Version: 0.1
+"""
 from django.views.generic import ListView, DetailView
 
 from gallery.models import PhotoGallery
 
-# Gallery Page
+
 class CountryGallery(ListView):
+    """Country gallery list view."""
+
     model = PhotoGallery
     template_name = 'gallery.html'
     queryset = PhotoGallery.objects.all().order_by('country')
@@ -11,5 +18,7 @@ class CountryGallery(ListView):
 
 
 class CountryGalleryDetail(DetailView):
+    """Country gallery detail view."""
+
     model = PhotoGallery
     template_name = 'gallery_detail.html'

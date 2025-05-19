@@ -1,4 +1,4 @@
-"""Index models.
+"""Index configs.
 
 Author: Jared Paubel
 Version: 0.1

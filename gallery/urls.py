@@ -1,3 +1,8 @@
+"""Gallery urls.
+
+Author: Jared Paubel
+Version: 0.1
+"""
 from django.urls import path
 from gallery.views import CountryGallery, CountryGalleryDetail
 
