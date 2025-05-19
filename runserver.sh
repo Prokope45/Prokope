@@ -74,7 +74,7 @@ else
 fi
 
 echo "🧪 Running tests..."
-coverage run --source=common,index --omit=*/migrations/* manage.py test common index
+coverage run --source=apps.common,apps.index --omit=*/migrations/* manage.py test apps.common apps.index
 
 # Check if tests failed
 if [ $? -ne 0 ]; then
