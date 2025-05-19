@@ -1,22 +1,19 @@
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
-from django.db.models import Q
 
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from django.views.generic import ListView, DetailView
 
-from taggit.models import Tag, TaggedItem
+from taggit.models import Tag
 from git import Repo
 
 from .forms import ContactForm
 from .models import Post
-from index.models import Index
 
-import re
 
 # Custom Error Pages
 def custom_page_not_found_view(request, exception):
@@ -82,59 +79,6 @@ class PostList(TagMixin, ListView):
 class PostDetail(DetailView):
     model = Post
     template_name = 'post_detail.html'
-
-def search(request):
-    query = request.GET.get('q', '').strip()
-
-    about_me_results = []
-    plans_results = []
-    blog_results = []
-    gallery_results = []
-    error_message = None
-
-    if query:
-        forbidden_patterns = re.compile(r'(DROP|SELECT|INSERT|DELETE|UPDATE|;|--)', re.IGNORECASE)
-
-        if forbidden_patterns.search(query):
-            error_message = "Invalid search query. Please refine your input."
-            query = ''  # Clear the query to prevent further processing
-        else:
-            about_me_results = Index.objects.filter(
-                Q(about_me_title__icontains=query) |
-                Q(about_me_description__icontains=query)
-            )
-            about_prokope_results = Index.objects.filter(
-                Q(about_prokope_title__icontains=query) |
-                Q(about_prokope_description__icontains=query)
-            )
-
-            tag_ids = TaggedItem.objects.filter(tag__name__icontains=query).values_list('object_id', flat=True)
-
-            blog_results = Post.objects.filter(
-                Q(title__icontains=query) |
-                Q(content__icontains=query) |
-                Q(id__in=tag_ids)  # Search in tags
-            ).distinct()
-
-            gallery_results = PhotoGallery.objects.filter(
-                Q(country__icontains=query) |
-                Q(content__icontains=query) |
-                Q(galleries__title__icontains=query) |
-                Q(galleries__description__icontains=query)
-            ).distinct()
-
-    context = {
-        'index_results': {
-            'about_me': about_me_results,
-            'about_prokope': about_prokope_results,
-        },
-        'blog_results': blog_results,
-        'gallery_results': gallery_results,
-        'query': query,
-        'error_message': error_message,
-    }
-
-    return render(request, 'search_results.html', context)
 
 # GitHub-to-PythonAnywhere Update Webhook
 @csrf_exempt

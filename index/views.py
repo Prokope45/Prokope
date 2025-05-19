@@ -6,6 +6,9 @@ Version: 0.1
 from django.shortcuts import render
 import random
 from django.http import HttpRequest, HttpResponse
+from django.db.models import Q
+from taggit.models import TaggedItem
+import re
 
 from index.models import Index
 from blog.models import Post
@@ -32,3 +35,69 @@ def index_view(request: HttpRequest) -> HttpResponse:
             random_gallery.galleries.all()
         )
     return render(request, 'index.html', context)
+
+
+def search(request: HttpRequest) -> HttpResponse:
+    """Search the index, blog, and gallery for an related values to the term.
+
+    Args:
+        request (HttpRequest): Request containing search terms.
+
+    Returns:
+        HttpResponse: Response of found results.
+    """
+    query = request.GET.get('q', '').strip()
+
+    about_me_results = []
+    blog_results = []
+    gallery_results = []
+    error_message = None
+
+    if query:
+        forbidden_patterns = re.compile(
+            r'(DROP|SELECT|INSERT|DELETE|UPDATE|;|--)',
+            re.IGNORECASE
+        )
+
+        if forbidden_patterns.search(query):
+            error_message = "Invalid search query. Please refine your input."
+            query = ''  # Clear the query to prevent further processing
+        else:
+            about_me_results = Index.objects.filter(
+                Q(about_me_title__icontains=query) |
+                Q(about_me_description__icontains=query)
+            )
+            about_prokope_results = Index.objects.filter(
+                Q(about_prokope_title__icontains=query) |
+                Q(about_prokope_description__icontains=query)
+            )
+
+            tag_ids = TaggedItem.objects.filter(
+                tag__name__icontains=query
+            ).values_list('object_id', flat=True)
+
+            blog_results = Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(content__icontains=query) |
+                Q(id__in=tag_ids)  # Search in tags
+            ).distinct()
+
+            gallery_results = PhotoGallery.objects.filter(
+                Q(country__icontains=query) |
+                Q(content__icontains=query) |
+                Q(galleries__title__icontains=query) |
+                Q(galleries__description__icontains=query)
+            ).distinct()
+
+    context = {
+        'index_results': {
+            'about_me': about_me_results,
+            'about_prokope': about_prokope_results,
+        },
+        'blog_results': blog_results,
+        'gallery_results': gallery_results,
+        'query': query,
+        'error_message': error_message,
+    }
+
+    return render(request, 'search_results.html', context)

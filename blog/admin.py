@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.conf import settings
 from django_summernote.admin import SummernoteModelAdmin
 
 from .models import Post, Contact
