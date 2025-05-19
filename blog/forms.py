@@ -1,4 +1,8 @@
-# blog/forms.py
+"""Blog Forms.
+
+Author: Jared Paubel
+Version: 0.1
+"""
 from django import forms
 from django.conf import settings
 import requests
@@ -9,6 +13,7 @@ from .models import Contact
 
 
 def validate_captcha(value):
+    """Verify captcha result."""
     data = {'secret': settings.HCAPTCHA_SECRET, 'response': value}
     response = requests.post(settings.VERIFY_URL, data)
     if 'success' not in response.json() or not response.json()['success']:
@@ -16,6 +21,8 @@ def validate_captcha(value):
 
 
 class ContactForm(ModelForm):
+    """Contact form."""
+
     captcha = forms.CharField(max_length=10000, validators=[validate_captcha])
 
     class Meta:
