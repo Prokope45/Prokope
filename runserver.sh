@@ -70,8 +70,32 @@ if [ -z "$VIRTUAL_ENV" ]; then
     echo "Error: Virtual environment is not active. Please activate it and try again."
     exit 1
 else
-    echo "Virtual environment is active."
+    echo -e "Virtual environment is active.\n"
 fi
+
+echo "🧪 Running tests..."
+coverage run --source=index --omit=*/migrations/* manage.py test index
+
+# Check if tests failed
+if [ $? -ne 0 ]; then
+echo "❌ Tests failed. Please fix the errors before running the server again."
+    exit 1
+else
+    echo "✅ All tests passed."
+fi
+
+# Enforce minimum of 80% coverage
+MIN_COVERAGE=80
+COVERAGE_RESULT=$(coverage report | grep 'TOTAL' | awk '{print $4}' | sed 's/%//')
+
+if [ "$COVERAGE_RESULT" -lt "$MIN_COVERAGE" ]; then
+    echo "❌ Code coverage is below ${MIN_COVERAGE}%. Current: ${COVERAGE_RESULT}%"
+    coverage report -m
+    exit 1
+fi
+echo "✅ Coverage at: ${COVERAGE_RESULT}%"
+coverage html -d docs/coverage
+echo -e "\n"
 
 if [ $# -eq 0 ]; then
   debugMode

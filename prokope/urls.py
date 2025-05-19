@@ -3,17 +3,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django_otp.admin import OTPAdminSite
 from django.urls import path, include
-from django.conf.urls import (
-    handler400, handler404, handler500
-)
 
 # Force TOTP entry for admin login during production
 if not settings.DEBUG:
     admin.site.__class__ = OTPAdminSite
 
+handler400 = 'index.views.custom_bad_request_view'
+handler403 = 'index.views.custom_permission_denied_view'
 handler404 = 'index.views.custom_page_not_found_view'
 handler500 = 'index.views.custom_error_view'
-handler400 = 'index.views.custom_bad_request_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

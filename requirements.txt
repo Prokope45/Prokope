@@ -3,6 +3,7 @@ bleach==4.1.0
 certifi==2021.10.8
 charset-normalizer==2.0.10
 colorama==0.4.4
+coverage
 Django==4.0.1
 django-admin-interface==0.28.9
 django-colorfield==0.11.0

@@ -1,6 +1,7 @@
 .venv/
 venv/
 .env
+.coverage
 *.jpg
 *.JPG
 *.jpeg

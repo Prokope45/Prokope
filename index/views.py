@@ -7,6 +7,9 @@ from django.shortcuts import render
 import random
 from django.http import HttpRequest, HttpResponse
 from django.db.models import Q
+from django.views.defaults import (
+    page_not_found, bad_request, server_error, permission_denied
+)
 from taggit.models import TaggedItem
 import re
 
@@ -15,16 +18,24 @@ from blog.models import Post
 from gallery.models import PhotoGallery
 
 
-def custom_page_not_found_view(request, exception):
-    return render(request, "errors/404.html", {})
-
-
-def custom_error_view(request, exception=None):
-    return render(request, "errors/500.html", {})
-
-
 def custom_bad_request_view(request, exception=None):
-    return render(request, "errors/400.html", {})
+    return bad_request(request, exception, "errors/400.html")
+
+
+def custom_page_not_found_view(request, exception=None):
+    return page_not_found(request, exception, "errors/404.html")
+
+
+def custom_permission_denied_view(request, exception=None):
+    return permission_denied(
+        request,
+        exception,
+        template_name='errors/403.html'
+    )
+
+
+def custom_error_view(request):
+    return server_error(request, "errors/500.html")
 
 
 def index_view(request: HttpRequest) -> HttpResponse:
