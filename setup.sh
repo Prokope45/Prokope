@@ -8,7 +8,7 @@ if [ ! -d "$VENV_DIR" ]; then
     echo "Creating virtual environment..."
     python3 -m venv $VENV_DIR
 else
-    echo "Virtual environment already exists."
+    echo "!!! Virtual environment already exists. !!!"
 fi
 
 # Activate the virtual environment
@@ -16,17 +16,17 @@ source $VENV_DIR/bin/activate
 
 # Install required packages from requirements.txt
 if [ -f "requirements.txt" ]; then
-    echo "Installing packages from requirements.txt..."
+    echo "1. Installing packages from requirements.txt..."
     pip install -r requirements.txt
 else
-    echo "requirements.txt not found. Please ensure it exists in the current directory."
+    echo "!!! 'requirements.txt' not found. Please ensure it exists in the current directory. !!!"
     deactivate
     exit 1
 fi
 
 # Check for mysqlclient installation errors
 if ! pip install mysqlclient; then
-    echo "Failed to install mysqlclient. Checking system package manager..."
+    echo "!!! Failed to install mysqlclient. Checking system package manager... !!!"
 
     # Determine the package manager (Debian or Fedora based)
     if command -v apt-get > /dev/null; then
@@ -37,22 +37,22 @@ if ! pip install mysqlclient; then
         echo "Detected dnf package manager. Installing necessary system dependencies..."
         sudo dnf install -y pkgconf-pkg-config python3-devel Kernel-devel gcc gcc-c++
     else
-        echo "Error: Unsupported package manager. Please install the necessary dependencies manually."
+        echo "!!! Error: Unsupported package manager. Please install the necessary dependencies manually. !!!"
         deactivate
         exit 1
     fi
 
     echo "Retrying installation of mysqlclient..."
-    if ! pip install mysqlclient; then
-        echo "Error: mysqlclient installation failed again. Please check your system configuration."
+    if ! pip install 'mysqlclient'; then
+        echo "Error: 'mysqlclient' installation failed again. Please check your system configuration."
         deactivate
         exit 1
     fi
 else
-    echo "mysqlclient installed successfully."
+    echo "'mysqlclient' installed successfully."
 fi
 
-echo "Creating debug secrets..."
+echo "2. Creating debug secrets..."
 
 # Function to generate a random SECRET_KEY
 generate_secret_key() {
@@ -61,7 +61,7 @@ generate_secret_key() {
 
 # Check if .env file exists; if not, create it
 if [ ! -f .env ]; then
-    echo ".env file not found, creating it..."
+    echo "'.env' file not found, creating it..."
     touch .env
 fi
 
@@ -83,7 +83,7 @@ fi
 # Confirm the action
 echo "Generated and stored debug secrets in .env"
 
-echo "Activating Prokope Admin Theme"
+echo "3. Activating Prokope Admin Theme"
 python3 manage.py loaddata blog/fixtures/admin_interface_theme_prokope.json
 
-echo "Setup completed successfully."
+echo "4. Setup completed successfully."
