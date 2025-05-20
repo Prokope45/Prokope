@@ -11,6 +11,9 @@
                 transition: all 0.3s ease;
             }
         </style> -->
+        {% block extra_head_links %}
+            <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+        {% endblock %}
     </head>
 
     {% include 'navbar.html' %}
@@ -52,7 +55,7 @@
                     </a>
 
                     <a class="medium icon icon-fill"
-                        href="https://medium.com/@jpaubel"
+                        href="https://medium.com/@prokope"
                         target="_blank"
                         rel="noopener noreferrer"
                         role="button"

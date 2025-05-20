@@ -5,7 +5,7 @@
 @import "blog/blog.css";
 @import "contact/contact.css";
 @import "contact/media_queries.css";
-@import "index/control.css";
+/* @import "index/control.css"; */
 @import "gallery/gallery.css";
 @import "form/input.css";
 @import "search.css";

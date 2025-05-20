@@ -73,7 +73,7 @@ else
     echo -e "Virtual environment is active.\n"
 fi
 
-#!/bin/bash
+./apply_migrations.sh
 
 echo "🧪 Running tests..."
 
@@ -142,8 +142,6 @@ fi
 
 # Navigate to the project directory and run the server
 cd "$SCRIPT_DIR" || { echo "Error: Failed to navigate to project directory."; exit 1; }
-
-./apply_migrations.sh
 
 # Run the Django development server
 echo "Starting the Django development server..."

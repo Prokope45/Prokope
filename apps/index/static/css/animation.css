@@ -89,6 +89,21 @@
   color: var(--code-animation-string-highlight-color);
 }
 
+@-webkit-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@-moz-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
 #typewriter {
   font-size: 24px;
   font-family: "Courier New";
@@ -106,26 +121,12 @@
   }
 }
 
-@-webkit-keyframes blink{
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
-
-@-moz-keyframes blink{
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
-
-@keyframes blink{
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
-
 @media screen and (max-width: 768px) {
   #typewriter {
       font-size: 20px;
   }
 }
+
 @media screen and (max-width: 480px) {
   #typewriter {
       font-size: 16px;
