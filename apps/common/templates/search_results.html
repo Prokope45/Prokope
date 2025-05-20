@@ -3,7 +3,7 @@
 
 {% block content %}
     <head>
-        <title>Search Results</title>
+        <title>Prokope | Search Results</title>
         <style>
             .search-results-link a:link {
                 color: var(--search-link-color) !important;
@@ -36,7 +36,7 @@
             {% else %}
                 <h2>Search Results for "{{ query }}"</h2>
     
-                {% if not index_results.about_me and not index_results.plans and not blog_results and not gallery_results %}
+                {% if not index_results.about_me and not index_results.about_prokope and not blog_results and not gallery_results %}
                     <h3>No results found.</h3>
                     <dotlottie-player
                         id="links"

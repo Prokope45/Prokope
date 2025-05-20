@@ -13,7 +13,7 @@
 }
 [data-theme="dark"] img {
     /* FIXME: Filter causes delay during theme switch */
-    /* filter: brightness(.8) contrast(1.2) !important; */
+    filter: brightness(.8) contrast(1.2) !important;
     transition: all 0.3s ease;
 }
 [data-theme="dark"] .lb-outerContainer {

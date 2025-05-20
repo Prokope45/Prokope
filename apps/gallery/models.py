@@ -11,8 +11,8 @@ from photologue.models import Gallery
 class PhotoGallery(models.Model):
     """Photo gallery model."""
 
-    # TODO: Change format to get Photos directly from Photologue, then generate new
-    #   to enforce pagination
+    # TODO: Change format to get Photos directly from
+    #   Photologue, then generate new to enforce pagination
     galleries = models.ManyToManyField(Gallery)
     country = models.CharField(max_length=199)
     content = models.TextField()
