@@ -73,27 +73,45 @@ else
     echo -e "Virtual environment is active.\n"
 fi
 
+#!/bin/bash
+
 echo "🧪 Running tests..."
-coverage run --source=apps.common,apps.index --omit=*/migrations/* manage.py test apps.common apps.index
 
-# Check if tests failed
-if [ $? -ne 0 ]; then
-echo "❌ Tests failed. Please fix the errors before running the server again."
-    exit 1
-else
-    echo "✅ All tests passed."
-fi
+# List of Django apps to test
+APPS=("apps.common" "apps.index")
 
-# Enforce minimum of 80% coverage
+# Clean previous coverage data
+coverage erase
+
+# Run tests and collect coverage for each app
+for APP in "${APPS[@]}"; do
+    echo "----------------------------------------------------------------------"
+    echo "➡️ Testing $APP ..."
+    coverage run --source=$APP --omit=*/migrations/* --parallel-mode manage.py test $APP
+    if [ $? -ne 0 ]; then
+        echo "❌ Tests failed in $APP. Please fix the errors before running the server again."
+        exit 1
+    fi
+done
+
+# Combine coverage data from parallel runs
+coverage combine
+
+# Generate coverage report
 MIN_COVERAGE=80
 COVERAGE_RESULT=$(coverage report | grep 'TOTAL' | awk '{print $4}' | sed 's/%//')
 
+# Check coverage threshold
 if [ "$COVERAGE_RESULT" -lt "$MIN_COVERAGE" ]; then
     echo "❌ Code coverage is below ${MIN_COVERAGE}%. Current: ${COVERAGE_RESULT}%"
     coverage report -m
     exit 1
 fi
+
+echo "✅ All tests passed."
 echo "✅ Coverage at: ${COVERAGE_RESULT}%"
+
+# Generate HTML coverage report
 coverage html -d docs/coverage
 echo -e "\n"
 
