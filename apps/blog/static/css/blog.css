@@ -13,12 +13,6 @@ h2.card-title a:hover {
 [data-theme="dark"] .card-text .text-muted {
     color: var(--heliotrope) !important;
 }
-.card {
-    background-color: var(--card-bg-color) !important;
-    color: var(--card-text-color);
-    border: 1px solid var(--card-text-color);
-    transition: all 0.3s ease;
-}
 
 #blog-detail.card img, #blog.card img {
     width: 100%;

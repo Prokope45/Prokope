@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_head_links %}
+    <link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet" />
+{% endblock %}
+
 {% block content %}
     <head>
         <title>Blog Post</title>
-        {% block extra_head_links %}
-            <link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet" />
-        {% endblock %}
     </head>
     <body>
         {% include 'navbar.html' %}

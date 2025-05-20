@@ -2,11 +2,11 @@
 @import "navbar/navbar.css";
 @import "footer/footer.css";
 @import "buttons/buttons.css";
-@import "blog/blog.css";
+/* @import "blog/blog.css"; */
 @import "contact/contact.css";
 @import "contact/media_queries.css";
 /* @import "index/control.css"; */
-@import "gallery/gallery.css";
+/* @import "gallery/gallery.css"; */
 @import "form/input.css";
 @import "search.css";
 
@@ -210,5 +210,12 @@ a:active {
 /* Excludes blog post titles & greeting title */
 h1, h3 {
     color: var(--heading-font-color);
+    transition: all 0.3s ease;
+}
+
+.card {
+    background-color: var(--card-bg-color) !important;
+    color: var(--card-text-color);
+    border: 1px solid var(--card-text-color);
     transition: all 0.3s ease;
 }

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_head_links %}
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+{% endblock %}
+
 {% block index %}
     <head>
         <title>Portfolio</title>
@@ -11,9 +15,6 @@
                 transition: all 0.3s ease;
             }
         </style> -->
-        {% block extra_head_links %}
-            <link href="{% static 'css/index.css' %}" rel="stylesheet" />
-        {% endblock %}
     </head>
 
     {% include 'navbar.html' %}
