@@ -1,6 +1,7 @@
 .venv/
 venv/
 .env
+.coverage*
 *.jpg
 *.JPG
 *.jpeg
@@ -8,7 +9,7 @@ venv/
 /static/lightbox/images/
 /static/ckeditor/ckeditor/skins/
 .DS_Store
-/blog/migrations/
+apps/*/migrations/
 db.sqlite3
 .idea/
 __pycache__

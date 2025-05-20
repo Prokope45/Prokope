@@ -19,6 +19,8 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+PRODUCTION = False
+TESTING = not DEBUG and not PRODUCTION
 
 ALLOWED_HOSTS = ['www.jpaubel.tech', 'www.prokope.io', 'localhost', '127.0.0.1']
 
@@ -37,7 +39,10 @@ INSTALLED_APPS = [
     'hcaptcha',
     'crispy_forms',
     'django_summernote',
-    'blog',
+    'apps.common',
+    'apps.index',
+    'apps.blog',
+    'apps.gallery',
     'photologue',
     'sortedm2m',
     'django_otp',
@@ -90,7 +95,7 @@ WSGI_APPLICATION = 'prokope.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if DEBUG:
+if DEBUG or TESTING:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -144,9 +149,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
-STATICFILES_DIRS = [BASE_DIR / 'static',]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

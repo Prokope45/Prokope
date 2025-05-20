@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <head>
+    <title>Prokope | Unexpected Problem</title>
+  </head>
+  {% include 'navbar.html' %}
+  <div id='content'>
+    <div class="container text-center justify-content-center col-md-12 col-sm-12">
+      <img class="img-fluid" width=200 src="static/error/request_error_icon.png">
+      <h1
+        class="m-3"
+      >
+        Sorry, something unexpected happened. Please try again later.
+      </h1>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+{% endblock content %}

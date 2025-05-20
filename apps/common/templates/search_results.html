@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <head>
+        <title>Prokope | Search Results</title>
+        <style>
+            .search-results-link a:link {
+                color: var(--search-link-color) !important;
+                background-color: transparent;
+            }
+            .search-results-link a:visited {
+                color: var(--search-link-color) !important;
+                background-color: transparent;
+            }
+            .search-results-link a:hover {
+                color: var(--search-link-hover-color) !important;
+                background-color: transparent;
+            }
+            .search-results-link a:active {
+                color: var(--search-link-color) !important;
+            }
+        </style>
+        {% block extra_head_links %}
+            <link href="{% static 'css/search.css' %}" rel="stylesheet" />
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+        {% endblock %}
+    </head>
+    {% include 'navbar.html' %}
+    <div id="content" class="mt-4">
+        <div id="search" class="container">
+            {% if error_message %}
+                <div class="alert alert-danger">
+                    {{ error_message }}
+                </div>
+            {% else %}
+                <h2>Search Results for "{{ query }}"</h2>
+    
+                {% if not index_results.about_me and not index_results.about_prokope and not blog_results and not gallery_results %}
+                    <h3>No results found.</h3>
+                    <dotlottie-player
+                        id="links"
+                        class="mx-auto"
+                        src="https://lottie.host/9c2c19f7-9b81-463f-a47a-7c90425f1f90/Qbzk1DIKrd.lottie"
+                        background="transparent"
+                        speed="1"
+                        style="width: 300px; height: 300px"
+                        loop autoplay
+                    ></dotlottie-player>
+                {% endif %}
+    
+                {% if index_results.about_me or index_results.about_prokope %}
+                    <div class="search-results-link">
+                        <h3>Home</h3>
+                        {% for about in index_results.about_me %}
+                            <ul class="search-results-link">
+                                <li>
+                                    <a href="{% url 'home' %}#{{ about.about_me_title }}">
+                                        {{ about.about_me_title }}
+                                    </a>
+                                    <p>{{ about.about_me_description|truncatewords:30 }}</p>
+                                </li>
+                            </ul>
+                        {% endfor %}
+                        {% for data in index_results.about_prokope %}
+                            <ul class="search-results-link">
+                                <li>
+                                    <a href="{% url 'home' %}#{{ data.about_prokope_title }}">
+                                        {{ data.about_prokope_title }}
+                                    </a>
+                                    <p>{{ data.about_prokope_description|truncatewords:30 }}</p>
+                                </li>
+                            </ul>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+    
+                {% if blog_results %}
+                    <div class="search-results-link">
+                        <h3>Blog Articles</h3>
+                        <ul>
+                            {% for post in blog_results %}
+                                <li class="mb-2 search-results-link">
+                                    <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+                                    <p>{{ post.content|striptags|truncatewords:50 }}</p>
+                                    <span id="tag" class="d-inline">
+                                        <i class="fa text-muted fa-tags"></i>
+                                        {% for tag in post.tag.all %}
+                                            <a class="badge" href="{% url 'posts_by_tag' tag.slug %}">{{ tag }}</a>
+                                        {% endfor %}
+                                    </span>
+        
+                                    {% if post.id != results.last.id %}
+                                        <hr />
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+    
+                {% if gallery_results %}
+                    <div class="search-results-link">
+                        <h3>Galleries</h3>
+                        <ul>
+                            {% for result in gallery_results %}
+                                <li>
+                                    <h4 class="mb-2">
+                                        <a href="{% url 'gallery_detail' result.slug  %}">{{ result.country }}</a>
+                                    </h4>
+                                    <div class="mb-2">
+                                        <div class="row photo-row justify-content-center">
+                                            {% for gallery in result.galleries.all %}
+                                                {% for photo in gallery.public|slice:":6" %}
+                                                    <img
+                                                        class="travel-photo m-2 "
+                                                        src="{{ photo.get_thumbnail_url }}"
+                                                        alt="{{ photo.title }}: {{ photo.caption }}"
+                                                        loading="lazy"
+                                                    >
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <p>{{ result.content|truncatewords:20 }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}

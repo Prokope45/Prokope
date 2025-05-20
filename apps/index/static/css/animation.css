@@ -1,0 +1,134 @@
+/* Fade animation for contact links, profile picture, and description. */
+#profile {
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
+#links {
+  animation: fadeIn 5s;
+  -webkit-animation: fadeIn 5s;
+  -moz-animation: fadeIn 5s;
+  -o-animation: fadeIn 5s;
+  -ms-animation: fadeIn 5s;
+}
+/* #logo {
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+} */
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Contact Links */
+.icon {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin-left: 12px;
+  margin-right: 12px;
+  overflow: hidden;
+}
+.icon::before, .icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.25s ease;
+  border-radius: 15px;
+}
+.icon i {
+  position: relative;
+  font-size: 30px;
+  margin-top: 15px;
+  color: white;
+  transition: all 0.25s ease;
+}
+
+
+/* Code animation */
+.unselectable {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+}
+.var-highlight{
+  color: var(--code-animation-var-highlight-color);
+}
+.string-highlight{
+  color: var(--code-animation-string-highlight-color);
+}
+
+@-webkit-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@-moz-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+#typewriter {
+  font-size: 24px;
+  font-family: "Courier New";
+  color: var(--code-animation-font-color);
+  transition: all 0.3s ease;
+  padding-top: 10vh;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  &:after {
+      content: "|";
+      animation: blink 500ms linear infinite alternate;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #typewriter {
+      font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #typewriter {
+      font-size: 16px;
+  }
+}
