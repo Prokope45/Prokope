@@ -65,6 +65,8 @@ if [ ! -d "$PROJECT_DIR" ]; then
     exit 1
 fi
 
+source venv/bin/activate
+
 # Check if the virtual environment is active
 if [ -z "$VIRTUAL_ENV" ]; then
     echo "Error: Virtual environment is not active. Please activate it and try again."
