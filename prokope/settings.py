@@ -171,6 +171,9 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Contact Form Email Settings
 EMAIL_BACKEND = os.environ['EMAIL_BACKEND']
+# Temp: used for local testing
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']

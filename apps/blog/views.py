@@ -3,23 +3,20 @@
 Author: Jared Paubel
 Version: 0.1
 """
-from django.contrib import messages
-from django.core.mail import send_mail, BadHeaderError
-from django.conf import settings
+# from django.contrib import messages
+# from django.core.mail import send_mail, BadHeaderError
 
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from django.views.generic import ListView, DetailView
 
 from taggit.models import Tag
-from git import Repo
+# from git import Repo
 
 from apps.blog.models import Post
 
 
-# Blog Page
 class TagMixin(object):
     """Mixin for taggit to be compatible with Prokope."""
 
@@ -33,7 +30,7 @@ class TagMixin(object):
 class TagIndexView(TagMixin, ListView):
     """Allows filtering by tags in the blog list."""
     model = Post
-    template_name = 'post_list.html'
+    template_name = 'blog.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -45,7 +42,7 @@ class PostList(TagMixin, ListView):
     """Blog post list."""
 
     model = Post
-    template_name = 'post_list.html'
+    template_name = 'blog.html'
     # queryset = Post.objects.filter(status=1).order_by('-created_on')
     context_object_name = 'posts'
     paginate_by = 5
@@ -72,16 +69,19 @@ class PostList(TagMixin, ListView):
 
     def get_context_data(self, **kwargs):
         """Get context data and add selected tags to the response."""
-        context = super().get_context_data(**kwargs)
-        # Add selected tags to the context for the template
-        context['selected_tags'] = self.request.GET.getlist('tags')
-        return context
+        try:
+            context = super().get_context_data(**kwargs)
+            # Add selected tags to the context for the template
+            context['selected_tags'] = self.request.GET.getlist('tags')
+            return context
+        except Exception as exc:
+            print(f"Something happened: {exc}")
 
 
 class PostDetail(DetailView):
     """Post detail view."""
     model = Post
-    template_name = 'post_detail.html'
+    template_name = 'blog_post.html'
 
 
 # GitHub-to-PythonAnywhere Update Webhook

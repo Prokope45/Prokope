@@ -1,4 +1,4 @@
-"""Gallery tests.
+"""Gallery models tests.
 
 Author: Jared Paubel
 Version: 0.1

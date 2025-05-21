@@ -21,7 +21,11 @@ class Post(models.Model):
 
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='blog_posts'
+    )
     updated_on = models.DateField(default=timezone.now)
     created_on = models.DateField(default=timezone.now)
     content = models.TextField()

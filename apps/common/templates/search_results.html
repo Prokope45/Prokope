@@ -81,7 +81,7 @@
                         <ul>
                             {% for post in blog_results %}
                                 <li class="mb-2 search-results-link">
-                                    <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+                                    <a href="{% url 'blog_post' post.slug %}">{{ post.title }}</a>
                                     <p>{{ post.content|striptags|truncatewords:50 }}</p>
                                     <span id="tag" class="d-inline">
                                         <i class="fa text-muted fa-tags"></i>
