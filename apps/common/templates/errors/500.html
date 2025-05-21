@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block extra_head_links %}
+    <script
+        src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+        type="module"
+    ></script>
+{% endblock %}
+
 {% block content %}
     <head>
         <title>Prokope | Server Issue</title>
@@ -7,12 +15,20 @@
     {% include 'navbar.html' %}
     <div id='content'>
         <div class="container text-center justify-content-center col-md-12 col-sm-12">
-            <img class="img-fluid" width=200 src="{% static 'error/request_error_icon.png' %}">
             <h1
                 class="m-3"
             >
                 Sorry, the server is having trouble processing your request.
             </h1>
+            <dotlottie-player
+                class="mx-auto"
+                src="https://lottie.host/9c2c19f7-9b81-463f-a47a-7c90425f1f90/Qbzk1DIKrd.lottie"
+                background="transparent"
+                speed="1"
+                style="width: 300px; height: 300px"
+                loop
+                autoplay
+            ></dotlottie-player>
         </div>
     </div>
     {% include 'footer.html' %}

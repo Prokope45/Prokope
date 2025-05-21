@@ -1,32 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block extra_head_links %}
+  <script
+    src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+    type="module"
+  ></script>
+{% endblock %}
+
 {% block content %}
   <head>
     <title>Prokope | Permission Denied</title>
-    {% block extra_head_links %}
-      <script
-        src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
-        type="module"
-      ></script>
-    {% endblock %}
   </head>
   {% include 'navbar.html' %}
   <div id="content" class="mb-4">
     <div class="container text-center justify-content-center col-md-12 col-sm-12">
+      <h1
+        class="m-3"
+      >
+        You do no have permission to take that action.
+      </h1>
       <dotlottie-player
         class="mx-auto"
-        src="https://lottie.host/32e4ac41-5cb1-4b63-a586-890bae2f9ee6/h0dnLwg0aS.lottie"
+        src="https://lottie.host/9c2c19f7-9b81-463f-a47a-7c90425f1f90/Qbzk1DIKrd.lottie"
         background="transparent"
         speed="1"
         style="width: 300px; height: 300px"
         loop
         autoplay
       ></dotlottie-player>
-      <h1
-        class="m-3"
-      >
-        You do no have permission to take that action.
-      </h1>
     </div>
   </div>
   {% include 'footer.html' %}

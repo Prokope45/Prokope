@@ -80,7 +80,7 @@ fi
 echo "🧪 Running tests..."
 
 # List of Django apps to test
-APPS=("apps.common" "apps.index")
+APPS=("apps.common" "apps.index" "apps.gallery" "apps.blog")
 
 # Clean previous coverage data
 coverage erase

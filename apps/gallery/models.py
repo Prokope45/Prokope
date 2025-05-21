@@ -7,7 +7,6 @@ from django.db import models
 from photologue.models import Gallery
 
 
-# Gallery Page
 class PhotoGallery(models.Model):
     """Photo gallery model."""
 
@@ -19,9 +18,11 @@ class PhotoGallery(models.Model):
     slug = models.SlugField(max_length=250, allow_unicode=True, blank=True)
 
     class Meta:
+        """Metadata for PhotoGallery class."""
         ordering = ["country"]
         verbose_name = "Gallery"
         verbose_name_plural = "Galleries"
 
     def __str__(self):
+        """String representation of name."""
         return f"{self.country}"
