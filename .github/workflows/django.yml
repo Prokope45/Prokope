@@ -35,6 +35,8 @@ jobs:
       env:
         DJANGO_SETTINGS_MODULE: prokope.settings
         SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        EMAIL_BACKEND: ${{ secrets.EMAIL_BACKEND }}
+        EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
         DEBUG: "False"
       run: |
         python3 manage.py test
