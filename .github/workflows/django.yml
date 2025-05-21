@@ -34,7 +34,7 @@ jobs:
     - name: Run Tests
       env:
         DJANGO_SETTINGS_MODULE: prokope.settings
-        SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
         EMAIL_BACKEND: ${{ secrets.EMAIL_BACKEND }}
         EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
         EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
