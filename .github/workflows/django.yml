@@ -37,6 +37,17 @@ jobs:
         SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         EMAIL_BACKEND: ${{ secrets.EMAIL_BACKEND }}
         EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+        EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+        EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+        EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+        EMAIL_USE_SSL: ${{ secrets.EMAIL_USE_SSL }}
+        DEFAULT_FROM_EMAIL: ${{ secrets.DEFAULT_FROM_EMAIL }}
+        HCAPTCHA_SITEKEY: ${{ secrets.HCAPTCHA_SITEKEY }}
+        HCAPTCHA_SECRET: ${{ secrets.HCAPTCHA_SECRET }}
+        VERIFY_URL: ${{ secrets.VERIFY_URL }}
+        DJANGO_SUPERUSER_USERNAME: ${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+        DJANGO_SUPERUSER_EMAIL: ${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+        DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
         DEBUG: "False"
       run: |
         python3 manage.py test
