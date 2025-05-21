@@ -3,7 +3,7 @@
 Author: Jared Paubel
 Version: 0.1
 """
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils.http import urlencode
