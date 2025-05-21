@@ -22,7 +22,12 @@ DEBUG = True
 PRODUCTION = False
 TESTING = not DEBUG and not PRODUCTION
 
-ALLOWED_HOSTS = ['www.jpaubel.tech', 'www.prokope.io', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'www.prokope.io',
+    'prokope-ee63807f5dd8.herokuapp.com/',
+    'localhost',
+    '127.0.0.1'
+]
 
 # Application definition
 
@@ -58,6 +63,7 @@ SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
