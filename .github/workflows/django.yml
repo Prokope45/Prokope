@@ -34,6 +34,7 @@ jobs:
     - name: Run Tests
       env:
         DJANGO_SETTINGS_MODULE: prokope.settings
+        SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         DEBUG: "False"
       run: |
         python3 manage.py test
