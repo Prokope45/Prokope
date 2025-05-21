@@ -19,7 +19,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG').lower() == 'true'
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 PRODUCTION = True
 TESTING = not DEBUG and not PRODUCTION
 
