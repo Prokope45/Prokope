@@ -4,6 +4,7 @@ Developer: Jared Paubel
 
 import os
 import dotenv
+import dj_database_url
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.contrib import messages
@@ -110,13 +111,7 @@ if DEBUG or TESTING:
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': os.environ['DATABASE_ENGINE'],
-            'NAME': os.environ['DATABASE_NAME'],
-            'USER': os.environ['DATABASE_USER'],
-            'PASSWORD': os.environ['DATABASE_PASSWORD'],
-            'HOST': os.environ['DATABASE_HOST'],
-        }
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
 
 # Password validation
