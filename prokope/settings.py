@@ -5,6 +5,7 @@ Developer: Jared Paubel
 import os
 import dotenv
 import dj_database_url
+import django_heroku
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.contrib import messages
@@ -105,14 +106,13 @@ WSGI_APPLICATION = 'prokope.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -195,3 +195,5 @@ MESSAGE_TAGS = {
 HCAPTCHA_SITEKEY = os.environ['HCAPTCHA_SITEKEY']
 HCAPTCHA_SECRET = os.environ['HCAPTCHA_SECRET']
 VERIFY_URL = os.environ['VERIFY_URL']
+
+django_heroku.settings(locals())
