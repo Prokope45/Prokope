@@ -24,7 +24,7 @@ inflection==0.5.1
 mysqlclient==2.1.0
 packaging==21.3
 pillow==10.4.0
-psycopg2-binary==2.9.10
+psycopg2
 pyparsing==3.0.6
 python-decouple==3.5
 python-dotenv==0.19.2
