@@ -67,7 +67,7 @@ fi
 
 # Write default secrets to .env file
 {
-    echo "SECRET_KEY=$(generate_secret_key)"
+    echo "SECRET_KEY='$(generate_secret_key)'"
     echo "EMAIL_BACKEND=''"
     echo "EMAIL_HOST=''"
     echo "EMAIL_HOST_USER=''"

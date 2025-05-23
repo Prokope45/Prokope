@@ -19,18 +19,8 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
-# PRODUCTION = True
-# TESTING = not DEBUG and not PRODUCTION
-
-# ALLOWED_HOSTS = [
-#     'www.prokope.io',
-#     'prokope-ee63807f5dd8.herokuapp.com/',
-#     'localhost',
-#     '127.0.0.1'
-# ]
-
-DEBUG = os.environ.get("ENVIRONMENT") == "development"
+# DEBUG = os.environ.get("ENVIRONMENT", "development") == "development"
+DEBUG = True
 
 # The `DYNO` env var is set on Heroku CI, but it's not a real Heroku app, so we have to
 # also explicitly exclude CI:
