@@ -1,18 +1,3 @@
-h2.card-title, h1.card-title {
-    color: var(--card-heading-color) !important;
-    transition: all 0.3s ease;
-}
-h2.card-title a{
-    color: var(--card-heading-color) !important;
-    transition: all 0.3s ease;
-}
-h2.card-title a:hover {
-    color: var(--card-heading-hover-color) !important;
-    transition: all 0.3s ease;
-}
-[data-theme="dark"] .card-text .text-muted {
-    color: var(--heliotrope) !important;
-}
 
 #blog-detail.card img, #blog.card img {
     width: 100%;
@@ -41,18 +26,7 @@ h2.card-title a:hover {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-#index-blog.card:hover {
-    > .card-body > .read-more {
-        visibility: visible;
-        color: var(--card-heading-hover-color) !important;
-        transition: all 0.1s ease;
-    }
-    box-shadow: var(--card-box-shadow);
-    border-color: var(--card-border-color) !important;
-    border-width: 1px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+
 .card a {
     color: var(--card-heading-color);
     text-decoration: none !important; /* Remove underline by default */

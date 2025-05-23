@@ -89,6 +89,8 @@ img {
     --card-details-color: var(--roman-silver);
     --card-heading-color: var(--iris);
     --card-heading-hover-color: var(--iris);
+    --card-link-color: var(--iris);
+    --card-link-hover-color: var(--pale-purple);
 
     --heading-font-color: var(--dark-gray);
 
@@ -136,6 +138,8 @@ img {
     --card-details-color: var(--roman-silver);
     --card-heading-color: var(--wisteria);
     --card-heading-hover-color: var(--wisteria);
+    --card-link-color: var(--pale-purple);
+    --card-link-hover-color: var(--iris);
 
     --heading-font-color: var(--wisteria);
     
@@ -173,19 +177,19 @@ body {
 }
 
 a:link {
-    color: var(--link-color);
-    background-color: transparent;
+    color: var(--link-color) !important;
+    background-color: transparent !important;
 }
 a:visited {
-    color: var(--link-color);
-    background-color: transparent;
+    color: var(--link-color) !important;
+    background-color: transparent !important;
 }
 a:hover {
-    color: var(--link-hover-color);
-    background-color: transparent;
+    color: var(--link-hover-color) !important;
+    background-color: transparent !important;
 }
 a:active {
-    color: var(--iris);
+    color: var(--iris) !important;
 }
 
 #content, html, body {
@@ -210,9 +214,45 @@ h1, h3 {
     transition: all 0.3s ease;
 }
 
+#index-blog.card:hover {
+    > .card-body > .read-more {
+        visibility: visible;
+        color: var(--card-heading-hover-color) !important;
+        transition: all 0.1s ease;
+    }
+    box-shadow: var(--card-box-shadow);
+    border-color: var(--card-border-color) !important;
+    border-width: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+h2.card-title, h1.card-title {
+    color: var(--card-heading-color) !important;
+    transition: all 0.3s ease;
+}
+h2.card-title a{
+    color: var(--card-heading-color) !important;
+    transition: all 0.3s ease;
+}
+h2.card-title a:hover {
+    color: var(--card-heading-hover-color) !important;
+    transition: all 0.3s ease;
+}
+[data-theme="dark"] .card-text .text-muted {
+    color: var(--heliotrope) !important;
+}
 .card {
     background-color: var(--card-bg-color) !important;
     color: var(--card-text-color);
     border: 1px solid var(--card-text-color);
     transition: all 0.3s ease;
+}
+.card a:link {
+    color: var(--card-link-color) !important;
+}
+.card a:visited {
+    color: var(--card-link-color) !important;
+}
+.card a:hover {
+    color: var(--card-link-hover-color) !important;
 }
