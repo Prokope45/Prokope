@@ -1,5 +1,6 @@
 #!/bin/bash
 
+PROJECT_PATH=~/KState/Prokope
 RUNNER_PATH=~/Development/actions-runner
 
 cd "$RUNNER_PATH" || {
@@ -10,9 +11,14 @@ cd "$RUNNER_PATH" || {
 echo "Starting GitHub Actions runner..."
 ./svc.sh start --once
 
+echo "Pushing update to remote repo..."
+cd "$PROJECT_PATH"
+git push
+cd "$RUNNER_PATH"
+
 # Wait for the runner to finish
 while ./svc.sh status | grep -q "active"; do
     sleep 1
 done
 
-echo "GitHub Actions runner job."
+echo "GitHub Actions - Runner completed job."
