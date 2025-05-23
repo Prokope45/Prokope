@@ -81,6 +81,11 @@ fi
     echo "DJANGO_SUPERUSER_USERNAME='prokope'"
     echo "DJANGO_SUPERUSER_EMAIL='user@example.com'"
     echo "DJANGO_SUPERUSER_PASSWORD='testuser123'"
+    echo "ENVIRONMENT='development'"
+    echo "DATABASE_URL=''"
+    echo "AWS_ACCESS_KEY_ID=''"
+    echo "AWS_SECRET_ACCESS_KEY=''"
+    echo "AWS_STORAGE_BUCKET_NAME=''"
 } > .env
 
 # Confirm the action
