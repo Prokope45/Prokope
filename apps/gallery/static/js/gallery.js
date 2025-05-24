@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
   const form = document.querySelector('form');
+  var elem = document.querySelector('#masonry-container');
+  var msnry = new Masonry( elem, {
+    itemSelector: '.gallery_product',
+    columnWidth: '.gallery_product'
+  });
 
   form.addEventListener('submit', function(event) {
     // Prevent form submission.
@@ -8,12 +13,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const value = select.value;
 
     if (value.toLowerCase() === 'all') {
-      $('.filter').show('3000');
+      document.querySelectorAll('.gallery_product').forEach(item => {
+        // Callback to display all images and re-layout
+        $(item).show(300, function() {
+          item.classList.remove('hidden');
+          msnry.layout();
+        });
+      });
     } else {
-      // Hide photos not related to selected city.
-      $(".filter").not('.'+value).hide('7000');
-      // Show photos not related to selected city.
-      $('.filter').filter('.'+value).show('7000');
+      document.querySelectorAll('.gallery_product').forEach(item => {
+        if (!item.classList.contains(value)) {
+          // Callback to hide unrelated images and re-layout
+          $(item).hide(500, function() {
+            item.classList.add('hidden');
+            msnry.layout();
+          });
+        } else {
+          // Callback to display related images and re-layout
+          $(item).show(500, function() {
+            item.classList.remove('hidden');
+            msnry.layout();
+          });
+        }
+      });
     }
   });
 
