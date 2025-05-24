@@ -52,25 +52,5 @@
 {% endblock gallery %}
 
 {% block extra_script_links %}
-    <script src="{% static 'lightbox/js/lightbox-plus-jquery.js' %}"></script>
-    <script>
-      const carouselElements = document.querySelectorAll('#hover-carousel');
-
-      carouselElements.forEach((carouselEl) => {
-        const carousel = new bootstrap.Carousel(carouselEl, {
-          interval: 1500,
-          ride: false,
-          pause: false,
-          wrap: true
-        });
-
-        carouselEl.addEventListener('mouseenter', () => {
-          carousel.cycle();
-        });
-
-        carouselEl.addEventListener('mouseleave', () => {
-          carousel.pause();
-        });
-      });
-    </script>
+  <script src="{% static 'js/gallery.js' %}"></script>
 {% endblock %}

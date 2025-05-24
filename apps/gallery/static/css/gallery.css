@@ -26,10 +26,20 @@
     width: 100%;
 }
 
-.gallery_product{
+.gallery_product {
     margin: 0px;
     padding: 0px;
     position:relative;
+}
+
+.gallery_product img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.gallery_product a {
+    width: fit-content;
 }
 
 .hidden {
