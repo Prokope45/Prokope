@@ -1,3 +1,11 @@
+window.onload = function() {
+  var elem = document.querySelector('#masonry-container');
+  var msnry = new Masonry( elem, {
+    itemSelector: '.gallery_product',
+    columnWidth: '.gallery_product'
+  });
+};
+
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
   const form = document.querySelector('form');
@@ -6,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     itemSelector: '.gallery_product',
     columnWidth: '.gallery_product'
   });
+  // Layout upon DOM load
+  msnry.layout();
 
   form.addEventListener('submit', function(event) {
     // Prevent form submission.
