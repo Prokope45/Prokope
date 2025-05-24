@@ -17,10 +17,10 @@
                 <h1 class="text-center mb-4">Travel Gallery</h1>
                 <div class="card">
                     <div class="card-body">
-                        {% for image in gallery_info %}
+                        {% for gallery in galleries %}
                             <div class="row mb-2">
                                 <div class="col">
-                                    <h2 class="card-title"><a href="{% url 'gallery_detail' image.slug  %}">{{ image.country }}</a></h2>
+                                    <h2 class="card-title"><a href="{% url 'gallery_detail' gallery.slug  %}">{{ gallery.country }}</a></h2>
                                     <p class="card-text">{{ image.content }}</p>
                                 </div>
                             </div>

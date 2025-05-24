@@ -21,3 +21,31 @@
 [data-theme="dark"] .lb-data .lb-caption, .lb-number {
     color: var(--heliotrope) !important;
 }
+
+#gallery .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: masonry;
+}
+
+*{
+    padding:0;
+    margin:0;
+}
+
+section{
+    padding: 50px 0;
+}
+
+.gallery-title{
+    font-size: 36px;
+    color: #3F6184;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.gallery_product{
+    margin: 0px;
+    padding:0;
+    position:relative;
+}

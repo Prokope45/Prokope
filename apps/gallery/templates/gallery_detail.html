@@ -2,65 +2,84 @@
 {% load static %}
 
 {% block extra_head_links %}
-    <link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/gallery.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+  <link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/gallery.css' %}" rel="stylesheet" />
 {% endblock %}
 
 {% block gallery %}
-    <head>
-        <title>Gallery Detail</title>
-    </head>
-    <body>
-        {% include 'navbar.html' %}
-        <div id='content' class="mt-4">
-            <div class="container">
-                <div class="mb-2">
-                    <button
-                        class="post-back-button btn btn-outline-secondary btn-sm"
-                        onclick="location.href='/gallery';"
-                    >
-                        <span>Back to Gallery</span>
-                    </button>
+  <head>
+    <title>Gallery Detail</title>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div id='content' class="mt-4">
+      <section class="portfolio" id="portfolio">
+        <div id='gallery' class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 mb-2">
+              <div class="d-flex align-items-center mb-3" style="min-height: 42px;">
+                <div class="me-auto" style="width: 145px;">
+                  <button
+                    class="post-back-button btn btn-outline-secondary btn-sm w-100"
+                    onclick="location.href='/gallery';"
+                  >
+                    <span>Back to Gallery</span>
+                  </button>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="col-md-12 col-sm-12 mb-2">
-                            <h1 class="text-center card-title">{{ object.country }}</h1>
-                            <p class="card-text">{{ object.content }}</p>
-                        </div>
-                        {% for gallery in object.galleries.all %}
-                            <h5 class="card-text">{{ gallery }}</h5>
-                            <p class="card-text">{{ gallery.description }}</p>
-                            <div class="row photo-row mb-2 justify-content-center">
-                                {% for photo in gallery.public %}
-                                    <a
-                                        title="{{ photo.title }} on {{ photo.date_taken }}"
-                                        href="{{ photo.get_display_url }}"
-                                        data-lightbox="{{ gallery }}"
-                                        class="m-2"
-                                    >
-                                        <img
-                                            class="travel-photo"
-                                            src="{{ photo.get_thumbnail_url }}"
-                                            alt="{{ photo.title }}: {{ photo.caption }}"
-                                            loading="lazy"
-                                        >
-                                    </a>
-                                {% endfor %}
-                            </div>
-
-                            {% if gallery.title != object.galleries.all.last.title %}
-                                <hr class="my-4" />
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                <div class="flex-grow-1 text-center">
+                  <!-- TODO: Add specific style for title to share purple color -->
+                  <h1 class="mb-0 card-title">{{ object.country }}</h1>  
                 </div>
+              </div>
+              <div class="d-flex justify-content-end">
+                <div class="form-group">
+                  <!-- <label for="city-filter" class="me-2 mb-0">Filter by city:</label> -->
+                  <form method="get" action="{% url 'gallery_detail' object.slug %}">
+                    <select id="city-filter" class="selectpicker" name="city">
+                      <option disabled style="color: #6c757d;">Filter by city</option>
+                      <option value="all" {% if selected_city == 'all' %}selected{% endif %}>All</option>
+                      {% for city in cities %}
+                        <option value="{{ city }}" {% if selected_city == city %}selected{% endif %}>{{ city }}</option>
+                      {% endfor %}
+                    </select>
+                  </form>
+                </div>
+              </div>
             </div>
+            {% for gallery in city_galleries %}
+              {% for photo in gallery.photos.all %}
+                <!-- {% if selected_city == 'all' or photo.city.name == selected_city %} -->
+                  <div class="gallery_product filter {{ photo.city.name }}">
+                    <a
+                      title="{{ photo.title }} on {{ photo.date_taken }}"
+                      href="{{ photo.get_display_url }}"
+                      data-lightbox="{{ gallery }}"
+                      class="m-2 d-block"
+                      style="width: fit-content;"
+                    >
+                      <img
+                        class="travel-photo mb-3 d-block"
+                        src="{{ photo.get_display_url }}"
+                        alt="{{ photo.title }}: {{ photo.caption }}"
+                        loading="lazy"
+                        style="display: block; width: 100%; height: auto;"
+                      >
+                    </a>
+                  </div>
+                <!-- {% endif %} -->
+              {% endfor %}
+            {% endfor %}
+          </div>
         </div>
-        {% include 'footer.html' %}
-    </body>
+      </section>
+    </div>
+    {% include 'footer.html' %}
+  </body>
 {% endblock gallery %}
 
 {% block extra_script_links %}
-    <script src="{% static 'lightbox/js/lightbox-plus-jquery.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+  <script src="{% static 'lightbox/js/lightbox-plus-jquery.js' %}"></script>
+  <script src="{% static 'js/gallery.js' %}"></script>
 {% endblock %}
