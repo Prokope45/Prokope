@@ -15,7 +15,10 @@ class CountryGalleryList(ListView):
     model = CountryAlbum
     template_name = 'gallery.html'
     queryset = CountryAlbum.objects.all().order_by('country')
-    context_object_name = 'galleries'
+    # for album in queryset:
+    #     for photo in album.city_galleries.first.public[:6]:
+    #         print(photo)
+    context_object_name = 'albums'
 
 
 class CountryGalleryDetail(DetailView):

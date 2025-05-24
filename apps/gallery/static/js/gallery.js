@@ -1,21 +1,28 @@
-window.onload = function() {
-  var elem = document.querySelector('#masonry-container');
-  var msnry = new Masonry( elem, {
-    itemSelector: '.gallery_product',
-    columnWidth: '.gallery_product'
-  });
-};
-
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
   const form = document.querySelector('form');
   var elem = document.querySelector('#masonry-container');
-  var msnry = new Masonry( elem, {
-    itemSelector: '.gallery_product',
-    columnWidth: '.gallery_product'
+  let msnry;
+
+  // Function to initialize Masonry after images are loaded
+  function initializeMasonry() {
+    // Destroy existing Masonry instance if it exists
+    if (msnry) {
+      msnry.destroy();
+    }
+
+    msnry = new Masonry( elem, {
+      itemSelector: '.gallery_product',
+      columnWidth: '.gallery_product'
+    });
+     // Layout after Masonry is initialized
+    msnry.layout();
+  }
+
+  // Load images first
+  imagesLoaded(elem).on('always', function() {
+    initializeMasonry();
   });
-  // Layout upon DOM load
-  msnry.layout();
 
   form.addEventListener('submit', function(event) {
     // Prevent form submission.
