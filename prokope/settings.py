@@ -19,8 +19,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("ENVIRONMENT", "development") == "development"
-DEBUG = True
+DEBUG = os.environ.get("ENVIRONMENT", "development") == "development"
 
 # The `DYNO` env var is set on Heroku CI, but it's not a real Heroku app, so we have to
 # also explicitly exclude CI:

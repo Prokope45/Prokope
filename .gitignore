@@ -8,8 +8,8 @@ venv/
 *.JPEG
 /static/lightbox/images/
 /static/ckeditor/ckeditor/skins/
-apps/*/migrations/*.py
-!**/migrations/__init__.py
+# apps/*/migrations/*.py
+# !**/migrations/__init__.py
 .DS_Store
 db.sqlite3
 .idea/
