@@ -64,6 +64,7 @@
         justify-content: flex-end;
     }
 }
+
 .carousel-item {
     height: 300px;
 }
@@ -83,4 +84,11 @@
 #carousel-link {
     text-decoration: none;
     color: inherit;
+}
+
+.carousel:hover{
+    box-shadow: var(--card-box-shadow);
+    border-color: var(--card-border-color) !important;
+    border-width: 1px;
+    transition: all 0.3s ease;
 }

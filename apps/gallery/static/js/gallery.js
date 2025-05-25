@@ -2,13 +2,14 @@ const carouselElements = document.querySelectorAll('#hover-carousel');
 
 carouselElements.forEach((carouselEl) => {
   const carousel = new bootstrap.Carousel(carouselEl, {
-    interval: 1500,
+    interval: 2500,
     ride: false,
     pause: false,
     wrap: true
   });
 
   carouselEl.addEventListener('mouseenter', () => {
+    carousel.next();
     carousel.cycle();
   });
 

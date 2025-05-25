@@ -20,7 +20,7 @@
             <!-- TODO: Add specific style for title to share purple color -->
             <h1 class="mb-0 card-title">{{ object.country }}</h1>
           </div>
-          <div class="controls mb-3">
+          <div class="controls mx-2 mb-3">
             <div class="back-button-container">
               <button
                 class="post-back-button btn btn-outline-secondary btn-sm w-100"
@@ -57,7 +57,7 @@
               {% for gallery in city_galleries %}
                 {% for photo in gallery.city_photos.all %}
                   <div
-                    class="gallery_product p-0 col-lg-4 col-md-4 col-sm-6 col-xs-12 filter {{ photo.city.name }}"
+                    class="gallery_product p-0 m-2 col-lg-4 col-md-4 col-sm-6 col-xs-12 filter {{ photo.city.name }}"
                   >
                     <a
                       title="{{ photo.title }} on {{ photo.date_taken }}"
