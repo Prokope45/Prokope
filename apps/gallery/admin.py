@@ -9,7 +9,8 @@ from apps.gallery.models import (
     CityGallery,
     CityPhoto,
     City,
-    Country
+    Country,
+    PhotoGallery
 )
 from photologue.admin import (
     PhotoAdmin as BasePhotoAdmin

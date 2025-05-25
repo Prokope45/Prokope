@@ -9,7 +9,7 @@ from django.http import HttpRequest, HttpResponse
 
 from apps.index.models import Index
 from apps.blog.models import Post
-from apps.gallery.models import CountryAlbum
+from apps.gallery.models import PhotoGallery
 
 
 def index_view(request: HttpRequest) -> HttpResponse:
