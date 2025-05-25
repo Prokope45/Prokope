@@ -64,3 +64,18 @@
         justify-content: flex-end;
     }
 }
+.carousel-item {
+    height: 300px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-caption h5 {
+    font-size: 2em;
+    text-shadow: 2px 2px 4px #000;
+}
