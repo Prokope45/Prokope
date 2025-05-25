@@ -7,7 +7,7 @@ from django.db import models
 from photologue.models import Gallery
 
 
-class PhotoGallery(models.Model):
+class CountryAlbum(models.Model):
     """Photo gallery model."""
 
     # TODO: Change format to get Photos directly from
