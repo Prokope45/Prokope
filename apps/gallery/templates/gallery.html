@@ -31,36 +31,6 @@
                 </div>
               </div>
             </a>
-
-            <a id="carousel-link" class="col-lg-3 col-md-4 col-sm-6 col-xs-6 p-0 m-2" href="{% url 'gallery_detail' album.slug %}">
-              <div id="hover-carousel" class="carousel slide">
-                <div class="carousel-inner">
-                  <div class="carousel-caption d-flex h-100 align-items-center justify-content-center">
-                    <h5>{{ album.country }}</h5>
-                  </div>
-                  {% for photo in album.city_galleries.first.city_photos.all|slice:":5" %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                      <img src="{{ photo.get_display_url }}" class="d-block w-100" alt="{{ photo.title }}">
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-            </a>
-
-            <a id="carousel-link" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 p-0 m-2" href="{% url 'gallery_detail' album.slug %}">
-              <div id="hover-carousel" class="carousel slide">
-                <div class="carousel-inner">
-                  <div class="carousel-caption d-flex h-100 align-items-center justify-content-center">
-                    <h5>{{ album.country }}</h5>
-                  </div>
-                  {% for photo in album.city_galleries.first.city_photos.all|slice:":5" %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                      <img src="{{ photo.get_display_url }}" class="d-block w-100" alt="{{ photo.title }}">
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-            </a>
           {% endfor %}
         </div>
       </div>
