@@ -10,7 +10,7 @@ from django.utils.http import urlencode
 
 from apps.index.models import Index
 from apps.blog.models import Post
-from apps.gallery.models import CountryAlbum, Gallery
+from apps.gallery.models import PhotoGallery, Gallery
 
 
 class TestSearchView(TestCase):
@@ -42,7 +42,7 @@ class TestSearchView(TestCase):
             title="Greek Islands",
             description="Blue and white houses"
         )
-        self.photo = CountryAlbum.objects.create(
+        self.photo = PhotoGallery.objects.create(
             country="Greece",
             content="Santorini view",
             slug="greek-islands"

@@ -5,7 +5,7 @@ Version: 0.1
 """
 from django.contrib import admin
 
-from apps.gallery.models import CountryAlbum
+from apps.gallery.models import PhotoGallery
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -14,4 +14,4 @@ class GalleryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('country',)}
 
 
-admin.site.register(CountryAlbum, GalleryAdmin)
+admin.site.register(PhotoGallery, GalleryAdmin)

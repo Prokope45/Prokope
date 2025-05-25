@@ -5,7 +5,7 @@ Version: 0.1
 """
 from django.test import TestCase
 from photologue.models import Gallery as PhotoLogueGallery
-from apps.gallery.models import CountryAlbum
+from apps.gallery.models import PhotoGallery
 
 
 class PhotoGalleryModelTests(TestCase):
@@ -24,7 +24,7 @@ class PhotoGalleryModelTests(TestCase):
 
     def test_create_photogallery(self):
         """Test creation of new country gallery."""
-        pg = CountryAlbum.objects.create(
+        pg = PhotoGallery.objects.create(
             country="France",
             content="A beautiful photo collection from France.",
             slug="france-gallery"
@@ -42,7 +42,7 @@ class PhotoGalleryModelTests(TestCase):
 
     def test_model_name(self):
         """Test model name."""
-        pg = CountryAlbum.objects.create(
+        pg = PhotoGallery.objects.create(
             country="Japan",
             content="Japanese collection"
         )
@@ -50,27 +50,27 @@ class PhotoGalleryModelTests(TestCase):
 
     def test_ordering_by_country(self):
         """Test ordering of galleries by country."""
-        CountryAlbum.objects.create(
+        PhotoGallery.objects.create(
             country="Brazil",
             content="Photos from Brazil"
         )
-        CountryAlbum.objects.create(
+        PhotoGallery.objects.create(
             country="Argentina",
             content="Photos from Argentina"
         )
-        CountryAlbum.objects.create(
+        PhotoGallery.objects.create(
             country="Canada",
             content="Photos from Canada"
         )
 
-        countries = list(CountryAlbum.objects.values_list(
+        countries = list(PhotoGallery.objects.values_list(
             "country", flat=True
         ))
         self.assertEqual(countries, ["Argentina", "Brazil", "Canada"])
 
     def test_slug_blank(self):
         """Test that slug is blank if not specified."""
-        pg = CountryAlbum.objects.create(
+        pg = PhotoGallery.objects.create(
             country="Italy",
             content="Italian gallery"
         )

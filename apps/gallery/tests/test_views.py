@@ -5,7 +5,7 @@ Version: 0.1
 """
 from django.test import TestCase
 from django.urls import reverse
-from apps.gallery.models import CountryAlbum
+from apps.gallery.models import PhotoGallery
 
 
 class CountryGalleryViewTests(TestCase):
@@ -13,12 +13,12 @@ class CountryGalleryViewTests(TestCase):
 
     def setUp(self):
         """Create clean test data for each test."""
-        self.gallery1 = CountryAlbum.objects.create(
+        self.gallery1 = PhotoGallery.objects.create(
             country="Japan",
             content="Photos from Japan",
             slug="japan"
         )
-        self.gallery2 = CountryAlbum.objects.create(
+        self.gallery2 = PhotoGallery.objects.create(
             country="Brazil",
             content="Photos from Brazil",
             slug="brazil"
@@ -49,7 +49,7 @@ class CountryGalleryDetailViewTests(TestCase):
 
     def setUp(self):
         """Create clean test data for each test."""
-        self.gallery = CountryAlbum.objects.create(
+        self.gallery = PhotoGallery.objects.create(
             country="France",
             content="Photos from France",
             slug="france"

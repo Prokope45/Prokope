@@ -9,7 +9,7 @@ from django.http import HttpRequest, HttpResponse
 
 from apps.index.models import Index
 from apps.blog.models import Post
-from apps.gallery.models import CountryAlbum
+from apps.gallery.models import PhotoGallery
 
 
 def index_view(request: HttpRequest) -> HttpResponse:
@@ -25,8 +25,8 @@ def index_view(request: HttpRequest) -> HttpResponse:
         'index_data': Index.objects.first(),
         'posts': Post.objects.filter(status=1).order_by('-updated_on')[:2],
     }
-    if (len(CountryAlbum.objects.all()) > 0):
-        random_gallery = random.choice(CountryAlbum.objects.all())
+    if (len(PhotoGallery.objects.all()) > 0):
+        random_gallery = random.choice(PhotoGallery.objects.all())
         context['carousel_gallery_name'] = random_gallery
         context['carousel_photos'] = random.choice(
             random_gallery.galleries.all()
