@@ -16,8 +16,12 @@
     <div id='content' class="mt-4">
       <section class="portfolio" id="portfolio">
         <div class="container">
-          <div class="d-flex align-items-center mb-3" style="min-height: 42px;">
-            <div class="me-auto" style="width: 145px;">
+          <div class="text-center">
+            <!-- TODO: Add specific style for title to share purple color -->
+            <h1 class="mb-0 card-title">{{ object.country }}</h1>
+          </div>
+          <div class="controls mb-3">
+            <div class="back-button-container">
               <button
                 class="post-back-button btn btn-outline-secondary btn-sm w-100"
                 onclick="location.href='/gallery';"
@@ -25,19 +29,24 @@
                 <span>Back to Gallery</span>
               </button>
             </div>
-            <div class="flex-grow-1 text-center">
-              <!-- TODO: Add specific style for title to share purple color -->
-              <h1 class="mb-0 card-title">{{ object.country }}</h1>  
-            </div>
-          </div>
-          <div class="d-flex justify-content-end">
-            <div class="form-group">
+
+            <div class="form-group my-auto">
               <form method="get" action="{% url 'gallery_detail' object.slug %}">
                 <select id="city-filter" class="selectpicker" name="city">
-                  <option disabled style="color: #6c757d;">Filter by city</option>
-                  <option value="all" {% if selected_city == 'all' %}selected{% endif %}>All</option>
+                  <option disabled>Filter by city</option>
+                  <option
+                    value="all"
+                    {% if selected_city == 'all' %}selected{% endif %}
+                  >
+                    All
+                  </option>
                   {% for city in cities %}
-                    <option value="{{ city }}" {% if selected_city == city %}selected{% endif %}>{{ city }}</option>
+                    <option
+                      value="{{ city }}"
+                      {% if selected_city == city %}selected{% endif %}
+                    >
+                      {{ city }}
+                    </option>
                   {% endfor %}
                 </select>
               </form>

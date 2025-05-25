@@ -45,3 +45,22 @@
 .hidden {
     display: none;
 }
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-button-container {
+    width: 145px;
+}
+
+@media (max-width: 767px) {
+    .back-button-container {
+        display: none;
+    }
+    .controls {
+        justify-content: flex-end;
+    }
+}
