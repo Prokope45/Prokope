@@ -10,7 +10,7 @@ from taggit.managers import TaggableManager
 from sortedm2m.fields import SortedManyToManyField
 
 
-class PhotoGallery(models.Model):
+class CountryAlbum(models.Model):
     """Photo gallery model."""
 
     # TODO: Change format to get Photos directly from

@@ -10,9 +10,13 @@ from django.utils.http import urlencode
 
 from apps.index.models import Index
 from apps.blog.models import Post
+<<<<<<< HEAD
 from apps.gallery.models import (
     City, Country, CountryAlbum, CityGallery
 )
+=======
+from apps.gallery.models import CountryAlbum, Gallery
+>>>>>>> 9cb33365b08ca159d194682ecb88fb25ec6a337f
 
 
 class TestSearchView(TestCase):
