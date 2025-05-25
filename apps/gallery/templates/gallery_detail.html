@@ -89,5 +89,10 @@
   <script src="{% static 'lightbox/js/lightbox-plus-jquery.js' %}"></script>
   <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+  <script>
+    // Used to pass the gallery url to the animation script, which targets the select field form.
+    // Also prevents interference with search bar form submission from being prevented.
+    const galleryDetailURL = "{% url 'gallery_detail' object.slug %}";
+  </script>
   <script src="{% static 'js/gallery_detail.js' %}"></script>
 {% endblock %}

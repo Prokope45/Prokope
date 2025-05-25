@@ -81,10 +81,11 @@ def search(request: HttpRequest) -> HttpResponse:
             ).distinct()
 
             gallery_results = CountryAlbum.objects.filter(
-                Q(country__icontains=query) |
-                Q(content__icontains=query) |
-                Q(galleries__title__icontains=query) |
-                Q(galleries__description__icontains=query)
+                Q(country__name__icontains=query) |
+                Q(title__icontains=query) |
+                Q(city_galleries__city__name__icontains=query) |
+                Q(city_galleries__photos__title__icontains=query) |
+                Q(city_galleries__photos__caption__icontains=query)
             ).distinct()
 
     context = {

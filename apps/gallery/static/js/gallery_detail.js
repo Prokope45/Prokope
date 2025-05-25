@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
-  const form = document.querySelector('form');
+  const form = document.querySelector(`form[action="${galleryDetailURL}"]`);
   var elem = document.querySelector('#masonry-container');
   let msnry;
 
