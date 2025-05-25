@@ -79,3 +79,8 @@
     font-size: 2em;
     text-shadow: 2px 2px 4px #000;
 }
+
+#carousel-link {
+    text-decoration: none;
+    color: inherit;
+}
