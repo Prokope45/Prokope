@@ -23,17 +23,14 @@
     }
 }
 #footer a:link {
-    color: var(--footer-link-color);
-    background-color: transparent;
+    color: var(--footer-link-color) !important;
 }
 #footer a:visited {
-    color: var(--footer-link-color);
-    background-color: transparent;
+    color: var(--footer-link-color) !important;
 }
 #footer a:hover {
-    color: var(--footer-link-hover-color);
-    background-color: transparent;
+    color: var(--footer-link-hover-color) !important;
 }
 #footer a:active {
-    color: var(--footer-link-hover-color);
+    color: var(--footer-link-hover-color) !important;
 }

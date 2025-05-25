@@ -25,10 +25,10 @@ def index_view(request: HttpRequest) -> HttpResponse:
         'index_data': Index.objects.first(),
         'posts': Post.objects.filter(status=1).order_by('-updated_on')[:2],
     }
-    if (len(PhotoGallery.objects.all()) > 0):
-        random_gallery = random.choice(PhotoGallery.objects.all())
-        context['carousel_gallery_name'] = random_gallery
-        context['carousel_photos'] = random.choice(
-            random_gallery.galleries.all()
-        )
+    # if (len(CountryGallery.objects.all()) > 0):
+    #     random_gallery = random.choice(CountryGallery.objects.all())
+    #     context['carousel_gallery_name'] = random_gallery
+    #     context['carousel_photos'] = random.choice(
+    #         random_gallery.galleries.all()
+    #     )
     return render(request, 'index.html', context)

@@ -1,18 +1,3 @@
-h2.card-title, h1.card-title {
-    color: var(--card-heading-color) !important;
-    transition: all 0.3s ease;
-}
-h2.card-title a{
-    color: var(--card-heading-color) !important;
-    transition: all 0.3s ease;
-}
-h2.card-title a:hover {
-    color: var(--card-heading-hover-color) !important;
-    transition: all 0.3s ease;
-}
-[data-theme="dark"] .card-text .text-muted {
-    color: var(--heliotrope) !important;
-}
 
 #blog-detail.card img, #blog.card img {
     width: 100%;
@@ -41,18 +26,7 @@ h2.card-title a:hover {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-#index-blog.card:hover {
-    > .card-body > .read-more {
-        visibility: visible;
-        color: var(--card-heading-hover-color) !important;
-        transition: all 0.1s ease;
-    }
-    box-shadow: var(--card-box-shadow);
-    border-color: var(--card-border-color) !important;
-    border-width: 1px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+
 .card a {
     color: var(--card-heading-color);
     text-decoration: none !important; /* Remove underline by default */
@@ -125,114 +99,4 @@ h2.card-title a:hover {
     background-color: var(--button-text-color);
     color: var(--button-bg-color);
     transition: all 0.3s ease;
-}
-
-/* Dropdown item highlight */
-.dropdown-menu .dropdown-item:hover,
-.dropdown-menu .dropdown-item:focus {
-    background-color: var(--select-bg-color);
-    color: var(--select-text-color);
-}
-
-/* Selected item highlight */
-.dropdown-menu .dropdown-item.active {
-    background-color: var(--iris);
-    color: var(--pale-purple) !important;
-}
-.bootstrap-select .btn.dropdown-toggle {
-    outline-color: var(--iris) !important;
-    transition: all 0.3s ease;
-}
-
-
-/* .bootstrap-select {
-    background-color: var(--select-bg-color) !important;
-    color: var(--select-text-color) !important;
-    border-color: var(--select-border-color) !important;
-    border-radius: 1%;
-    transition: all 0.3s ease;
-} */
-
- /* Select field bg and text style */
-.bootstrap-select .dropdown-toggle {
-    background-color: var(--select-bg-color) !important;
-    color: var(--select-text-color) !important;
-    border: 1px solid var(--select-border-color) !important;
-    border-radius: 1%;
-    transition: all 0.3s ease;
-}
-
-/* .btn.dropdown-toggle.btn-light {
-    background-color: var(--select-bg-color) !important;
-    color: var(--select-text-color) !important;
-    border-color: var(--select-border-color) !important;
-    transition: all 0.3s ease;
-}
-
-
-.btn.dropdown-toggle.btn-light:focus {
-    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
-} */
-
-
-/* Select field placeholder text */
-/* .btn.dropdown-toggle.btn-light.bs-placeholder {
-    background-color: var(--select-bg-color) !important;
-    color: var(--select-text-color) !important;
-    border-color: var(--select-border-color) !important;
-    transition: all 0.3s ease;
-} */
-
-.btn.dropdown-toggle.btn-light.bs-placeholder:focus {
-    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
-}
-
-/* Dropdown menu bg */
-.bootstrap-select .dropdown-menu {
-    background-color: var(--select-bg-color);
-}
-
-/* Dropdown menu item text color */
-.bootstrap-select .dropdown-menu .dropdown-item {
-    color: var(--select-text-color);
-}
-
-/* Dropdown menu item highlight */
-.bootstrap-select .dropdown-menu .dropdown-item:hover,
-.bootstrap-select .dropdown-menu .dropdown-item:focus {
-    background-color: var(--iris);
-    color: var(--pale-purple) !important;
-}
-
-/* Dropdown action buttons */
-.bs-actionsbox .btn {
-    background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-    border: 1px solid var(--button-border-color);
-}
-
-/* Dropdown action buttons highlight */
-.bs-actionsbox .btn:hover {
-    background-color: var(--button-text-color);
-    color: var(--button-bg-color);
-    border-color: var(--button-text-color);
-}
-
-/* Dropdown search box */
-.bs-searchbox input {
-    background-color: var(--select-bg-color) !important;
-    color: var(--select-text-color);
-    transition: all 0.3s ease;
-}
-
-/* Dropdown search box highlight */
-.bs-searchbox input:focus {
-    border-color: var(--button-bg-color) !important;
-    box-shadow: 0 0 0 0.2rem var(--button-bg-color);
-}
-
-/* No results found */
-.dropdown-menu .no-results {
-    background-color: var(--button-text-color);
-    color: var(--button-bg-color);
 }
