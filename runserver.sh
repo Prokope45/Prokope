@@ -83,7 +83,7 @@ echo "🧪 Running tests..."
 APPS=(
   "apps.index"
   "apps.blog"
-  # "apps.gallery"
+  "apps.gallery"
   "apps.common"
 )
 

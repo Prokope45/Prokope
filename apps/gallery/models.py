@@ -92,6 +92,7 @@ class CityPhoto(Photo):
 
 class CountryAlbum(models.Model):
     """A collection of albums for a specific country."""
+
     country = models.OneToOneField(
         Country,
         on_delete=models.CASCADE,

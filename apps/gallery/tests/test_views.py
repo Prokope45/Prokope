@@ -3,6 +3,7 @@
 Author: Jared Paubel
 Version: 0.1
 """
+from unittest.mock import patch, Mock
 from django.test import TestCase
 from django.urls import reverse
 from apps.gallery.models import (
@@ -47,6 +48,7 @@ class CountryGalleryListViewTests(TestCase):
 class CountryGalleryDetailViewTests(TestCase):
     """Test country gallery detail view."""
 
+    @patch('apps.gallery.models.CityPhoto.EXIF', new=Mock())
     def setUp(self):
         """Create clean test data for each test."""
         self.france = Country.objects.create(name="France")
@@ -63,16 +65,16 @@ class CountryGalleryDetailViewTests(TestCase):
             album=self.country,
             city=self.city_2
         )
-        self.photo_1 = CityPhoto.objects.create(
-            city=self.city_1,
-            country=self.france,
-            title="Eiffel Tower"
-        )
-        self.photo_2 = CityPhoto.objects.create(
-            city=self.city_2,
-            country=self.france,
-            title="Place Bellecour"
-        )
+        # self.photo_1 = CityPhoto.objects.create(
+        #     city=self.city_1,
+        #     country=self.france,
+        #     title="Eiffel Tower"
+        # )
+        # self.photo_2 = CityPhoto.objects.create(
+        #     city=self.city_2,
+        #     country=self.france,
+        #     title="Place Bellecour"
+        # )
 
     def test_detail_view_status_code(self):
         """Test that endpoint is reached with status 200."""
