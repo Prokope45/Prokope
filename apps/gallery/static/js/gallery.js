@@ -2,7 +2,7 @@ const carouselElements = document.querySelectorAll('#hover-carousel');
 
 carouselElements.forEach((carouselEl) => {
   const carousel = new bootstrap.Carousel(carouselEl, {
-    interval: 2500,
+    interval: 1500,
     ride: false,
     pause: false,
     wrap: true
