@@ -55,7 +55,7 @@
           <div id="masonry-container">
             <div class="row">
               {% for gallery in city_galleries %}
-                {% for photo in gallery.photos.all %}
+                {% for photo in gallery.city_photos.all %}
                   <div
                     class="gallery_product p-0 col-lg-4 col-md-4 col-sm-6 col-xs-12 filter {{ photo.city.name }}"
                   >

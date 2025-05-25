@@ -20,7 +20,7 @@
                 <a id="carousel-link" class="col-lg-3 col-md-4 col-sm-6 col-xs-6 p-0" href="{% url 'gallery_detail' album.slug %}">
                   <div id="hover-carousel" class="carousel">
                     <div class="carousel-inner">
-                      {% for photo in album.city_galleries.first.photos.all|slice:":5" %}
+                      {% for photo in album.city_galleries.first.city_photos.all|slice:":5" %}
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
                           <img src="{{ photo.get_display_url }}" class="d-block w-100" alt="{{ photo.title }}">
                           <div class="carousel-caption d-flex h-100 align-items-center justify-content-center">

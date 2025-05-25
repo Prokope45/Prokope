@@ -6,7 +6,7 @@ Version: 0.1
 from django.test import TestCase
 from django.urls import reverse
 from apps.gallery.models import (
-    City, Country, CountryAlbum, CityGallery, CountryPhoto
+    City, Country, CountryAlbum, CityGallery, CityPhoto
 )
 
 
@@ -63,12 +63,12 @@ class CountryGalleryDetailViewTests(TestCase):
             album=self.country,
             city=self.city_2
         )
-        self.photo_1 = CountryPhoto.objects.create(
+        self.photo_1 = CityPhoto.objects.create(
             city=self.city_1,
             country=self.france,
             title="Eiffel Tower"
         )
-        self.photo_2 = CountryPhoto.objects.create(
+        self.photo_2 = CityPhoto.objects.create(
             city=self.city_2,
             country=self.france,
             title="Place Bellecour"

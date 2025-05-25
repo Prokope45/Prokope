@@ -7,6 +7,7 @@ from django.db import models
 from django.utils.text import slugify
 from photologue.models import Gallery, Photo
 from taggit.managers import TaggableManager
+from sortedm2m.fields import SortedManyToManyField
 
 
 class Country(models.Model):
@@ -39,7 +40,7 @@ class City(models.Model):
         return self.name
 
 
-class CountryPhoto(Photo):
+class CityPhoto(Photo):
     """Extended Photo with country metadata."""
 
     country = models.ForeignKey(
@@ -56,8 +57,8 @@ class CountryPhoto(Photo):
     )
 
     class Meta:
-        verbose_name = "Country Photo"
-        verbose_name_plural = "Country Photos"
+        verbose_name = "City Photo"
+        verbose_name_plural = "City Photos"
 
     def save(self, *args, **kwargs):
         if self.country or self.city:
@@ -106,6 +107,13 @@ class CityGallery(Gallery):
         City,
         on_delete=models.CASCADE,
         related_name='gallery'
+    )
+
+    city_photos = SortedManyToManyField(
+        CityPhoto,
+        related_name='city_gallery',
+        verbose_name='photos',
+        blank=True
     )
 
     class Meta:

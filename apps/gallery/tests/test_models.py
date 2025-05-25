@@ -5,7 +5,7 @@ Version: 0.1
 """
 from django.test import TestCase
 from apps.gallery.models import (
-    City, Country, CountryAlbum, CountryPhoto, CityGallery
+    City, Country, CountryAlbum, CityPhoto, CityGallery
 )
 from django.utils.text import slugify
 
@@ -77,7 +77,7 @@ class CountryPhotoModelTests(TestCase):
             album=self.country_album,
             city=self.city
         )
-        self.photo_1 = CountryPhoto.objects.create(
+        self.photo_1 = CityPhoto.objects.create(
             city=self.city,
             country=self.spain,
             title="Park Güell",

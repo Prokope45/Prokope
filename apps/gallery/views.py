@@ -6,7 +6,7 @@ Version: 0.1
 from django.views.generic import ListView, DetailView
 from django.db.models import Prefetch
 
-from apps.gallery.models import CountryAlbum, CountryPhoto
+from apps.gallery.models import CountryAlbum, CityPhoto
 
 
 class CountryGalleryList(ListView):
@@ -35,7 +35,7 @@ class CountryGalleryDetail(DetailView):
         city_galleries = gallery.city_galleries.select_related(
             'city'
         ).prefetch_related(
-            Prefetch('photos', queryset=CountryPhoto.objects.all())
+            Prefetch('photos', queryset=CityPhoto.objects.all())
         ).all()
 
         # Get photos for selected city
