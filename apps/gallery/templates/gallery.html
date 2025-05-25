@@ -17,7 +17,7 @@
             <h1 class="text-center mb-4">Travel Gallery</h1>
             <div class="row justify-content-center">
               {% for album in albums %}
-                <a class="col-lg-3 col-md-4 col-sm-6 col-xs-6" href="{% url 'gallery_detail' album.slug %}" style="text-decoration: none; color: inherit;">
+                <a class="col-lg-3 col-md-4 col-sm-6 col-xs-6 p-0" href="{% url 'gallery_detail' album.slug %}" style="text-decoration: none; color: inherit;">
                   <div id="hover-carousel" class="carousel">
                     <div class="carousel-inner">
                       {% for photo in album.city_galleries.first.photos.all|slice:":5" %}
