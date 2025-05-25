@@ -109,20 +109,22 @@
                                         <a href="{% url 'gallery_detail' result.slug  %}">{{ result.country }}</a>
                                     </h4>
                                     <div class="mb-2">
-                                        <div class="row photo-row justify-content-center">
-                                            {% for gallery in result.galleries.all %}
-                                                {% for photo in gallery.public|slice:":6" %}
-                                                    <img
-                                                        class="travel-photo m-2 "
-                                                        src="{{ photo.get_thumbnail_url }}"
-                                                        alt="{{ photo.title }}: {{ photo.caption }}"
-                                                        loading="lazy"
-                                                    >
-                                                {% endfor %}
-                                            {% endfor %}
-                                        </div>
+                                        {% for gallery in result.city_galleries.all %}
+                                            <h5>{{ gallery.city }}</h5>
+                                            <div class="row photo-row">
+                                                <div >
+                                                    {% for photo in gallery.city_photos.all|slice:":5" %}
+                                                        <img
+                                                            class="travel-photo m-2 "
+                                                            src="{{ photo.get_thumbnail_url }}"
+                                                            alt="{{ photo.title }}: {{ photo.caption }}"
+                                                            loading="lazy"
+                                                        >
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
                                     </div>
-                                    <p>{{ result.content|truncatewords:20 }}</p>
                                 </li>
                             {% endfor %}
                         </ul>
