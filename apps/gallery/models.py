@@ -59,6 +59,14 @@ class CountryPhoto(Photo):
         verbose_name = "Country Photo"
         verbose_name_plural = "Country Photos"
 
+    def save(self, *args, **kwargs):
+        if self.country or self.city:
+            if not self.title:
+                self.title = "{}, {}".format(self.city, self.country)
+            if not self.slug:
+                self.slug = "{} {}".format(self.city, self.country)
+        super().save(*args, **kwargs)
+
 
 class CountryAlbum(models.Model):
     """A collection of albums for a specific country."""
