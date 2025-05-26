@@ -3,11 +3,14 @@
 Author: Jared Paubel
 Version: 0.1
 """
-from django.urls import path
-from django.shortcuts import render
-from photologue.forms import UploadZipForm
-from django.http import HttpResponseRedirect
+from django.urls import path, reverse
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django import forms
 from django.utils.translation import gettext_lazy as _
+from photologue.forms import UploadZipForm
+from zipfile import ZipFile
+from io import BytesIO
 from django.contrib import admin
 from apps.gallery.models import (
     CountryAlbum,
@@ -16,9 +19,7 @@ from apps.gallery.models import (
     City,
     Country
 )
-from photologue.admin import (
-    PhotoAdmin as BasePhotoAdmin
-)
+from photologue.admin import PhotoAdmin
 
 
 class CityGalleryInline(admin.StackedInline):
@@ -62,9 +63,63 @@ class CityAdmin(admin.ModelAdmin):
         return {}
 
 
+class CityPhotoZipUploadForm(UploadZipForm):
+    """Form for uploading a zip file as CityPhoto objects."""
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        label=_("City"),
+        required=False
+    )
+    country = forms.ModelChoiceField(
+        queryset=Country.objects.all(),
+        label=_("Country"),
+        required=False
+    )
+
+
 @admin.register(CityPhoto)
-class CityPhotoAdmin(BasePhotoAdmin):
+class CityPhotoAdmin(PhotoAdmin):
     autocomplete_fields = ['country', 'city']
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path(
+                'upload_zip/',
+                self.admin_site.admin_view(self.upload_zip),
+                name='gallery_cityphoto_upload_zip',
+            ),
+        ]
+        return custom_urls + urls
+
+    def changelist_view(self, request, extra_context=None):
+        if extra_context is None:
+            extra_context = {}
+        extra_context['upload_zip_url'] = reverse('admin:gallery_cityphoto_upload_zip')
+        return super().changelist_view(request, extra_context=extra_context)
+
+    def upload_zip(self, request):
+        if request.method == 'POST':
+            form = CityPhotoZipUploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                city = form.cleaned_data.get('city')
+                country = form.cleaned_data.get('country')
+                zip_file = request.FILES['zip_file']
+                with ZipFile(zip_file) as archive:
+                    for filename in archive.namelist():
+                        if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')):
+                            data = archive.read(filename)
+                            photo = CityPhoto()
+                            photo.title = filename
+                            photo.image.save(filename, BytesIO(data))
+                            photo.city = city
+                            photo.country = country
+                            photo.save()
+                messages.success(request, _("Photos uploaded successfully."))
+                return redirect('admin:gallery_cityphoto_changelist')
+        else:
+            form = CityPhotoZipUploadForm()
+        return render(request, 'admin/gallery/upload_zip.html', {'form': form})
 
     # def get_model_perms(self, request):
     #     """
