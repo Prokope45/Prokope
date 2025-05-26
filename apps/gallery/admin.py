@@ -65,6 +65,11 @@ class CityAdmin(admin.ModelAdmin):
 
 class CityPhotoZipUploadForm(UploadZipForm):
     """Form for uploading a zip file as CityPhoto objects."""
+    gallery = forms.ModelChoiceField(
+        queryset=CityGallery.objects.select_related('city', 'album__country').all(),
+        label=_("City Gallery"),
+        required=True
+    )
     city = forms.ModelChoiceField(
         queryset=City.objects.all(),
         label=_("City"),
