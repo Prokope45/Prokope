@@ -5,7 +5,6 @@ Version: 0.1
 """
 from django.urls import path
 from django.shortcuts import render
-from django.contrib import helpers
 from photologue.forms import UploadZipForm
 from django.http import HttpResponseRedirect
 from django.utils.translation import gettext_lazy as _
@@ -83,6 +82,7 @@ class CityPhotoAdmin(BasePhotoAdmin):
         return custom_urls + urls
 
     def upload_zip(self, request):
+        from django.contrib import helpers  # Lazy load
         context = {
             'title': _('Upload a zip archive of photos'),
             'app_label': self.model._meta.app_label,
