@@ -99,6 +99,9 @@ class CityPhotoAdmin(PhotoAdmin):
         return super().changelist_view(request, extra_context=extra_context)
 
     def upload_zip(self, request):
+        opts = self.model._meta
+        app_label = opts.app_label
+
         if request.method == 'POST':
             form = CityPhotoZipUploadForm(request.POST, request.FILES)
             if form.is_valid():
@@ -119,7 +122,14 @@ class CityPhotoAdmin(PhotoAdmin):
                 return redirect('admin:gallery_cityphoto_changelist')
         else:
             form = CityPhotoZipUploadForm()
-        return render(request, 'admin/gallery/upload_zip.html', {'form': form})
+
+        context = {
+            'form': form,
+            'opts': opts,
+            'app_label': app_label,
+            'has_change_permission': self.has_change_permission(request),
+        }
+        return render(request, 'admin/gallery/upload_zip.html', context)
 
     # def get_model_perms(self, request):
     #     """
