@@ -61,8 +61,8 @@ class CityAdmin(admin.ModelAdmin):
 class CityPhotoAdmin(BasePhotoAdmin):
     autocomplete_fields = ['country', 'city']
 
-    def get_model_perms(self, request):
-        """
-        Return empty perms dict, hiding the model from admin index.
-        """
-        return {}
+    # def get_model_perms(self, request):
+    #     """
+    #     Return empty perms dict, hiding the model from admin index.
+    #     """
+    #     return {}
