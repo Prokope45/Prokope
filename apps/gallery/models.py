@@ -65,7 +65,13 @@ class CityPhoto(Photo):
             if not self.title:
                 self.title = "{}, {}".format(self.city, self.country)
             if not self.slug:
-                self.slug = "{} {}".format(self.city, self.country)
+                base_slug = slugify("{}-{}".format(self.city, self.country))
+                slug = base_slug
+                counter = 1
+                while CityPhoto.objects.filter(slug=slug).exists():
+                    slug = "{}-{}".format(base_slug, counter)
+                    counter += 1
+                self.slug = slug
         super().save(*args, **kwargs)
 
 
