@@ -127,11 +127,6 @@ class CityPhotoAdmin(PhotoAdmin):
                             data = archive.read(filename)
                             photo = CityPhoto()
                             photo.title = "{} {}".format(city.name, idx)
-                            photo.slug = slugify("{}-{}-{}".format(
-                                city,
-                                country,
-                                idx
-                            ))
                             photo.image.save(filename, BytesIO(data))
                             photo.city = city
                             photo.country = country
