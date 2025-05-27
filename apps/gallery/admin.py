@@ -114,11 +114,12 @@ class CityPhotoAdmin(PhotoAdmin):
                 country = form.cleaned_data.get('country')
                 zip_file = request.FILES['zip_file']
                 with ZipFile(zip_file) as archive:
-                    for filename in archive.namelist():
+                    for idx, filename in enumerate(archive.namelist()):
+                        idx += 1  # Humanize index.
                         if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')):
                             data = archive.read(filename)
                             photo = CityPhoto()
-                            photo.title = filename
+                            photo.title = "{} {}".format(city.name, idx)
                             photo.image.save(filename, BytesIO(data))
                             photo.city = city
                             photo.country = country
