@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
-  const form = document.querySelector(`form[action="${galleryDetailURL}"]`);
+  const form = document.querySelector("#city-selector-form");
   var elem = document.querySelector('#masonry-container');
   let msnry;
 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     msnry = new Masonry( elem, {
-      itemSelector: '.gallery_product',
+      itemSelector: '.gallery_product:not(.hidden)',
       columnWidth: '.gallery_product'
     });
      // Layout after Masonry is initialized
@@ -26,34 +26,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   form.addEventListener('submit', function(event) {
     // Prevent form submission.
-    event.preventDefault();
+    // event.preventDefault();
     const value = select.value;
 
-    if (value.toLowerCase() === 'all') {
-      document.querySelectorAll('.gallery_product').forEach(item => {
-        // Callback to display all images and re-layout
-        $(item).show(300, function() {
-          item.classList.remove('hidden');
-          msnry.layout();
-        });
-      });
-    } else {
-      document.querySelectorAll('.gallery_product').forEach(item => {
-        if (!item.classList.contains(value)) {
-          // Callback to hide unrelated images and re-layout
-          $(item).hide(500, function() {
-            item.classList.add('hidden');
-            msnry.layout();
-          });
-        } else {
-          // Callback to display related images and re-layout
-          $(item).show(500, function() {
-            item.classList.remove('hidden');
-            msnry.layout();
-          });
-        }
-      });
-    }
+    document.querySelectorAll('.gallery_product').forEach(item => {
+      if (value === 'all') {
+        $(item).fadeIn(300);
+        $(item).show(300);
+        $(item).removeClass('hidden');
+      } else if (item.classList.contains(value)) {
+        $(item).fadeIn(500);
+        $(item).show(500);
+        $(item).removeClass('hidden');
+      } else {
+        $(item).fadeOut(500);
+        $(item).hide(500);
+        $(item).addClass('hidden');
+      }
+      msnry.reloadItems();
+    });
+    msnry.layout();
   });
 
   // Trigger form submission once animation is finished.
