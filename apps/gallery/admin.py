@@ -3,6 +3,7 @@
 Author: Jared Paubel
 Version: 0.1
 """
+from django.utils.text import slugify
 from django.urls import path, reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -100,7 +101,9 @@ class CityPhotoAdmin(PhotoAdmin):
     def changelist_view(self, request, extra_context=None):
         if extra_context is None:
             extra_context = {}
-        extra_context['upload_zip_url'] = reverse('admin:gallery_cityphoto_upload_zip')
+        extra_context['upload_zip_url'] = reverse(
+            'admin:gallery_cityphoto_upload_zip'
+        )
         return super().changelist_view(request, extra_context=extra_context)
 
     def upload_zip(self, request):
@@ -114,12 +117,21 @@ class CityPhotoAdmin(PhotoAdmin):
                 country = form.cleaned_data.get('country')
                 zip_file = request.FILES['zip_file']
                 with ZipFile(zip_file) as archive:
-                    for idx, filename in enumerate(archive.namelist()):
-                        idx += 1  # Humanize index.
-                        if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')):
+                    for idx, filename in enumerate(
+                        archive.namelist(),
+                        start=1
+                    ):
+                        if filename.lower().endswith(
+                            ('.jpg', '.jpeg', '.png', '.gif')
+                        ):
                             data = archive.read(filename)
                             photo = CityPhoto()
                             photo.title = "{} {}".format(city.name, idx)
+                            photo.slug = slugify("{}-{}-{}".format(
+                                self.city,
+                                self.country,
+                                idx
+                            ))
                             photo.image.save(filename, BytesIO(data))
                             photo.city = city
                             photo.country = country
