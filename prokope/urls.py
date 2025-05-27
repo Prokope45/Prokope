@@ -5,7 +5,7 @@ from django_otp.admin import OTPAdminSite
 from django.urls import path, include
 
 # Force TOTP entry for admin login during production
-if not settings.DEBUG:
+if not settings.DEBUG or settings.CONNECTED_TO_PRODUCTION_DB:
     admin.site.__class__ = OTPAdminSite
 
 handler400 = 'apps.common.views.custom_bad_request_view'
