@@ -128,8 +128,8 @@ class CityPhotoAdmin(PhotoAdmin):
                             photo = CityPhoto()
                             photo.title = "{} {}".format(city.name, idx)
                             photo.slug = slugify("{}-{}-{}".format(
-                                self.city,
-                                self.country,
+                                city,
+                                country,
                                 idx
                             ))
                             photo.image.save(filename, BytesIO(data))
