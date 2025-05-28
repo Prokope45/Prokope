@@ -6,6 +6,7 @@
 @import "contact/media_queries.css";
 @import "form/control.css";
 @import "search.css";
+@import "lazy_loader/lazy_loader.css";
 
 img {
     pointer-events: none;
