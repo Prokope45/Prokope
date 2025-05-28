@@ -89,6 +89,10 @@
     color: inherit;
 }
 
+.carousel {
+    transition: all 0.3s ease;
+}
+
 .carousel:hover{
     box-shadow: var(--card-box-shadow);
     border-color: var(--card-border-color) !important;
