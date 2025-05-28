@@ -34,7 +34,7 @@
 
 .gallery_product img {
     display: block;
-    width: 100%;
+    width: 200px;
     height: auto;
 }
 
@@ -57,6 +57,9 @@
 }
 
 @media (max-width: 767px) {
+    .gallery_product img {
+        width: 100%;
+    }
     .back-button-container {
         display: none;
     }
@@ -84,6 +87,10 @@
 #carousel-link {
     text-decoration: none;
     color: inherit;
+}
+
+.carousel {
+    transition: all 0.3s ease;
 }
 
 .carousel:hover{

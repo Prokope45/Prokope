@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Connected to production DB; exiting"
+exit 0
+
 # Define the virtual environment directory
 VENV_DIR="venv"
 

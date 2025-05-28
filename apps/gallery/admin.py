@@ -3,7 +3,6 @@
 Author: Jared Paubel
 Version: 0.1
 """
-from django.utils.text import slugify
 from django.urls import path, reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages

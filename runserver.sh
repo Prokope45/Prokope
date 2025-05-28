@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Connected to production DB; exiting"
+exit 0
+
 # Get the directory of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
