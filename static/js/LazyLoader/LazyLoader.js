@@ -1,31 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const lazyElements = document.querySelectorAll('[data-lazy]');
+  const lazyElements = document.querySelectorAll('[data-lazy]');
 
-    const observer = new IntersectionObserver((entries, obs) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+      if (!entry.isIntersecting) return;
 
-        const el = entry.target;
-        const type = el.dataset.lazy;
+      const el = entry.target;
+      const type = el.dataset.lazy;
 
-        if (type === 'image') {
+      if (type === 'image') {
         const spinner = el.closest('[data-masonry-item]')?.querySelector('.spinner');
         el.src = el.dataset.src;
         el.onload = () => {
-            el.style.opacity = 1;
-            spinner?.remove();
-            // If using Masonry
-            if (window.masonry) window.masonry.layout();
+          el.style.opacity = 1;
+          spinner?.remove();
+          // If using Masonry
+          if (window.masonry) window.masonry.layout();
         };
-        }
+      }
 
-        if (type === 'section') {
-            el.classList.add('in-view');
-        }
+      if (type === 'section') {
+        el.classList.add('in-view');
+      }
 
-        obs.unobserve(el);
+      obs.unobserve(el);
     });
-    });
+  });
 
-    lazyElements.forEach(el => observer.observe(el));
+  lazyElements.forEach(el => observer.observe(el));
 });
