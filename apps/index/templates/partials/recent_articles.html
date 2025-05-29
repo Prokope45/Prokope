@@ -1,0 +1,26 @@
+{% if not posts|length == 0 %}
+  <section class="index-section lazy-section" data-lazy="section">
+    <h1 class="row justify-content-center">Recent Articles</h1>
+    <div class="row justify-content-center">
+      {% for post in posts %}
+        <div id="index-blog" class="card col-md-5 mb-4 mx-1">
+          <div class="card-body d-flex flex-column" onclick="location.href='/blog/{{ post.slug }}';">
+            <h2 class="card-title">
+              {{ post.title }} <i class="fa fa-lightbulb-o my-auto ml-2"></i>
+            </h2>
+            <div class="card-text">
+              {% if post.updated_on > post.created_on %}
+                <i class="fa fa-pencil text-muted mr-2"></i>{{ post.updated_on }}
+              {% else %}
+                <i class="fa fa-clock-o fa-lg text-muted mr-2"></i>{{ post.created_on }}
+              {% endif %}
+
+              <p>{{ post.content | safe | slice:":400" }}</p>
+            </div>
+            <div class="read-more mt-auto">Read More...</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
