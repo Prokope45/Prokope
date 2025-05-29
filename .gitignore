@@ -1,11 +1,14 @@
 .venv/
 venv/
 .env
+.vscode
 .coverage*
-*.jpg
-*.JPG
-*.jpeg
-*.JPEG
+/media/photologue/
+/media/*.jpg
+/media/*.JPEG
+/media/*.JPG
+/media/*.PNG
+/media/*.png
 /static/lightbox/images/
 /static/ckeditor/ckeditor/skins/
 # apps/*/migrations/*.py
