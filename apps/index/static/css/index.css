@@ -8,3 +8,13 @@
 @import "./profile-picture.css";
 @import "./project.css";
 @import "./ide.css";
+@import "./section-break.css";
+
+/* section {
+	scroll-snap-type: y mandatory;
+} */
+
+section.index-section {
+	/* scroll-snap-align: start; */
+    margin-top: 60px !important;
+}

@@ -32,9 +32,10 @@
       </header> <!-- two closing headers for if-else -->
 
       <div class="container">
-        <section class="features index-section mt-4">
+        <section class="features index-section">
+          <h1 class="row justify-content-center">Who, and what?</h1>
           <div class="row align-items-start">
-            <h3 id="{{ index_data.about_me_title }}" class="col-12 feature-title">{{ index_data.about_me_title }}</h3>
+            <h2 id="{{ index_data.about_me_title }}" class="col-12 feature-title">{{ index_data.about_me_title }}</h2>
             <div class="col-12 col-lg-8 order-2 order-lg-1">
               <p>{{ index_data.about_me_description }}</p>
             </div>
@@ -46,22 +47,26 @@
               {% endif %}
             </div>
           </div>
+
+          {% include 'partials/section_breaks/prokope_definition.html' %}
+
           <div class="row lazy-section" data-lazy="section">
             <div class="col">
-              <h3 id="{{ index_data.about_prokope_title }}" class="feature-title">{{ index_data.about_prokope_title }}</h3>
+              <h2 id="{{ index_data.about_prokope_title }}" class="feature-title">{{ index_data.about_prokope_title }}</h2>
               <p>{{ index_data.about_prokope_description }}</p>
             </div>
           </div>
         </section>
 
-        <section class="mt-8">
-          {% include 'partials/recent_articles.html' with posts=posts %}
-        <section class="mt-8">
-        </section>
+        <!-- TODO: make arguments dynamically generated -->
+        {% include 'partials/section_breaks/section_break.html' with title='Blog' subtitle='articles' subtext='Blog articles on a variety of topics, including software development, personal development, and more.' %}
 
-        <section class="mt-8">
-          {% include 'partials/gallery.html' with gallery=gallery %}
-        </section>
+        {% include 'partials/recent_articles.html' with posts=posts %}
+
+        <!-- TODO: make arguments dynamically generated -->
+        {% include 'partials/section_breaks/section_break.html' with title='Gallery' subtitle=gallery.country subtext='Travel photos from my younger years.' %}
+
+        {% include 'partials/gallery.html' with gallery=gallery %}
       </div>
     </div>
     {% include 'footer.html' %}

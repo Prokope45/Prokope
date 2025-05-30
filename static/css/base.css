@@ -8,11 +8,42 @@
 @import "search.css";
 @import "lazy_loader/lazy_loader.css";
 
-img {
-    pointer-events: none;
+@font-face {
+  font-family: 'dosis';
+  src: url('../fonts/dosis.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: 'dosis-bold';
+  src: url('../fonts/dosis.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'expletus-italic';
+  src: url('../fonts/expletus-italic.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'expletus-sans';
+  src: url('../fonts/expletus-sans.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'noto-sans-display';
+  src: url('../fonts/noto-sans-display.ttf') format('truetype');
+  font-weight: normal;
+}
+
+img {
+  pointer-events: none;
+}
+
 .head_text {
-    color: white;
+  color: white;
 }
 #content {
    padding-bottom:60px;
@@ -32,14 +63,6 @@ img {
     .photo-row {
         justify-content: center;
     }
-}
-/* .container {
-	overflow-y: scroll;
-	scroll-snap-type: y mandatory;
-} */
-.index-section {
-	/* scroll-snap-align: start; */
-    margin-top: 60px !important;
 }
 .carousel-inner {
     border: 8px solid var(--white) !important;
@@ -113,6 +136,11 @@ img {
 
     --search-link-color: var(--iris);
     --search-link-hover-color: var(--wisteria);
+
+    --section-break-word: var(--thistle);
+    --section-break-definition: var(--jet);
+    --section-break-phonetic: var(--cyber-grape);
+    --section-break-separator: var(--cyber-grape);
 }
 
 [data-theme="dark"] {
@@ -162,6 +190,11 @@ img {
 
     --search-link-color: var(--wisteria);
     --search-link-hover-color: var(--pale-purple);
+
+    --section-break-word: var(--cyber-grape);
+    --section-break-definition: var(--thistle);
+    --section-break-phonetic: var(--wisteria);
+    --section-break-separator: var(--wisteria);
 }
 
 html, body {
@@ -177,6 +210,11 @@ body {
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
     min-height: 100%; /* Extend body height to ensure it covers all content */
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'dosis', 'roboto';
 }
 
 a:link {

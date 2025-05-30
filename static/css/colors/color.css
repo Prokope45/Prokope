@@ -1,4 +1,9 @@
 :root {
+    /* Apple Window Buttons */
+    --apple-close: #ff5f56;
+    --apple-minimize: #ffbd2e;
+    --apple-expand: #27c93f;
+
     /* Contact Links */
     --github: #333333;
     --stack-overflow: #ffac44;
@@ -61,6 +66,7 @@
     --iris: #7248C7;
     --russian-violet: #3E2966;
     --pale-purple: #E5D9F2;
+    --thistle: #D6CAE2;  /* Between platinum and pale purple*/
     --dark-purple: #250C31;
     --wisteria: #BC96E6;
 }

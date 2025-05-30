@@ -1,3 +1,4 @@
+/* Simulated-IDE */
 .ide-container {
   display: flex;
   flex-direction: column;
@@ -48,9 +49,9 @@
   display: inline-block;
 }
 
-.btn-close { background-color: #ff5f56; }
-.btn-min { background-color: #ffbd2e; }
-.btn-max { background-color: #27c93f; }
+.btn-close { background-color: var(--apple-close); }
+.btn-min { background-color: var(--apple-minimize); }
+.btn-max { background-color: var(--apple-expand); }
 
 /* Container below titlebar: sidebar + main area */
 .ide-main {
