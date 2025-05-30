@@ -168,8 +168,8 @@ img {
     --card-details-color: var(--roman-silver);
     --card-heading-color: var(--wisteria);
     --card-heading-hover-color: var(--wisteria);
-    --card-link-color: var(--pale-purple);
-    --card-link-hover-color: var(--iris);
+    --card-link-color: var(--wisteria);
+    --card-link-hover-color: var(--thistle);
 
     --heading-font-color: var(--wisteria);
     
@@ -218,17 +218,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a:link {
-    color: var(--link-color) !important;
-    background-color: transparent !important;
+    color: var(--link-color);
+    background-color: transparent;
 }
 a:visited {
-    color: var(--link-color) !important;
-    background-color: transparent !important;
+    color: var(--link-color);
+    background-color: transparent;
 }
 a:hover {
-    color: var(--link-hover-color) !important;
-    background-color: transparent !important;
-    text-decoration-line: none !important;;
+    color: var(--link-hover-color);
+    background-color: transparent;
+    text-decoration-line: none !important;
 }
 a:active {
     color: var(--iris) !important;

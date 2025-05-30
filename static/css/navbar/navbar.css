@@ -3,7 +3,7 @@
     background-color: transparent;
 }
 .nav-link:link {
-    color: var(--navbar-text-color);
+    color: var(--navbar-text-color) !important;
     background-color: transparent;
 }
 .nav-link:hover {
