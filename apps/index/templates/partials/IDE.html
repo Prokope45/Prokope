@@ -15,7 +15,35 @@
   </div>
   <div class="ide-main">
     <div class="ide-sidebar">
-      <img src="{% static '/logo/prokope-p.png' %}" alt="icon" title="Sample Icon" />
+      <a href="{% url 'home' %}#{{ title }}">
+        <img src="{% static '/logo/prokope-p.png' %}" alt="icon" title="Sample Icon" />
+      </a>
+      <a class="github icon icon-fill"
+        href="https://github.com/Prokope45"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="button"
+      >
+        <i class="fa fa-github"></i>
+      </a>
+
+      <a class="linkedin icon icon-fill"
+        href="https://linkedin.com/in/jared-paubel"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="button"
+      >
+        <i class="fa fa-linkedin"></i>
+      </a>
+
+      <a class="medium icon icon-fill"
+        href="https://medium.com/@prokope"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="button"
+      >
+        <i class="fa fa-medium"></i>
+      </a>
     </div>
     <div class="ide-content">
       <div class="ide-header">~/projects/prokope/index.py</div>

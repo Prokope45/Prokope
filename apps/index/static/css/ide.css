@@ -110,7 +110,6 @@
 }
 
 code[class*="language-"] {
-  /* color: #d4d4d4; */
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -125,4 +124,35 @@ code[class*="language-"] {
   50% {
     opacity: 0;
   }
+}
+
+/* Contact Buttons */
+.icon {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.icon::before, .icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.25s ease;
+  border-radius: 15px;
+}
+.icon i {
+  position: relative;
+  font-size: 30px;
+  color: white;
+  transition: all 0.25s ease;
 }

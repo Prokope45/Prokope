@@ -27,7 +27,7 @@
       <header class="page-header header container-fluid mb-4 p-0">
       {% endif %}
         <!-- <div class="overlay"></div> -->
-        {% include 'partials/ide.html' %}
+        {% include 'partials/ide.html' with title=index_data.about_prokope_title %}
       </header>
       </header> <!-- two closing headers for if-else -->
 
@@ -53,18 +53,15 @@
             </div>
           </div>
         </section>
-        
-        <div class="mt-4">
-          {% include 'partials/contact_buttons.html' %}
-        </div>
 
-        <div class="mt-8">
+        <section class="mt-8">
           {% include 'partials/recent_articles.html' with posts=posts %}
-        </div>
+        <section class="mt-8">
+        </section>
 
-        <div class="mt-8">
+        <section class="mt-8">
           {% include 'partials/gallery.html' with gallery=gallery %}
-        </div>
+        </section>
       </div>
     </div>
     {% include 'footer.html' %}

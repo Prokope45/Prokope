@@ -190,6 +190,7 @@ a:visited {
 a:hover {
     color: var(--link-hover-color) !important;
     background-color: transparent !important;
+    text-decoration-line: none !important;;
 }
 a:active {
     color: var(--iris) !important;
@@ -222,10 +223,8 @@ h1, h3 {
     transition: all 0.1s ease;
 }
 
-#index-blog.card {
-    > .card-body > .read-more {
-        visibility: hidden;
-    }
+.card-body > .read-more {
+    visibility: hidden;
 }
 
 #index-blog.card:hover {
