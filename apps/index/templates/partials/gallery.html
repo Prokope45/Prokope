@@ -12,7 +12,6 @@
   {% for photo in gallery.photos %}
     <div class="m-2">
       <a
-        class="d-block"
         title="{{ photo.title }} on {{ photo.date_taken }}"
         href="{{ photo.get_display_url }}"
         data-lightbox="{{ gallery }}"
@@ -20,7 +19,7 @@
         <span class="lazy-image-wrapper" data-masonry-item>
           <div class="spinner"></div>
           <img
-            class="travel-photo lazy-image d-block"
+            class="lazy-image travel-photo d-block"
             data-lazy="image"
             data-src="{{ photo.get_display_url }}"
             alt="{{ photo.title }}: {{ photo.caption }}"
