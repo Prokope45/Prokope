@@ -10,9 +10,13 @@
             </h2>
             <div class="card-text">
               {% if post.updated_on > post.created_on %}
-                <i class="fa fa-pencil text-muted mr-2"></i>{{ post.updated_on }}
+                <p class="text-muted">
+                  <i class="fa fa-pencil mr-2"></i>{{ post.updated_on }}
+                </p>
               {% else %}
-                <i class="fa fa-clock-o fa-lg text-muted mr-2"></i>{{ post.created_on }}
+                <p class="text-muted">
+                  <i class="fa fa-clock-o fa-lg mr-2"></i>{{ post.created_on }}
+                </p>
               {% endif %}
 
               <p>{{ post.content | safe | slice:":400" }}</p>

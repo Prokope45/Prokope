@@ -52,10 +52,6 @@
     align-items: center;
 }
 
-.back-button-container {
-    width: 145px;
-}
-
 @media (max-width: 767px) {
     .gallery_product img {
         width: 100%;

@@ -210,7 +210,6 @@ html, body {
   height: 100%; /* Ensure the elements take up at least the full height of the viewport */
   width: 100%;  /* Ensure the elements span the full width of the viewport */
   box-sizing: border-box; /* Include padding and border in width and height calculations */
-  font-family: "exo", "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
 
 body {
@@ -218,6 +217,7 @@ body {
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
   min-height: 100%; /* Extend body height to ensure it covers all content */
+  font-family: "exo", "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
 
 p {

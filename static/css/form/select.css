@@ -15,6 +15,9 @@
     transition: all 0.3s ease;
 }
 
+.bootstrap-select {
+    font-family: "exo", "Roboto";
+}
 
 /* .bootstrap-select {
     background-color: var(--select-bg-color) !important;

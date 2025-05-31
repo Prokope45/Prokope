@@ -48,7 +48,7 @@
   transition-property: opacity, transform;
   transition-duration: 1.5s;
   transition-timing-function: ease;
-  transition-delay: 0ms;
+  transition-delay: 500ms;
 }
 
 .lazy-section.in-view {

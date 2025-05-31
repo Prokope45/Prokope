@@ -1,3 +1,6 @@
+input::placeholder, #search-bar {
+  font-family: "dosis", "Roboto";
+}
 .form-control:focus {
     border-color: var(--iris);
     box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25);
