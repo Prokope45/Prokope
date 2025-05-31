@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     msnry = new Masonry( elem, {
       itemSelector: '.gallery_product:not(.hidden)',
-      columnWidth: '.gallery_product'
+      columnWidth: '.gallery_product',
+      isFitWidth: true
     });
      // Layout after Masonry is initialized
     msnry.layout();

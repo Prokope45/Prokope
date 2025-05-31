@@ -7,11 +7,9 @@
       {{ gallery.city }}
     </h1>
   </a>
-  <div
-    class="gallery-masonry"
-  >
+  <div id="masonry-container">
     {% for photo in gallery.photos %}
-      <div class="m-2">
+      <div class="gallery_product m-2">
         <a
           title="{{ photo.title }} on {{ photo.date_taken }}"
           href="{{ photo.get_display_url }}"
@@ -22,6 +20,7 @@
             <img
               class="lazy-image travel-photo d-block"
               data-lazy="image"
+              data-duration="2000"
               data-src="{{ photo.get_display_url }}"
               alt="{{ photo.title }}: {{ photo.caption }}"
             >

@@ -1,5 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
   const lazyElements = document.querySelectorAll('[data-lazy]');
+  var elem = document.querySelector('#masonry-container');
+  let msnry;
+
+  // Function to initialize Masonry after images are loaded
+  function initializeMasonry() {
+    // Destroy existing Masonry instance if it exists
+    if (msnry) {
+      msnry.destroy();
+    }
+
+    msnry = new Masonry( elem, {
+      itemSelector: '.gallery_product',
+      columnWidth: '.gallery_product',
+      isFitWidth: true
+    });
+     // Layout after Masonry is initialized
+    msnry.layout();
+  }
+
+  // Load images first
+  imagesLoaded(elem).on('always', function() {
+    initializeMasonry();
+  });
 
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
@@ -12,10 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const spinner = el.closest('[data-masonry-item]')?.querySelector('.spinner');
         el.src = el.dataset.src;
         el.onload = () => {
-          el.style.opacity = 1;
+          el.classList.add('in-view');
           spinner?.remove();
           // If using Masonry
-          if (window.masonry) window.masonry.layout();
+          // if (window.masonry) window.masonry.layout();
+          msnry.layout();
         };
       }
 

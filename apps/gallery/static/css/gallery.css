@@ -22,26 +22,6 @@
     color: var(--heliotrope) !important;
 }
 
-#masonry-container {
-    width: 100%;
-}
-
-.gallery_product {
-    margin: 0px;
-    padding: 0px;
-    position:relative;
-}
-
-.gallery_product img {
-    display: block;
-    width: 200px;
-    height: auto;
-}
-
-.gallery_product a {
-    width: fit-content;
-}
-
 .hidden {
     display: none;
 }
@@ -53,9 +33,6 @@
 }
 
 @media (max-width: 767px) {
-    .gallery_product img {
-        width: 100%;
-    }
     .back-button-container {
         display: none;
     }
