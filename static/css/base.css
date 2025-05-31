@@ -16,6 +16,13 @@
 }
 
 @font-face {
+  font-family: 'exo';
+  src: url('../fonts/exo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'dosis-bold';
   src: url('../fonts/dosis.ttf') format('truetype');
   font-weight: bold;
@@ -198,19 +205,23 @@ img {
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%; /* Ensure the elements take up at least the full height of the viewport */
-    width: 100%;  /* Ensure the elements span the full width of the viewport */
-    box-sizing: border-box; /* Include padding and border in width and height calculations */
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure the elements take up at least the full height of the viewport */
+  width: 100%;  /* Ensure the elements span the full width of the viewport */
+  box-sizing: border-box; /* Include padding and border in width and height calculations */
+  font-family: "exo", "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
 
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
-    min-height: 100%; /* Extend body height to ensure it covers all content */
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+  min-height: 100%; /* Extend body height to ensure it covers all content */
+}
+
+p {
+  font-family: "exo", "Roboto";
 }
 
 h1, h2, h3, h4, h5, h6 {
