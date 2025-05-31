@@ -20,6 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (type === 'section') {
+        const delay = el.getAttribute('data-delay');
+        if (delay) {
+          el.style.transitionDelay = `${delay}ms`;
+        }
+
+        const duration = el.getAttribute('data-duration');
+        if (duration) {
+          el.style.transitionDuration = `${duration}ms`;
+        }
+
         el.classList.add('in-view');
       }
 

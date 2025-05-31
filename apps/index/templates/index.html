@@ -35,11 +35,24 @@
         <section class="features index-section">
           <h1 class="row justify-content-center">Who, and what?</h1>
           <div class="row align-items-start">
-            <h2 id="{{ index_data.about_me_title }}" class="col-12 feature-title">{{ index_data.about_me_title }}</h2>
-            <div class="col-12 col-lg-8 order-2 order-lg-1">
+            <h2
+              id="{{ index_data.about_me_title }}"
+              class="col-12 feature-title lazy-section"
+              data-lazy="section"
+            >
+              {{ index_data.about_me_title }}
+            </h2>
+            <div
+              class="col-12 col-lg-8 order-2 order-lg-1 lazy-section"
+              data-lazy="section"
+            >
               <p>{{ index_data.about_me_description }}</p>
             </div>
-            <div class="col-12 col-lg-4 order-1 text-center order-lg-2 mb-2 p-0 lazy-section" data-lazy="section">
+            <div
+              class="col-12 col-lg-4 order-1 text-center order-lg-2 mb-2 p-0 lazy-section"
+              data-lazy="section"
+              data-delay="150"
+            >
               {% if index_data.hero_image %}
                 <!-- FIXME: Filter causes delay during theme switch -->
                 <img id="profile" class="img-fluid my-auto" src="{{ index_data.hero_image.url }}" />

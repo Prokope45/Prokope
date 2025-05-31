@@ -45,8 +45,10 @@
 .lazy-section {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1.5s ease, transform 1.5s ease;
-  will-change: opacity, transform;
+  transition-property: opacity, transform;
+  transition-duration: 1.5s;
+  transition-timing-function: ease;
+  transition-delay: 0ms;
 }
 
 .lazy-section.in-view {
