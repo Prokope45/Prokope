@@ -1,0 +1,22 @@
+#masonry-container {
+  column-count: 3;
+  column-gap: 1rem;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.gallery_product {
+  margin: 0px;
+  padding: 0px;
+  position:relative;
+}
+
+.gallery_product a {
+  width: fit-content;
+}
+
+.gallery_product .lazy-image-wrapper .lazy-image, .gallery_product img {
+  display: block;
+  width: 200px;
+  height: auto;
+}

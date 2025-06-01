@@ -1,0 +1,24 @@
+@import "../colors/color.css";
+
+.contact-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+}
+
+#Form-Body {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 0 10px 3px Black;
+}
+.shadow {
+   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.1);
+}
+.asteriskField {
+    display: none;
+}
+.contact-icon {
+    color: var(--blue-sapphire);
+}

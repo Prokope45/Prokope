@@ -1,0 +1,83 @@
+.nav-link:visited {
+    color: var(--navbar-text-color);
+    background-color: transparent;
+}
+.nav-link:link {
+    color: var(--navbar-text-color) !important;
+    background-color: transparent;
+}
+.nav-link:hover {
+    color: var(--navbar-text-hover-color) !important;
+    background-color: transparent;
+}
+.nav-link.active {
+    color: var(--navbar-text-active-color);
+}
+.nav {
+    background-color: var(--navbar-bg-color);
+    color: var(--navbar-text-color);
+    transition: all 0.3s ease;
+}
+.nav-link,
+.navbar-brand {
+    cursor: pointer;
+}
+#brand-logo {
+    padding-left: 8px;
+}
+.nav-link {
+    font-size: 25px;
+    font-family: 'dosis', 'roboto';
+}
+#navbar-name {
+    font-size: 8vw !important;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.navbar-brand {
+    transition: all .2s ease-in-out;
+}
+.navbar-brand:active {
+    transform: scale(.8);
+    transition: .1s;
+}
+
+.custom-toggler-icon {
+    color: var(--navbar-text-color) !important;
+}
+.custom-toggler.navbar-toggler {
+    border-color: var(--navbar-text-color) !important;
+}
+
+#search-bar {
+    border-color: var(--select-bg-color) !important;
+    background-color: var(--select-bg-color) !important;
+    color: var(--select-text-color) !important;
+    transition: all 0.3s ease;
+}
+
+#search-bar::placeholder {
+    color: var(--select-text-color) !important;
+}
+
+#search-bar:focus {
+    border-color: var(--iris) !important;
+    box-shadow: 0 0 0 0.2rem rgba(114, 72, 199, 0.25) !important;
+}
+
+#darkModeToggle {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    min-width: 48px;
+    cursor: pointer;
+    color: var(--navbar-text-color);
+}
+
+#darkModeToggle:hover {
+    color: var(--navbar-text-hover-color);
+}
+#darkModeToggle.active {
+    border: none;
+}

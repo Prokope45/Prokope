@@ -1,0 +1,74 @@
+.h1 {
+    margin: 1em !important;
+}
+.image-row > img {
+    transition: all .2s ease-in-out;
+}
+.image-row > img:active {
+    transform: scale(1.1);
+    transition: .1s;
+}
+.scroll_gallery {
+    overflow-x: scroll;
+}
+
+[data-theme="dark"] .lb-outerContainer {
+    background-color: var(--english-violet) !important;
+}
+[data-theme="dark"] .lightbox .lb-image {
+    border-color: var(--heliotrope) !important;
+}
+[data-theme="dark"] .lb-data .lb-caption, .lb-number {
+    color: var(--heliotrope) !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 767px) {
+    .back-button-container {
+        display: none;
+    }
+    .controls {
+        justify-content: flex-end;
+    }
+}
+
+.carousel-item {
+    height: 300px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-caption h5 {
+    font-size: 2em;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#carousel-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.carousel {
+    transition: all 0.3s ease;
+}
+
+.carousel:hover{
+    box-shadow: var(--card-box-shadow);
+    border-color: var(--card-border-color) !important;
+    border-width: 1px;
+    transition: all 0.3s ease;
+}

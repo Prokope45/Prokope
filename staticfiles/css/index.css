@@ -1,0 +1,20 @@
+@import "./animation.css";
+@import "./banner-image.css";
+@import "blog-preview.css";
+@import "./contact-buttons.css";
+@import "./description.css";
+@import "./feature.css";
+@import "./media_queries.css";
+@import "./profile-picture.css";
+@import "./project.css";
+@import "./ide.css";
+@import "./section-break.css";
+
+/* section {
+	scroll-snap-type: y mandatory;
+} */
+
+section.index-section {
+	/* scroll-snap-align: start; */
+    margin-top: 60px !important;
+}

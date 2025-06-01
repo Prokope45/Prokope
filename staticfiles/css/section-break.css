@@ -1,0 +1,111 @@
+/* Greek Section Break */
+.greek-word {
+  font-family: 'noto-sans-display';
+  font-size: 15vw;
+  font-weight: bold;
+  margin: 0;
+  color: var(--section-break-word);
+  line-height: 0.8;
+}
+
+.phonetic {
+  position: absolute;
+  top: 85%;
+  left: 22%;
+  transform: translateY(-125%) translateX(100%);
+  font-size: 3vw;
+  font-family: 'expletus-italic';
+  color: var(--section-break-phonetic);
+  white-space: nowrap;
+}
+
+.definition {
+  font-family: 'dosis';
+  color: var(--section-break-definition);
+  font-size: 2.5vw;
+  line-height: 1.6;
+  position: relative;
+  top: 100%;
+  left: 22%;
+  text-align: left;
+  width: max-content;
+  max-width: 90vw;
+}
+
+.definition ol {
+  padding-left: 1.2em;
+  margin: 0;
+}
+
+/* Generic Section Break */
+.section-break {
+  text-align: center;
+  position: relative;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.section-break-title {
+  font-family: 'expletus-sans', 'roboto';
+  font-size: 15vw;
+  font-weight: bold;
+  margin: 0;
+  color: var(--section-break-word);
+  line-height: 0.8;
+}
+
+.section-break-subtitle {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  transform: translateX(20%);
+  font-size: 3vw;
+  font-family: 'expletus-italic';
+  color: var(--section-break-phonetic);
+  white-space: nowrap;
+}
+
+hr.separator {
+  width: 80%;
+  border: none;
+  border-top: 2px solid var(--section-break-separator) !important;
+  margin: 0 auto 1em auto;
+}
+
+.section-break-subtext {
+  font-family: 'dosis';
+  color: var(--section-break-definition);
+  font-size: 2.5vw;
+  line-height: 1.6;
+  position: relative;
+  left: 0;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 90vw;
+  width: 80%;
+  white-space: normal;
+}
+
+@media (max-width: 600px) {
+  .greek-word {
+    font-size: 20vw;
+  }
+  .phonetic {
+    font-size: 4vw;
+    transform: translateY(-125%) translateX(60%);
+  }
+  .section-break-title {
+    font-size: 20vw;
+  }
+  .section-break-subtitle {
+    font-size: 4vw;
+  }
+  .section-break-subtext .definition {
+    font-size: 4vw;
+  }
+}

@@ -1,0 +1,18 @@
+html {
+    --blog-font-color: var(--tekhelet);
+}
+.blog-preview a:visited {
+    color: var(--blog-font-color);
+    background-color: transparent;
+}
+.blog-preview a:link {
+    color: var(--blog-font-color);
+    background-color: transparent;
+}
+.blog-preview a:hover {
+    color: var(--iris);
+    background-color: transparent;
+}
+.blog-preview a:active {
+    color: var(--iris);
+}

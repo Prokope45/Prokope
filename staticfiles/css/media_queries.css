@@ -1,0 +1,29 @@
+/*Mobile-first responsive */
+@media (max-width: 1000px) {
+    .description {
+        left: 0;
+        padding: 0 15px;
+        position: absolute;
+        transform: none;
+        text-align: center;
+    }
+    .description p {
+        font-size: .5em;
+    }
+    .features {
+        margin: 0;
+    }
+    #profile {
+        width: 300px;
+    }
+}
+
+
+@media (max-width: 300px) {
+    #profile {
+        width: 250px;
+    }
+    p, h1 {
+        font-size: 15px;
+    }
+}
