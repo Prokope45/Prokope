@@ -1,3 +1,5 @@
+import { observeLazyElements } from './lazyLoader/lazyLoader.js';
+
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
   const form = document.querySelector("#city-selector-form");
@@ -13,15 +15,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     msnry = new Masonry( elem, {
       itemSelector: '.gallery_product:not(.hidden)',
-      columnWidth: '.gallery_product'
+      columnWidth: '.gallery_product',
+      isFitWidth: true
     });
      // Layout after Masonry is initialized
     msnry.layout();
   }
 
-  // Load images first
   imagesLoaded(elem).on('always', function() {
     initializeMasonry();
+    observeLazyElements(msnry);
   });
 
   form.addEventListener('submit', function(event) {

@@ -1,0 +1,60 @@
+.lazy-image-wrapper {
+  position: relative;
+  width: 200px;
+}
+
+.spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  border: 4px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lazy-image {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1.5s ease;
+  transition-property: opacity, transform;
+  transition-duration: 1.5s;
+  transition-timing-function: ease;
+  transition-delay: 500ms;
+  height: auto;
+  width: 100%;
+}
+.lazy-image.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lazy-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition-property: opacity, transform;
+  transition-duration: 1.5s;
+  transition-timing-function: ease;
+  transition-delay: 500ms;
+}
+
+.lazy-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

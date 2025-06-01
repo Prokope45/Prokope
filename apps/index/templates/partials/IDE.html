@@ -1,0 +1,56 @@
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+<div class="ide-container lazy-section" data-lazy="section" data-delay="100" data-duration="1000">
+  <div class="ide-titlebar">
+    <div class="buttons">
+      <span class="button btn-close"></span>
+      <span class="button btn-min"></span>
+      <span class="button btn-max"></span>
+    </div>
+    <div>index.py - Prokode</div>
+    <div></div>
+  </div>
+  <div class="ide-main">
+    <div class="ide-sidebar">
+      <a href="{% url 'home' %}#{{ title }}">
+        <img src="{% static '/logo/prokope-p.png' %}" alt="icon" title="Sample Icon" />
+      </a>
+      <a class="github icon icon-fill"
+        href="https://github.com/Prokope45"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="button"
+      >
+        <i class="fa fa-github"></i>
+      </a>
+
+      <a class="linkedin icon icon-fill"
+        href="https://linkedin.com/in/jared-paubel"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="button"
+      >
+        <i class="fa fa-linkedin"></i>
+      </a>
+
+      <a class="medium icon icon-fill"
+        href="https://medium.com/@prokope"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="button"
+      >
+        <i class="fa fa-medium"></i>
+      </a>
+    </div>
+    <div class="ide-content">
+      <div class="ide-header">~/projects/prokope/index.py</div>
+      <pre class="ide-editor"><code id="editor" class="language-python"></code></pre>
+      <div class="ide-footer" id="footer">Ln 1, Col 1</div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/ide.js' %}"></script>

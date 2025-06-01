@@ -53,11 +53,13 @@
                     <div class="search-results-link">
                         <h3>Home</h3>
                         {% for about in index_results.about_me %}
-                            <ul class="search-results-link">
+                            <ul class="search-results-link lazy-section" data-lazy="section">
                                 <li>
-                                    <a href="{% url 'home' %}#{{ about.about_me_title }}">
-                                        {{ about.about_me_title }}
-                                    </a>
+                                    <h4>
+                                        <a href="{% url 'home' %}#{{ about.about_me_title }}">
+                                            {{ about.about_me_title }}
+                                        </a>
+                                    </h4>
                                     <p>{{ about.about_me_description|truncatewords:30 }}</p>
                                 </li>
                             </ul>
@@ -65,9 +67,11 @@
                         {% for data in index_results.about_prokope %}
                             <ul class="search-results-link">
                                 <li>
-                                    <a href="{% url 'home' %}#{{ data.about_prokope_title }}">
-                                        {{ data.about_prokope_title }}
-                                    </a>
+                                    <h4>
+                                        <a href="{% url 'home' %}#{{ data.about_prokope_title }}">
+                                            {{ data.about_prokope_title }}
+                                        </a>
+                                    </h4>
                                     <p>{{ data.about_prokope_description|truncatewords:30 }}</p>
                                 </li>
                             </ul>
@@ -80,8 +84,12 @@
                         <h3>Blog Articles</h3>
                         <ul>
                             {% for post in blog_results %}
-                                <li class="mb-2 search-results-link">
-                                    <a href="{% url 'blog_post' post.slug %}">{{ post.title }}</a>
+                                <li class="mb-2 search-results-link lazy-section" data-lazy="section">
+                                    <h4>
+                                        <a href="{% url 'blog_post' post.slug %}">
+                                            {{ post.title }}
+                                        </a>
+                                    </h4>
                                     <p>{{ post.content|striptags|truncatewords:50 }}</p>
                                     <span id="tag" class="d-inline">
                                         <i class="fa text-muted fa-tags"></i>
@@ -104,7 +112,7 @@
                         <h3>Galleries</h3>
                         <ul>
                             {% for result in gallery_results %}
-                                <li>
+                                <li class="lazy-section" data-lazy="section">
                                     <h4 class="mb-2">
                                         <a href="{% url 'gallery_detail' result.slug  %}">{{ result.country }}</a>
                                     </h4>

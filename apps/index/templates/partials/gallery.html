@@ -1,0 +1,36 @@
+{% load static %}
+<link href="{% static 'lightbox/css/lightbox.css' %}" rel="stylesheet" />
+
+<section class="index-section">
+  <a href="{% url 'gallery_detail' gallery.country.slug  %}">
+    <h1 class="text-center">
+      {{ gallery.city }}
+    </h1>
+  </a>
+  <div id="masonry-container">
+    {% for photo in gallery.photos %}
+      <div class="gallery_product m-2">
+        <a
+          title="{{ photo.title }} on {{ photo.date_taken }}"
+          href="{{ photo.get_display_url }}"
+          data-lightbox="{{ gallery }}"
+        >
+          <span class="lazy-image-wrapper" data-masonry-item>
+            <div class="spinner"></div>
+            <img
+              class="lazy-image travel-photo d-block"
+              data-lazy="image"
+              data-duration="2000"
+              data-src="{{ photo.get_display_url }}"
+              alt="{{ photo.title }}: {{ photo.caption }}"
+            >
+          </span>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% block extra_script_links %}
+<script src="{% static 'lightbox/js/lightbox-plus-jquery.js' %}"></script>
+{% endblock %}

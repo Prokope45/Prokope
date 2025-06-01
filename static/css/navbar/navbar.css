@@ -3,7 +3,7 @@
     background-color: transparent;
 }
 .nav-link:link {
-    color: var(--navbar-text-color);
+    color: var(--navbar-text-color) !important;
     background-color: transparent;
 }
 .nav-link:hover {
@@ -27,6 +27,7 @@
 }
 .nav-link {
     font-size: 25px;
+    font-family: 'dosis', 'roboto';
 }
 #navbar-name {
     font-size: 8vw !important;

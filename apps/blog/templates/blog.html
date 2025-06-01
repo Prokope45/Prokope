@@ -81,7 +81,7 @@
             </div>
 
             {% for post in posts %}
-                <div id="blog" class="card mb-2">
+                <div id="blog" class="card mb-2 lazy-section" data-lazy="section">
                     <div class="card-body" onclick="location.href='/blog/{{ post.slug }}';">
                         <h2 class="card-title">{{ post.title }}</h2>
                         <div class="card-text">
