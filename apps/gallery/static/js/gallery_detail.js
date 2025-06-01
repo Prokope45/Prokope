@@ -1,3 +1,5 @@
+import { observeLazyElements } from './LazyLoader/LazyLoader.js';
+
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
   const form = document.querySelector("#city-selector-form");
@@ -20,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     msnry.layout();
   }
 
-  // Load images first
   imagesLoaded(elem).on('always', function() {
     initializeMasonry();
+    observeLazyElements(msnry);
   });
 
   form.addEventListener('submit', function(event) {

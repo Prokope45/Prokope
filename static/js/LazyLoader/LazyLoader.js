@@ -1,29 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+export function observeLazyElements(msnry = null) {
   const lazyElements = document.querySelectorAll('[data-lazy]');
-  var elem = document.querySelector('#masonry-container');
-  let msnry;
-
-  // Function to initialize Masonry after images are loaded
-  function initializeMasonry() {
-    // Destroy existing Masonry instance if it exists
-    if (msnry) {
-      msnry.destroy();
-    }
-
-    msnry = new Masonry( elem, {
-      itemSelector: '.gallery_product',
-      columnWidth: '.gallery_product',
-      isFitWidth: true
-    });
-     // Layout after Masonry is initialized
-    msnry.layout();
-  }
-
-  // Load images first
-  imagesLoaded(elem).on('always', function() {
-    initializeMasonry();
-  });
-
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -33,14 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (type === 'image') {
         const spinner = el.closest('[data-masonry-item]')?.querySelector('.spinner');
-        el.src = el.dataset.src;
-        el.onload = () => {
-          el.classList.add('in-view');
-          spinner?.remove();
-          // If using Masonry
-          // if (window.masonry) window.masonry.layout();
-          msnry.layout();
-        };
+        const src = el.getAttribute('data-src');
+        
+        if (src) {
+          el.src = src;
+          el.onload = () => {
+            el.classList.add('in-view');
+            spinner?.remove();
+            if (msnry != null) msnry.layout();
+          };
+          el.classList.remove('lazy-image');
+        }
       }
 
       if (type === 'section') {
@@ -62,4 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   lazyElements.forEach(el => observer.observe(el));
-});
+}
