@@ -27,7 +27,7 @@
       <header class="page-header header container-fluid mb-4 p-0">
       {% endif %}
         <!-- <div class="overlay"></div> -->
-        {% include 'partials/ide.html' with title=index_data.about_prokope_title %}
+        {% include 'index/partials/ide.html' with title=index_data.about_prokope_title %}
       </header>
       </header> <!-- two closing headers for if-else -->
 
@@ -62,7 +62,7 @@
           </div>
 
           <span id="{{ index_data.about_prokope_title }}">
-            {% include 'partials/section_breaks/prokope_definition.html' %}
+            {% include 'index/partials/section_breaks/prokope_definition.html' %}
           </span>
 
           <div class="row lazy-section" data-lazy="section">
@@ -74,14 +74,14 @@
         </section>
 
         <!-- TODO: make arguments dynamically generated -->
-        {% include 'partials/section_breaks/section_break.html' with title='Blog' subtitle='articles' subtext='Blog articles on a variety of topics, including software development, personal development, and more.' %}
+        {% include 'index/partials/section_breaks/section_break.html' with title='Blog' subtitle='articles' subtext='Blog articles on a variety of topics, including software development, personal development, and more.' %}
 
-        {% include 'partials/recent_articles.html' with posts=posts %}
+        {% include 'index/partials/recent_articles.html' with posts=posts %}
 
         <!-- TODO: make arguments dynamically generated -->
-        {% include 'partials/section_breaks/section_break.html' with title='Gallery' subtitle=gallery.country subtext='Travel photos from my younger years.' %}
+        {% include 'index/partials/section_breaks/section_break.html' with title='Gallery' subtitle=gallery.country subtext='Travel photos from my younger years.' %}
 
-        {% include 'partials/gallery.html' with gallery=gallery %}
+        {% include 'index/partials/gallery.html' with gallery=gallery %}
       </div>
     </div>
     {% include 'footer.html' %}
