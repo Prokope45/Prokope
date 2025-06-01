@@ -103,8 +103,8 @@ ROOT_URLCONF = 'prokope.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIRS],
-        'APP_DIRS': False,
+        'DIRS': ['templates'],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
