@@ -1,4 +1,4 @@
-import { observeLazyElements } from '../LazyLoader/LazyLoader.js';
+import { observeLazyElements } from '../lazyLoader/lazyLoader.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   var elem = document.querySelector('#masonry-container');
