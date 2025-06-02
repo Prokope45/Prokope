@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
           'Medium'
         ]
       }
-    };
+    }
 }`;
 
   let index = 0;

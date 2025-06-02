@@ -1,4 +1,4 @@
-import { observeLazyElements } from './lazyLoader/lazyLoader.js';
+import { observeLazyElements } from './LazyLoader/LazyLoader.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   const select = document.getElementById('city-filter');
