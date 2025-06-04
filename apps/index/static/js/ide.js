@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
         'site_purpose': 'Personal portfolio exploring technology',
         'message': 'Welcome to Prokope.io!',
         'call_to_action': {
-          'buttons': [
-            'Github',
-            'LinkedIn',
-            'Medium'
-          ]
+            'buttons': [
+                'Github',
+                'LinkedIn',
+                'Medium'
+            ]
         }
     }`;
 
