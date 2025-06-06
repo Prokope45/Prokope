@@ -2,21 +2,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const editor = document.getElementById('editor');
   const footer = document.getElementById('footer');
 
-  const code = `def welcome_message() {
+  const code = `def welcome_message():
     return {
-      'name': 'Jay',
-      'role': 'Software Developer',
-      'site_purpose': 'Personal portfolio exploring technology',
-      'message': 'Welcome to Prokope.io!',
-      'call_to_action': {
-        'buttons': [
-          'Github',
-          'LinkedIn',
-          'Medium'
-        ]
-      }
-    }
-}`;
+        'name': 'Jay',
+        'role': 'Software Developer',
+        'site_purpose': 'Personal portfolio exploring technology',
+        'message': 'Welcome to Prokope.io!',
+        'call_to_action': {
+            'buttons': [
+                'Github',
+                'LinkedIn',
+                'Medium'
+            ]
+        }
+    }`;
 
   let index = 0;
   let displayed = '';
