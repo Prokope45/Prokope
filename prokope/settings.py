@@ -14,13 +14,14 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+    dotenv.load_dotenv(dotenv_file, override=True)
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("ENVIRONMENT", "development") == "development"
-CONNECTED_TO_PRODUCTION_DB = True
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+DEBUG = ENVIRONMENT == "development" or ENVIRONMENT == "QA"
+CONNECTED_TO_PRODUCTION_DB = ENVIRONMENT == "production" or ENVIRONMENT == "QA"
 
 # The `DYNO` env var is set on Heroku CI, but it's not a real Heroku app, so we have to
 # also explicitly exclude CI:
@@ -124,8 +125,8 @@ if IS_HEROKU_APP:
     DATABASES = {
         'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
-elif DEBUG == 'QA':
-    # Connected to PRODUCTION database.
+elif ENVIRONMENT == 'QA':
+    print("NOTE: Connected to PRODUCTION database.")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
