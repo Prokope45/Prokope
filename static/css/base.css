@@ -9,6 +9,31 @@
 @import "lazy_loader/lazy_loader.css";
 @import "masonry/masonry.css";
 
+/** Blockquote styles */
+blockquote {
+  background-color: var(--button-bg-color);
+  padding: 16px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+
+blockquote q::before {
+  content: "\201C";
+}
+
+blockquote q::after {
+  content: "\201D";
+}
+
+blockquote + q {
+  text-align: center;
+}
+blockquote &amp; q {
+  font-family: 'expletus-sans' !important;
+  color: var(--button-text-color);
+}
+
 @font-face {
   font-family: 'dosis';
   src: url('../fonts/dosis.ttf') format('truetype');
