@@ -1,5 +1,6 @@
 asgiref==3.8.1
 bleach==4.1.0
+boto3==1.38.41
 certifi==2021.10.8
 charset-normalizer==2.0.10
 colorama==0.4.4
