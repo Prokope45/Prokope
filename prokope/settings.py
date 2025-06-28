@@ -14,13 +14,14 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+    dotenv.load_dotenv(dotenv_file, override=True)
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("ENVIRONMENT", "development") == "development"
-CONNECTED_TO_PRODUCTION_DB = True
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+DEBUG = ENVIRONMENT == "QA"
+CONNECTED_TO_PRODUCTION_DB = ENVIRONMENT == "production" or ENVIRONMENT == "QA"
 
 # The `DYNO` env var is set on Heroku CI, but it's not a real Heroku app, so we have to
 # also explicitly exclude CI:
@@ -124,8 +125,8 @@ if IS_HEROKU_APP:
     DATABASES = {
         'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
-elif DEBUG == 'QA':
-    # Connected to PRODUCTION database.
+elif ENVIRONMENT == 'QA':
+    print("NOTE: Connected to PRODUCTION database.")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -192,13 +193,28 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Base url to serve media files
-if IS_HEROKU_APP:
+if IS_HEROKU_APP or ENVIRONMENT == "QA":
     AWS_QUERYSTRING_AUTH = False
+    AWS_S3_VERIFY = True
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_S3_REGION_NAME = 'us-east-1'
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-    MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/media/'.format(
+        AWS_STORAGE_BUCKET_NAME,
+        AWS_S3_REGION_NAME
+    )
+    # DEFAULT_FILE_STORAGE = 'prokope.storage_backends.MediaStorage'
+    STORAGES = {
+        "default": {
+            "BACKEND": 'prokope.storage_backends.MediaStorage',
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
 else:
     MEDIA_URL = '/media/'
 

@@ -11,27 +11,24 @@
 
 /** Blockquote styles */
 blockquote {
-  background-color: var(--button-bg-color);
+  border-left: 4px solid var(--card-heading-color);
   padding: 16px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  border-radius: 5px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
-blockquote q::before {
+blockquote p::before {
   content: "\201C";
 }
 
-blockquote q::after {
+blockquote p::after {
   content: "\201D";
 }
 
-blockquote + q {
-  text-align: center;
-}
-blockquote &amp; q {
-  font-family: 'expletus-sans' !important;
-  color: var(--button-text-color);
+blockquote > p {
+  font-family: 'expletus-sans';
+  margin: 0px;
+  font-size: 24px;
 }
 
 @font-face {
