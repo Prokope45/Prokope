@@ -3,6 +3,7 @@
 Author: Jared Paubel
 Version: 0.1
 """
+from django.utils.text import slugify
 from django.urls import path, reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -120,12 +121,22 @@ class CityPhotoAdmin(PhotoAdmin):
                         archive.namelist(),
                         start=1
                     ):
+                        if (
+                            filename.startswith('__MACOSX/') or  # MacOS resource fork junk
+                            filename.startswith('.') or  # hidden files like .DS_Store
+                            filename.endswith('/')  # directories inside the ZIP
+                        ):
+                            continue
+
                         if filename.lower().endswith(
                             ('.jpg', '.jpeg', '.png', '.gif')
                         ):
                             data = archive.read(filename)
                             photo = CityPhoto()
                             photo.title = "{} {}".format(city.name, idx)
+                            photo.slug = self.generate_unique_slug(
+                                CityPhoto, city
+                            )
                             photo.image.save(filename, BytesIO(data))
                             photo.city = city
                             photo.country = country
@@ -142,6 +153,15 @@ class CityPhotoAdmin(PhotoAdmin):
             'has_change_permission': self.has_change_permission(request),
         }
         return render(request, 'admin/gallery/upload_zip.html', context)
+
+    def generate_unique_slug(self, model, base_text):
+        slug_base = slugify(base_text) or 'photo'
+        slug = slug_base
+        counter = 1
+        while model.objects.filter(slug=slug).exists():
+            slug = f"{slug_base}-{counter}"
+            counter += 1
+        return slug
 
     # def get_model_perms(self, request):
     #     """
