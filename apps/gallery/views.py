@@ -6,7 +6,7 @@ Version: 0.1
 from django.views.generic import ListView, DetailView
 from django.db.models import Prefetch
 
-from apps.gallery.models import CountryAlbum, CityPhoto
+from apps.gallery.models import CountryAlbum, CityPhoto, CityGallery
 
 
 class CountryGalleryList(ListView):
@@ -14,7 +14,18 @@ class CountryGalleryList(ListView):
 
     model = CountryAlbum
     template_name = 'gallery.html'
-    queryset = CountryAlbum.objects.all().order_by('country')
+
+    # Filter out galleries with no city photos.
+    albums = CountryAlbum.objects.prefetch_related(
+        Prefetch(
+            'city_galleries',
+            queryset=CityGallery.objects.filter(
+                city_photos__isnull=False
+            ).distinct()
+        )
+    )
+
+    queryset = albums.all().order_by('country')
     context_object_name = 'albums'
 
 
