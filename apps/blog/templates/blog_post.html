@@ -36,14 +36,14 @@
                                     </p>
                                 {% endif %}
                                 <span id="tag" class="col-auto col-xs-12 ml-3">
-                                    <p id="tag" class="row">
+                                    <span id="tag" class="row">
                                         <i class="fa fa-tags text-muted my-auto"></i>
                                         {% for tag in post.tag.all %}
                                                 <a class="badge m-1" href="{% url 'posts_by_tag' tag.slug %}">
                                                     {{ tag.name }}
                                                 </a>
                                         {% endfor %}
-                                    </p>
+                                    </span>
                                 </span>
                             </div>
                             {% if post.thumb %}
