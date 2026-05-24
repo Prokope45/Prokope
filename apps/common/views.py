@@ -3,7 +3,7 @@ from django.views.defaults import (
 )
 
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.db.models import Q
 
 from taggit.models import TaggedItem
@@ -100,3 +100,15 @@ def search(request: HttpRequest) -> HttpResponse:
     }
 
     return render(request, 'search_results.html', context)
+
+
+def tailscale_webfinger(request: HttpRequest):
+    return JsonResponse({
+        "subject": "acct:jpaubel@prokope.io",
+        "links": [
+            {
+                "rel": "http://openid.net/specs/connect/1.0/issuer",
+                "href": "https://id.prokope.io"
+            }
+        ]
+    })
