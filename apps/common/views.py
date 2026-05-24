@@ -110,5 +110,6 @@ def tailscale_webfinger(request: HttpRequest):
                 "rel": "http://openid.net/specs/connect/1.0/issuer",
                 "href": "https://id.prokope.io"
             }
-        ]
+        ],
+        "Access-Control-Allow-Origin": "*"
     })
