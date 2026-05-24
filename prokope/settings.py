@@ -53,6 +53,8 @@ else:
         '127.0.0.1'
     ]
 
+APPEND_SLASH = False
+
 # Application definition
 
 INSTALLED_APPS = [
