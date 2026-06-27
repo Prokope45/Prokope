@@ -53,7 +53,10 @@ else:
         '127.0.0.1'
     ]
 
-APPEND_SLASH = False
+# Controls whether forward slash should be appended to endpoints
+# Since the OIDC IdP looks for webfinger, it strictly requires that 
+# no slash is appended to the endpoint.
+APPEND_SLASH = True
 
 # Application definition
 
