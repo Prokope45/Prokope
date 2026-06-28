@@ -3,8 +3,10 @@ Developer: Jared Paubel
 """
 
 import os
+import sys
 import dotenv
 import dj_database_url
+from urllib.parse import urlparse
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.contrib import messages
@@ -126,29 +128,60 @@ WSGI_APPLICATION = 'prokope.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if IS_HEROKU_APP:
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-    }
-elif ENVIRONMENT == 'QA':
-    print("NOTE: Connected to PRODUCTION database.")
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['DATABASE_NAME'],
-            'USER': os.environ['DATABASE_USER'],
-            'PASSWORD': os.environ['DATABASE_PASSWORD'],
-            'HOST': os.environ['DATABASE_HOST'],
-            'PORT': '5432',
-        }
-    }
-else:
-    DATABASES = {
+
+
+def default_database_config() -> dict[str, str]:
+    return {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+
+
+def parse_db_uri():
+    if url := os.environ['DATABASE_URL']:
+        print("Using database URI...")
+        parsed = urlparse(url)
+        return {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': parsed.path[1:],
+                'USER': parsed.username,
+                'PASSWORD': parsed.password,
+                'HOST': parsed.hostname,
+                'PORT': parsed.port,
+            }
+        }
+    else:
+        print("Using specified variables...")
+        # Try the specified variables
+        return {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': os.environ['DATABASE_NAME'],
+                'USER': os.environ['DATABASE_USER'],
+                'PASSWORD': os.environ['DATABASE_PASSWORD'],
+                'HOST': os.environ['DATABASE_HOST'],
+                'PORT': '5432',
+            }
+        }
+
+
+if IS_HEROKU_APP:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+elif ENVIRONMENT == 'QA':
+    if 'test' in sys.argv or 'test_coverage' in sys.argv:
+        print("NOTE: Connected to local SQLite3 DB for testing.")
+        DATABASES = default_database_config()
+    else:
+        print("NOTE: Connected to PRODUCTION database.")
+        DATABASES = parse_db_uri()
+else:
+    print("NOTE: Using local SQLite3 DB for testing.")
+    DATABASES = default_database_config()
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
+cd $ROOT_DIR
+
 # Check for pending migrations and apply them if necessary
 echo "Checking for pending migrations..."
 if python3 ./manage.py makemigrations --check --dry-run | grep -q "No changes detected"; then

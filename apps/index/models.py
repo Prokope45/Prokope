@@ -11,7 +11,7 @@ class Index(models.Model):
 
     hero_banner = models.ImageField(
         upload_to="images",
-        default="/images/default/default_hero_banner.png"
+        default="/images/default/default_hero_banner.webp"
     )
     hero_image = models.ImageField(
         upload_to="images",

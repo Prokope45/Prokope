@@ -3,8 +3,12 @@
 echo "Connected to production DB; exiting"
 exit 0
 
+# Get the directory of the script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
 # Define the virtual environment directory
-VENV_DIR="venv"
+VENV_DIR="${PROJECT_DIR}/.venv"
 
 # Create a Python virtual environment
 if [ ! -d "$VENV_DIR" ]; then
@@ -63,38 +67,49 @@ generate_secret_key() {
 }
 
 # Check if .env file exists; if not, create it
-if [ ! -f .env ]; then
-    echo "'.env' file not found, creating it..."
-    touch .env
+if [ ! -f "($PROJECT_DIR)/.env" ]; then
+    echo "'.env' file not found. Do you want to create and populate default values? (y/n)"
+    read -r response
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+        echo "Creating '.env' file"
+        touch .env
+        echo "Writing default secrets to .env file"
+        {
+            echo "SECRET_KEY='$(generate_secret_key)'"
+            echo "EMAIL_BACKEND=''"
+            echo "EMAIL_HOST=''"
+            echo "EMAIL_HOST_USER=''"
+            echo "EMAIL_HOST_PASSWORD=''"
+            echo "EMAIL_PORT=''"
+            echo "EMAIL_USE_SSL=''"
+            echo "DEFAULT_FROM_EMAIL=''"
+            echo "HCAPTCHA_SITEKEY=''"
+            echo "HCAPTCHA_SECRET=''"
+            echo "VERIFY_URL=''"
+            echo "DJANGO_SUPERUSER_USERNAME='prokope'"
+            echo "DJANGO_SUPERUSER_EMAIL='user@example.com'"
+            echo "DJANGO_SUPERUSER_PASSWORD='testuser123'"
+            echo "ENVIRONMENT='development'"
+            echo "DATABASE_URL=''"
+            echo "DATABASE_NAME=''"
+            echo "DATABASE_USER=''"
+            echo "DATABASE_PASSWORD=''"
+            echo "DATABASE_HOST=''"
+            echo "DATABASE_PORT=''"
+            echo "AWS_ACCESS_KEY_ID=''"
+            echo "AWS_SECRET_ACCESS_KEY=''"
+            echo "AWS_STORAGE_BUCKET_NAME=''"
+        } > "$PROJECT_DIR/.env"
+
+        # Confirm the action
+        echo "Generated and stored debug secrets in $PROJECT_DIR/.env"
+    else
+        echo ".env creation skipped by user."
+    fi
 fi
 
-# Write default secrets to .env file
-{
-    echo "SECRET_KEY='$(generate_secret_key)'"
-    echo "EMAIL_BACKEND=''"
-    echo "EMAIL_HOST=''"
-    echo "EMAIL_HOST_USER=''"
-    echo "EMAIL_HOST_PASSWORD=''"
-    echo "EMAIL_PORT=''"
-    echo "EMAIL_USE_SSL=''"
-    echo "DEFAULT_FROM_EMAIL=''"
-    echo "HCAPTCHA_SITEKEY=''"
-    echo "HCAPTCHA_SECRET=''"
-    echo "VERIFY_URL=''"
-    echo "DJANGO_SUPERUSER_USERNAME='prokope'"
-    echo "DJANGO_SUPERUSER_EMAIL='user@example.com'"
-    echo "DJANGO_SUPERUSER_PASSWORD='testuser123'"
-    echo "ENVIRONMENT='development'"
-    echo "DATABASE_URL=''"
-    echo "AWS_ACCESS_KEY_ID=''"
-    echo "AWS_SECRET_ACCESS_KEY=''"
-    echo "AWS_STORAGE_BUCKET_NAME=''"
-} > .env
-
-# Confirm the action
-echo "Generated and stored debug secrets in .env"
-
 ./apply_migrations.sh
+
 echo "3. Activating Prokope Admin Theme"
 python3 manage.py loaddata apps/common/fixtures/admin_interface_theme_prokope.json
 

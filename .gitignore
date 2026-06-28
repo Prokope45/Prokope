@@ -1,7 +1,6 @@
 .venv/
 venv/
 .env
-.vscode
 .coverage*
 /media/photologue/
 /media/*.jpg

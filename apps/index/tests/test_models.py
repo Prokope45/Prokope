@@ -17,7 +17,7 @@ class IndexModelTest(TestCase):
     def test_default_hero_banner(self):
         self.assertEqual(
             self.__index.hero_banner.name,
-            "/images/default/default_hero_banner.png"
+            "/images/default/default_hero_banner.webp"
         )
 
     def test_set_hero_banner(self):

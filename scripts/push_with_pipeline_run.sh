@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# DEPRECATED
+
 PROJECT_PATH=~/KState/Prokope
 RUNNER_PATH=~/Development/actions-runner
 

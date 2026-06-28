@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Connected to production DB; exiting"
-exit 0
+# echo "Connected to production DB; exiting"
+# exit 0
 
 # Get the directory of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-PROJECT_DIR="$SCRIPT_DIR/prokope"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
+PROJECT_DIR="$ROOT_DIR/prokope"
 SETTINGS_FILE="$PROJECT_DIR/settings.py"
 
 function testMode() {
@@ -30,6 +30,7 @@ function testMode() {
 }
 
 function debugMode() {
+  cat $SETTINGS_FILE
   if grep -q "DEBUG = False" "$SETTINGS_FILE"; then
     echo "Django DEBUG mode is disabled. Changing DEBUG to True..."
     
@@ -68,7 +69,7 @@ if [ ! -d "$PROJECT_DIR" ]; then
     exit 1
 fi
 
-source venv/bin/activate
+source $ROOT_DIR/.venv/bin/activate
 
 # Check if the virtual environment is active
 if [ -z "$VIRTUAL_ENV" ]; then
@@ -78,7 +79,7 @@ else
     echo -e "Virtual environment is active.\n"
 fi
 
-./apply_migrations.sh
+$SCRIPT_DIR/apply_migrations.sh
 
 echo "🧪 Running tests..."
 
@@ -126,7 +127,8 @@ coverage html -d docs/coverage
 echo -e "\n"
 
 if [ $# -eq 0 ]; then
-  debugMode
+  echo "No arguments provided... running server in QA Mode connection to production DB."
+  # debugMode
 else
   while [ "$1" != "" ]; do
     case $1 in
@@ -154,7 +156,7 @@ fi
 cd "$SCRIPT_DIR" || { echo "Error: Failed to navigate to project directory."; exit 1; }
 
 # Run the Django development server
-echo "Starting the Django development server..."
+echo "Starting the Django server..."
 cat << "EOF"
  ____                 __                                  
 /\  _`\              /\ \                                 
@@ -167,4 +169,5 @@ cat << "EOF"
                                              \/_/         
 EOF
 
-python3 ./manage.py runserver
+cd $ROOT_DIR
+python3 manage.py runserver
