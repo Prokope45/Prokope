@@ -4,9 +4,11 @@ from django.contrib import admin
 from django_otp.admin import OTPAdminSite
 from django.urls import path, include
 
+# FIXME: may be deprecated
 # Force TOTP entry for admin login during production
-if not settings.DEBUG or settings.CONNECTED_TO_PRODUCTION_DB:
-    admin.site.__class__ = OTPAdminSite
+# if not settings.DEBUG or settings.CONNECTED_TO_PRODUCTION_DB:
+#     admin.site.__class__ = OTPAdminSite
+
 
 handler400 = 'apps.common.views.custom_bad_request_view'
 handler403 = 'apps.common.views.custom_permission_denied_view'
@@ -15,6 +17,7 @@ handler500 = 'apps.common.views.custom_error_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("oidc/", include("mozilla_django_oidc.urls")),
     path('', include('apps.index.urls')),
     path('', include('apps.common.urls')),
     path('blog/', include('apps.blog.urls')),

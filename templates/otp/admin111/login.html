@@ -1,0 +1,12 @@
+{% extends "otp/admin111/login.html" %}
+
+{% block content %}
+    {{ block.super }}
+
+    <div class="submit-row" style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
+        <p style="text-align: center; margin-bottom: 10px;">Or sign in with Pocket ID</p>
+        <a href="{% url 'oidc_authentication_init' %}?next={{ request.path }}" class="button" style="width: 100%;">
+            Login with Pocket ID
+        </a>
+    </div>
+{% endblock %}

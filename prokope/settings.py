@@ -79,13 +79,39 @@ INSTALLED_APPS = [
     'apps.index',
     'apps.blog',
     'apps.gallery',
+    'apps.oidc.apps.AppConfig',
     'photologue',
     'sortedm2m',
     'django_otp',
     'django_otp.plugins.otp_totp',
     'taggit',
     'storages',
+    "mozilla_django_oidc"
 ]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "apps.oidc.backends.PocketIDBackend"
+]
+
+LOGIN_REDIRECT_URL = "/admin/"
+LOGOUT_REDIRECT_URL = "/admin/"
+
+ADMIN_OIDC_CLIENT_ENABLED = os.environ['ADMIN_OIDC_CLIENT_ENABLED']
+
+OIDC_USE_PKCE = os.environ['OIDC_USE_PKCE']
+OIDC_PKCE_CODE_VERIFIER_SIZE = int(os.environ['OIDC_PKCE_CODE_VERIFIER_SIZE'])
+
+OIDC_OP_AUTHORIZATION_ENDPOINT = os.environ['OIDC_OP_AUTHORIZATION_ENDPOINT']
+OIDC_OP_TOKEN_ENDPOINT = os.environ['OIDC_OP_TOKEN_ENDPOINT']
+OIDC_OP_USER_ENDPOINT = os.environ['OIDC_OP_USER_ENDPOINT']
+OIDC_OP_JWKS_ENDPOINT = os.environ['OIDC_OP_JWKS_ENDPOINT']
+
+# Client credentials
+OIDC_RP_CLIENT_ID = os.environ['OIDC_RP_CLIENT_ID']
+OIDC_RP_CLIENT_SECRET = os.environ['OIDC_RP_CLIENT_SECRET']
+OIDC_RP_SIGN_ALGO = os.environ['OIDC_RP_SIGN_ALGO']
+OIDC_RP_SCOPES = os.environ['OIDC_RP_SCOPES']
 
 # Taggit set case as insensitive
 TAGGIT_CASE_INSENSITIVE = True
@@ -104,6 +130,8 @@ MIDDLEWARE = [
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.locale.LocaleMiddleware",
+    "mozilla_django_oidc.middleware.SessionRefresh",
 ]
 
 ROOT_URLCONF = 'prokope.urls'
@@ -131,10 +159,16 @@ WSGI_APPLICATION = 'prokope.wsgi.application'
 
 
 def default_database_config() -> dict[str, str]:
+    # NOTE: Spin up pgsql docker container
+    print("NOTE: Using local Postgres DB for testing.")
     return {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'test_db',
+            'USER': 'user',
+            'PASSWORD': 'password',
+            'HOST': 'localhost',
+            'PORT': '5432',
         }
     }
 
@@ -174,13 +208,11 @@ if IS_HEROKU_APP:
     }
 elif ENVIRONMENT == 'QA':
     if 'test' in sys.argv or 'test_coverage' in sys.argv:
-        print("NOTE: Connected to local SQLite3 DB for testing.")
         DATABASES = default_database_config()
     else:
         print("NOTE: Connected to PRODUCTION database.")
         DATABASES = parse_db_uri()
 else:
-    print("NOTE: Using local SQLite3 DB for testing.")
     DATABASES = default_database_config()
 
 # Password validation
