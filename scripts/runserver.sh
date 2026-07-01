@@ -9,10 +9,19 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 PROJECT_DIR="$ROOT_DIR/prokope"
 SETTINGS_FILE="$PROJECT_DIR/settings.py"
 
+# --- Portable in-place sed: GNU sed (Linux/devcontainer) vs BSD sed (macOS) ---
+function sed_inplace() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' "$@"
+  else
+    sed -i "$@"
+  fi
+}
+
 function testMode() {
   echo "Setting DEBUG and PRODUCTION to false for testing..."
-  
-  sed -i '' 's/^DEBUG *= *.*/DEBUG = False/' "$SETTINGS_FILE"
+
+  sed_inplace 's/^DEBUG *= *.*/DEBUG = False/' "$SETTINGS_FILE"
   if [ $? -eq 0 ]; then
     echo "Successfully updated DEBUG to False in $SETTINGS_FILE."
   else
@@ -20,7 +29,7 @@ function testMode() {
     exit 1
   fi
 
-  sed -i '' 's/^PRODUCTION *= *.*/PRODUCTION = False/' "$SETTINGS_FILE"
+  sed_inplace 's/^PRODUCTION *= *.*/PRODUCTION = False/' "$SETTINGS_FILE"
   if [ $? -eq 0 ]; then
     echo "Successfully updated PRODUCTION to False in $SETTINGS_FILE."
   else
@@ -30,13 +39,11 @@ function testMode() {
 }
 
 function debugMode() {
-  cat $SETTINGS_FILE
+  cat "$SETTINGS_FILE"
   if grep -q "DEBUG = False" "$SETTINGS_FILE"; then
     echo "Django DEBUG mode is disabled. Changing DEBUG to True..."
-    
-    # Replace DEBUG = False with DEBUG = True
-    # NOTE: MacOS sed differs from GNU sed in that it requires an argument for backup extension.
-    sed -i '' 's/DEBUG = False/DEBUG = True/' "$SETTINGS_FILE"
+
+    sed_inplace 's/DEBUG = False/DEBUG = True/' "$SETTINGS_FILE"
 
     if [ $? -eq 0 ]; then
         echo "Successfully updated DEBUG to True in $SETTINGS_FILE."
@@ -69,15 +76,13 @@ if [ ! -d "$PROJECT_DIR" ]; then
     exit 1
 fi
 
-source $ROOT_DIR/.venv/bin/activate
-
-# Check if the virtual environment is active
-if [ -z "$VIRTUAL_ENV" ]; then
-    echo "Error: Virtual environment is not active. Please activate it and try again."
-    exit 1
-else
-    echo -e "Virtual environment is active.\n"
+# --- uv manages the venv (created via `uv sync`); make sure it exists ---
+if [ ! -d "$ROOT_DIR/.venv" ]; then
+    echo "No .venv found at $ROOT_DIR/.venv — running 'uv sync' first..."
+    (cd "$ROOT_DIR" && uv sync --all-groups)
 fi
+
+echo -e "Using uv-managed environment at $ROOT_DIR/.venv\n"
 
 $SCRIPT_DIR/apply_migrations.sh
 
@@ -92,14 +97,16 @@ APPS=(
 )
 # "apps.admin"  # FIXME: NEEDS TESTS
 
+cd "$ROOT_DIR" || { echo "Error: Failed to navigate to project root."; exit 1; }
+
 # Clean previous coverage data
-coverage erase
+uv run coverage erase
 
 # Run tests and collect coverage for each app
 for APP in "${APPS[@]}"; do
     echo "----------------------------------------------------------------------"
     echo "➡️ Testing $APP ..."
-    coverage run --source=$APP --omit=*/migrations/* --parallel-mode manage.py test $APP
+    uv run coverage run --source=$APP --omit=*/migrations/* --parallel-mode manage.py test $APP
     if [ $? -ne 0 ]; then
         echo "❌ Tests failed in $APP. Please fix the errors before running the server again."
         exit 1
@@ -107,16 +114,16 @@ for APP in "${APPS[@]}"; do
 done
 
 # Combine coverage data from parallel runs
-coverage combine
+uv run coverage combine
 
 # Generate coverage report
 MIN_COVERAGE=80
-COVERAGE_RESULT=$(coverage report | grep 'TOTAL' | awk '{print $4}' | sed 's/%//')
+COVERAGE_RESULT=$(uv run coverage report | grep 'TOTAL' | awk '{print $4}' | sed 's/%//')
 
 # Check coverage threshold
 # if [ "$COVERAGE_RESULT" -lt "$MIN_COVERAGE" ]; then
 #     echo "❌ Code coverage is below ${MIN_COVERAGE}%. Current: ${COVERAGE_RESULT}%"
-#     coverage report -m
+#     uv run coverage report -m
 #     exit 1
 # fi
 
@@ -124,7 +131,7 @@ echo "✅ All tests passed."
 echo "✅ Coverage at: ${COVERAGE_RESULT}%"
 
 # Generate HTML coverage report
-coverage html -d docs/coverage
+uv run coverage html -d docs/coverage
 echo -e "\n"
 
 if [ $# -eq 0 ]; then
@@ -152,10 +159,6 @@ else
   done
 fi
 
-
-# Navigate to the project directory and run the server
-cd "$SCRIPT_DIR" || { echo "Error: Failed to navigate to project directory."; exit 1; }
-
 # Run the Django development server
 echo "Starting the Django server..."
 cat << "EOF"
@@ -170,5 +173,5 @@ cat << "EOF"
                                              \/_/         
 EOF
 
-cd $ROOT_DIR
-python3 manage.py runserver
+cd "$ROOT_DIR" || exit 1
+uv run python3 manage.py runserver

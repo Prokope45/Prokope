@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run server (QA mode, no args)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "${workspaceFolder}/scripts/runserver.sh",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Run server (--debug)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "${workspaceFolder}/scripts/runserver.sh --debug",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Run server (--test)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "${workspaceFolder}/scripts/runserver.sh --test",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Python: Attach to Django (debugpy)",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5678
+      },
+      "justMyCode": true,
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}",
+          "remoteRoot": "."
+        }
+      ]
+    }
+  ]
+}
