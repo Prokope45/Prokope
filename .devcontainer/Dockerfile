@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm
+FROM python:3.13-slim-bookworm
 
 # System dependencies needed to BUILD some packages from requirements.txt:
 #   - default-libmysqlclient-dev + pkg-config + build-essential -> mysqlclient
