@@ -167,7 +167,7 @@ def default_database_config() -> dict[str, str]:
             'NAME': 'test_db',
             'USER': 'user',
             'PASSWORD': 'password',
-            'HOST': 'localhost',
+            'HOST': 'db',
             'PORT': '5432',
         }
     }
