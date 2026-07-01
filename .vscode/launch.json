@@ -38,5 +38,18 @@
         }
       ]
     }
+    // {
+    //   "name": "Frontend: Debug Browser",
+    //   "type": "firefox",
+    //   "request": "launch",
+    //   "url": "http://0.0.0.0:5173",
+    //   "webRoot": "${workspaceFolder}/frontend",
+    //   "reAttach": true,
+    //   "serverReadyAction": {
+    //     "pattern": "Local:\\s+http://0.0.0.0:([0-9]+)",
+    //     "uriFormat": "http://0.0.0.0:%s",
+    //     "action": "openExternally"
+    //   },
+    // }
   ]
 }
