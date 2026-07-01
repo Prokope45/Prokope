@@ -25,7 +25,8 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
-        "batisteo.vscode-django"
+        "batisteo.vscode-django",
+        "firefox-devtools.vscode-firefox-debug"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
@@ -33,6 +34,16 @@
         "python.testing.pytestEnabled": true
       }
     }
-  }
+  },
+  "features": {
+    "ghcr.io/danzilberdan/devcontainers/opencode:0": {}
+  },
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolder}/.opencode/auth.json",
+      "target": "/mnt/opencode-auth.json",
+      "type": "bind"
+    }
+  ]
 }
  

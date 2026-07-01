@@ -1,0 +1,9 @@
+{
+  "features": {
+    "ghcr.io/danzilberdan/devcontainers/opencode:0": {
+      "version": "0.0.6",
+      "resolved": "ghcr.io/danzilberdan/devcontainers/opencode@sha256:e43ac479f99686e96b77dd27edfb5004b922bca3049dc2995c450177bda3bcb9",
+      "integrity": "sha256:e43ac479f99686e96b77dd27edfb5004b922bca3049dc2995c450177bda3bcb9"
+    }
+  }
+}
