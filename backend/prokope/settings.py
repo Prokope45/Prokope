@@ -19,7 +19,7 @@ dotenv_file = os.path.join(BACKEND_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file, override=True)
 
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
@@ -138,21 +138,21 @@ CSRF_TRUSTED_ORIGINS = [
 LOGIN_REDIRECT_URL = "/admin/"
 LOGOUT_REDIRECT_URL = "/admin/"
 
-ADMIN_OIDC_CLIENT_ENABLED = os.environ['ADMIN_OIDC_CLIENT_ENABLED']
+ADMIN_OIDC_CLIENT_ENABLED = os.environ.get('ADMIN_OIDC_CLIENT_ENABLED', "")
 
-OIDC_USE_PKCE = os.environ['OIDC_USE_PKCE']
-OIDC_PKCE_CODE_VERIFIER_SIZE = int(os.environ['OIDC_PKCE_CODE_VERIFIER_SIZE'])
+OIDC_USE_PKCE = os.environ.get('OIDC_USE_PKCE', "")
+OIDC_PKCE_CODE_VERIFIER_SIZE = int(os.environ.get('OIDC_PKCE_CODE_VERIFIER_SIZE', ""))
 
-OIDC_OP_AUTHORIZATION_ENDPOINT = os.environ['OIDC_OP_AUTHORIZATION_ENDPOINT']
-OIDC_OP_TOKEN_ENDPOINT = os.environ['OIDC_OP_TOKEN_ENDPOINT']
-OIDC_OP_USER_ENDPOINT = os.environ['OIDC_OP_USER_ENDPOINT']
-OIDC_OP_JWKS_ENDPOINT = os.environ['OIDC_OP_JWKS_ENDPOINT']
+OIDC_OP_AUTHORIZATION_ENDPOINT = os.environ.get('OIDC_OP_AUTHORIZATION_ENDPOINT', "")
+OIDC_OP_TOKEN_ENDPOINT = os.environ.get('OIDC_OP_TOKEN_ENDPOINT', "")
+OIDC_OP_USER_ENDPOINT = os.environ.get('OIDC_OP_USER_ENDPOINT', "")
+OIDC_OP_JWKS_ENDPOINT = os.environ.get('OIDC_OP_JWKS_ENDPOINT', "")
 
 # Client credentials
-OIDC_RP_CLIENT_ID = os.environ['OIDC_RP_CLIENT_ID']
-OIDC_RP_CLIENT_SECRET = os.environ['OIDC_RP_CLIENT_SECRET']
-OIDC_RP_SIGN_ALGO = os.environ['OIDC_RP_SIGN_ALGO']
-OIDC_RP_SCOPES = os.environ['OIDC_RP_SCOPES']
+OIDC_RP_CLIENT_ID = os.environ.get('OIDC_RP_CLIENT_ID', "")
+OIDC_RP_CLIENT_SECRET = os.environ.get('OIDC_RP_CLIENT_SECRET', "")
+OIDC_RP_SIGN_ALGO = os.environ.get('OIDC_RP_SIGN_ALGO', "")
+OIDC_RP_SCOPES = os.environ.get('OIDC_RP_SCOPES', "")
 
 # Taggit set case as insensitive
 TAGGIT_CASE_INSENSITIVE = True
@@ -230,7 +230,7 @@ def qa_database_config() -> dict[str, str]:
 
 
 def prod_database_config():
-    if url := os.environ['DATABASE_URL']:
+    if url := os.environ.get('DATABASE_URL', ""):
         print("Using database URI...")
         parsed = urlparse(url)
         return {
@@ -249,10 +249,10 @@ def prod_database_config():
         return {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
-                'NAME': os.environ['DATABASE_NAME'],
-                'USER': os.environ['DATABASE_USER'],
-                'PASSWORD': os.environ['DATABASE_PASSWORD'],
-                'HOST': os.environ['DATABASE_HOST'],
+                'NAME': os.environ.get('DATABASE_NAME', ""),
+                'USER': os.environ.get('DATABASE_USER', ""),
+                'PASSWORD': os.environ.get('DATABASE_PASSWORD', ""),
+                'HOST': os.environ.get('DATABASE_HOST', ""),
                 'PORT': '5432',
             }
         }
@@ -324,9 +324,9 @@ if IS_HEROKU_APP or ENVIRONMENT == "QA":
     AWS_S3_VERIFY = True
     AWS_S3_FILE_OVERWRITE = False
     AWS_S3_REGION_NAME = 'us-east-1'
-    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', "")
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', "")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', "")
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/media/'.format(
         AWS_STORAGE_BUCKET_NAME,
@@ -352,16 +352,16 @@ MEDIA_ROOT = os.path.join(BACKEND_DIR, 'media/')
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Contact Form Email Settings
-EMAIL_BACKEND = os.environ['EMAIL_BACKEND']
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', "")
 # Temp: used for local testing
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = os.environ['EMAIL_HOST']
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-EMAIL_PORT = os.environ['EMAIL_PORT']
-EMAIL_USE_SSL = os.environ['EMAIL_USE_SSL']
-DEFAULT_FROM_EMAIL= os.environ['DEFAULT_FROM_EMAIL']
+EMAIL_HOST = os.environ.get('EMAIL_HOST', "")
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', "")
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', "")
+EMAIL_PORT = os.environ.get('EMAIL_PORT', "")
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', "")
+DEFAULT_FROM_EMAIL= os.environ.get('DEFAULT_FROM_EMAIL', "")
 
 # Bootstrap Messages
 MESSAGE_TAGS = {
@@ -373,6 +373,6 @@ MESSAGE_TAGS = {
 }
 
 # Hcaptcha Verification
-HCAPTCHA_SITEKEY = os.environ['HCAPTCHA_SITEKEY']
-HCAPTCHA_SECRET = os.environ['HCAPTCHA_SECRET']
-VERIFY_URL = os.environ['VERIFY_URL']
+HCAPTCHA_SITEKEY = os.environ.get('HCAPTCHA_SITEKEY', "")
+HCAPTCHA_SECRET = os.environ.get('HCAPTCHA_SECRET', "")
+VERIFY_URL = os.environ.get('VERIFY_URL', "")
