@@ -3,6 +3,14 @@ matrix:
     - "3.12"
     - "3.13"
 
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: test_db
+
 steps:
   test:
     # Astral's official images bundle uv + the matching Python version
