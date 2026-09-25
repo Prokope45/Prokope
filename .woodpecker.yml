@@ -41,18 +41,6 @@ steps:
         from_secret: django_superuser_password
       ENVIRONMENT:
         from_secret: environment
-      DATABASE_URL:
-        from_secret: database_url
-      DATABASE_HOST:
-        from_secret: database_host
-      DATABASE_NAME:
-        from_secret: database_name
-      DATABASE_USER:
-        from_secret: database_user
-      DATABASE_PASSWORD:
-        from_secret: database_password
-      DATABASE_PORT:
-        from_secret: database_port
     commands:
       - cd backend
       - uv sync --locked
