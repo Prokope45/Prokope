@@ -43,6 +43,7 @@ steps:
         from_secret: environment
     commands:
       - cd backend
+      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
       - uv sync --locked
       - uv run python manage.py test
 
