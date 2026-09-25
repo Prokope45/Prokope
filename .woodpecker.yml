@@ -1,0 +1,63 @@
+matrix:
+  PYTHON_VERSION:
+    - "3.12"
+    - "3.13"
+
+steps:
+  test:
+    # Astral's official images bundle uv + the matching Python version
+    # preinstalled -- replaces astral-sh/setup-uv entirely, no separate
+    # install step needed.
+    image: ghcr.io/astral-sh/uv:python${PYTHON_VERSION}-bookworm-slim
+    environment:
+      DJANGO_SETTINGS_MODULE: prokope.settings
+      SECRET_KEY:
+        from_secret: secret_key
+      EMAIL_BACKEND:
+        from_secret: email_backend
+      EMAIL_HOST:
+        from_secret: email_host
+      EMAIL_HOST_USER:
+        from_secret: email_host_user
+      EMAIL_HOST_PASSWORD:
+        from_secret: email_host_password
+      EMAIL_PORT:
+        from_secret: email_port
+      EMAIL_USE_SSL:
+        from_secret: email_use_ssl
+      DEFAULT_FROM_EMAIL:
+        from_secret: default_from_email
+      HCAPTCHA_SITEKEY:
+        from_secret: hcaptcha_sitekey
+      HCAPTCHA_SECRET:
+        from_secret: hcaptcha_secret
+      VERIFY_URL:
+        from_secret: verify_url
+      DJANGO_SUPERUSER_USERNAME:
+        from_secret: django_superuser_username
+      DJANGO_SUPERUSER_EMAIL:
+        from_secret: django_superuser_email
+      DJANGO_SUPERUSER_PASSWORD:
+        from_secret: django_superuser_password
+      ENVIRONMENT:
+        from_secret: environment
+      DATABASE_URL:
+        from_secret: database_url
+      DATABASE_HOST:
+        from_secret: database_host
+      DATABASE_NAME:
+        from_secret: database_name
+      DATABASE_USER:
+        from_secret: database_user
+      DATABASE_PASSWORD:
+        from_secret: database_password
+      DATABASE_PORT:
+        from_secret: database_port
+    commands:
+      - cd backend
+      - uv sync --locked
+      - uv run python manage.py test
+
+when:
+  - event: [push, pull_request]
+    branch: [develop, main]
