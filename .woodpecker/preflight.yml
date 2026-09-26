@@ -61,5 +61,7 @@ steps:
       - uv run mypy .
 
 when:
-  - event: [push, pull_request]
-    branch: [develop, main]
+  - event: [pull_request]
+    branch: [develop]
+  - event: [push]
+    branch: [main]

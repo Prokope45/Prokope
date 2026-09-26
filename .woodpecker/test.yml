@@ -106,8 +106,10 @@ steps:
       - npx playwright test
 
 when:
-  - event: [push, pull_request]
-    branch: [develop, main]
+  - event: [pull_request]
+    branch: [develop]
+  - event: [push]
+    branch: [main]
 
 depends_on:
   - build
