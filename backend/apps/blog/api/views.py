@@ -1,15 +1,16 @@
-from rest_framework import viewsets, generics, permissions
-from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, permissions, viewsets
+from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.pagination import PageNumberPagination
 from taggit.models import Tag
-from apps.blog.models import Post, Contact
+
 from apps.blog.api.serializers import (
-    PostListSerializer,
-    PostDetailSerializer,
-    TagSerializer,
     ContactSerializer,
+    PostDetailSerializer,
+    PostListSerializer,
+    TagSerializer,
 )
+from apps.blog.models import Contact, Post
 
 
 class PostPagination(PageNumberPagination):

@@ -1,8 +1,8 @@
 from django.utils.encoding import filepath_to_uri
 from photologue.models import PhotoSizeCache
-
 from rest_framework import serializers
-from apps.gallery.models import Country, City, CityPhoto, CountryAlbum, CityGallery
+
+from apps.gallery.models import City, CityGallery, CityPhoto, Country, CountryAlbum
 
 
 def _photo_cache_url(obj, size_name):

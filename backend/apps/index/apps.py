@@ -13,4 +13,5 @@ class IndexConfig(AppConfig):
     name = 'apps.index'
 
     def ready(self):
-        import apps.index.signals
+        # Imported for its side effects: registers the index signal handlers.
+        import apps.index.signals  # noqa: F401

@@ -3,24 +3,19 @@
 Author: Jared Paubel
 Version: 0.1
 """
-from django.utils.text import slugify
-from django.urls import path, reverse
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django import forms
-from django.utils.translation import gettext_lazy as _
-from photologue.forms import UploadZipForm
-from zipfile import ZipFile
 from io import BytesIO
-from django.contrib import admin
-from apps.gallery.models import (
-    CountryAlbum,
-    CityGallery,
-    CityPhoto,
-    City,
-    Country
-)
+from zipfile import ZipFile
+
+from django import forms
+from django.contrib import admin, messages
+from django.shortcuts import redirect, render
+from django.urls import path, reverse
+from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 from photologue.admin import PhotoAdmin
+from photologue.forms import UploadZipForm
+
+from apps.gallery.models import City, CityGallery, CityPhoto, Country, CountryAlbum
 
 
 class CityGalleryInline(admin.StackedInline):
@@ -133,7 +128,7 @@ class CityPhotoAdmin(PhotoAdmin):
                         ):
                             data = archive.read(filename)
                             photo = CityPhoto()
-                            photo.title = "{} {}".format(city.name, idx)
+                            photo.title = f"{city.name} {idx}"
                             photo.slug = self.generate_unique_slug(
                                 CityPhoto, city
                             )

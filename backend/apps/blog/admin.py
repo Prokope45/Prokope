@@ -6,7 +6,10 @@ Version: 0.1
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 
-from apps.blog.models import Post, Contact
+from apps.blog.models import (  # noqa: F401  (Contact registration is disabled below)
+    Contact,
+    Post,
+)
 
 
 class PostAdmin(SummernoteModelAdmin):

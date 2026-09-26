@@ -75,13 +75,90 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "bandit==1.8.6",
     "coverage==7.8.1",
     "iniconfig==2.3.0",
+    "mypy==1.18.2",
     "pluggy==1.6.0",
     "pytest==9.1.1",
     "pytest-django==4.12.0",
+    "ruff==0.14.4",
+    "types-requests==2.31.0.6",
 ]
 
 [tool.uv]
 # Ensures the project's own package isn't required to be installed/buildable
 package = false
+
+[tool.ruff]
+target-version = "py312"
+# Generated/vendored trees that are not ours to lint.
+extend-exclude = [
+    "backend/staticfiles",
+    "backend/media",
+    "backend/static",
+    "frontend",
+    "migrations",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "DJ",  # flake8-django
+    "RUF", # ruff-specific
+]
+ignore = [
+    # Line length is handled by the formatter, not the linter.
+    "E501",
+    # Django models legitimately use non-nullable fields with defaults/blank.
+    "DJ001",
+    # Inner-class ordering is a style preference, not a correctness issue.
+    "DJ012",
+    # List concatenation in urlpatterns is idiomatic Django.
+    "RUF005",
+    # ClassVar annotations on Django models are not yet used in this codebase.
+    "RUF012",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Test modules are allowed to be a little looser.
+"**/tests/**" = ["E402", "F401"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_ignores = false
+# Settings are declarative configuration, not typed application code.
+exclude = ['(^|/)(\.venv|node_modules|staticfiles|media)(/|$)', '(^|/)prokope/settings\.py$']
+# Without the django-stubs plugin, ORM field descriptors and DRF class
+# attributes cannot be resolved, producing unavoidable false positives.
+# Re-enable these once django-stubs is adopted.
+disable_error_code = ["var-annotated", "has-type"]
+
+[[tool.mypy.overrides]]
+# Matches the ruff `noqa: F821` on the same dead-code view.
+module = "apps.blog.views"
+disable_error_code = ["name-defined"]
+
+[tool.bandit]
+# Scan first-party application code only. Test suites legitimately contain
+# hardcoded fixture passwords, which would otherwise be constant false positives.
+# NOTE: bandit matches these globs against each *file* path, so directory
+# patterns must end with "/*" to take effect.
+exclude_dirs = [
+    "./.venv",
+    "./frontend",
+    "./backend/static",
+    "./backend/staticfiles",
+    "./backend/media",
+    "*/tests/*",
+    "*/migrations/*",
+]
+# B101: assert_used - assertions are the test suite's core mechanism.
+skips = ["B101"]

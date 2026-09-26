@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from taggit.models import Tag
-from apps.blog.models import Post, Contact
+
+from apps.blog.models import Contact, Post
 
 
 class TagSerializer(serializers.ModelSerializer):

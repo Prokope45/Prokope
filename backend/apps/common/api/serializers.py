@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from apps.index.models import Index
+
 from apps.blog.models import Post
 from apps.gallery.models import CountryAlbum
+from apps.index.models import Index
 
 
 class IndexSearchSerializer(serializers.ModelSerializer):

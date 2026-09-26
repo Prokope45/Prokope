@@ -4,6 +4,7 @@ Author: Jared Paubel
 Version: 0.1
 """
 from django.test import TestCase
+
 from apps.index.models import Index
 
 

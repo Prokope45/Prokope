@@ -4,10 +4,12 @@ Developer: Jared Paubel
 
 import os
 import sys
-import dotenv
-import dj_database_url
-from urllib.parse import urlparse
 from pathlib import Path
+from urllib.parse import urlparse
+
+import dj_database_url
+import dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.contrib import messages
 
@@ -328,10 +330,7 @@ if IS_HEROKU_APP or ENVIRONMENT == "QA":
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', "")
     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', "")
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-    MEDIA_URL = 'https://{}.s3.{}.amazonaws.com/media/'.format(
-        AWS_STORAGE_BUCKET_NAME,
-        AWS_S3_REGION_NAME
-    )
+    MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/media/'
     # DEFAULT_FILE_STORAGE = 'prokope.storage_backends.MediaStorage'
     STORAGES = {
         "default": {
