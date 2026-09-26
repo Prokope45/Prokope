@@ -1,17 +1,16 @@
+from apps.blog.api.views import ContactCreateView, PostViewSet, TagListView
+from apps.common.api.views import EnvironmentAPIView, SearchAPIView
+from apps.gallery.api.views import (
+    CityPhotoViewSet,
+    CityViewSet,
+    CountryAlbumViewSet,
+    CountryViewSet,
+)
+from apps.index.api.views import IndexViewSet
 from django.urls import include, path
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-
-from apps.index.api.views import IndexViewSet
-from apps.blog.api.views import PostViewSet, TagListView, ContactCreateView
-from apps.gallery.api.views import (
-    CountryViewSet,
-    CityViewSet,
-    CityPhotoViewSet,
-    CountryAlbumViewSet,
-)
-from apps.common.api.views import SearchAPIView, EnvironmentAPIView
 
 router = DefaultRouter()
 router.register('index', IndexViewSet, basename='index')

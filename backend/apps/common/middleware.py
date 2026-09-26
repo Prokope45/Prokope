@@ -39,7 +39,7 @@ class SPAMiddleware:
         # Serve index.html for SPA client-side routing
         index_path = dist_path / 'index.html'
         if index_path.exists():
-            with open(index_path, 'r') as f:
+            with open(index_path) as f:
                 return HttpResponse(f.read(), content_type='text/html; charset=utf-8')
 
         return self.get_response(request)

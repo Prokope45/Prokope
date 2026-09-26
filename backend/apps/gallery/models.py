@@ -6,8 +6,8 @@ Version: 0.1
 from django.db import models
 from django.utils.text import slugify
 from photologue.models import Gallery, Photo
-from taggit.managers import TaggableManager
 from sortedm2m.fields import SortedManyToManyField
+from taggit.managers import TaggableManager
 
 
 class Country(models.Model):
@@ -63,13 +63,13 @@ class CityPhoto(Photo):
     def save(self, *args, **kwargs):
         if self.country or self.city:
             if not self.title:
-                self.title = "{}, {}".format(self.city, self.country)
+                self.title = f"{self.city}, {self.country}"
             if not self.slug:
-                base_slug = slugify("{}-{}".format(self.city, self.country))
+                base_slug = slugify(f"{self.city}-{self.country}")
                 slug = base_slug
                 counter = 1
                 while CityPhoto.objects.filter(slug=slug).exists():
-                    slug = "{}-{}".format(base_slug, counter)
+                    slug = f"{base_slug}-{counter}"
                     counter += 1
                 self.slug = slug
         super().save(*args, **kwargs)

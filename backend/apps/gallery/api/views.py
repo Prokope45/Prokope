@@ -1,14 +1,15 @@
 from django.db.models import Prefetch
-from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-from apps.gallery.models import Country, City, CityPhoto, CityGallery, CountryAlbum
+from rest_framework import viewsets
+
 from apps.gallery.api.serializers import (
-    CountrySerializer,
-    CitySerializer,
     CityPhotoSerializer,
-    CountryAlbumListSerializer,
+    CitySerializer,
     CountryAlbumDetailSerializer,
+    CountryAlbumListSerializer,
+    CountrySerializer,
 )
+from apps.gallery.models import City, CityGallery, CityPhoto, Country, CountryAlbum
 
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):

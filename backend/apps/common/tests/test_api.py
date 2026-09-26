@@ -3,13 +3,13 @@
 Author: Jared Paubel
 Version: 0.1
 """
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 
-from apps.index.models import Index
 from apps.blog.models import Post
+from apps.index.models import Index
 
 
 class SearchAPITests(TestCase):

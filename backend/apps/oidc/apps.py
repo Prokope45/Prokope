@@ -8,5 +8,6 @@ class AppConfig(AdminConfig):
     def ready(self):
         self.module.default_app_config = __name__
         from django.contrib import admin
+
         from .admin import HybridAdminSite
         admin.site.__class__ = HybridAdminSite

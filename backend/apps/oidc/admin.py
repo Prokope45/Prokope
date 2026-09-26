@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django_otp.admin import OTPAdminSite
+
 from .models import OIDCUserProfile
 
 User = get_user_model()

@@ -3,8 +3,8 @@
 Author: Jared Paubel
 Version: 0.1
 """
-from django.test import TestCase
 from django.contrib.auth.models import User
+from django.test import TestCase
 from django.utils import timezone
 
 from apps.blog.models import Post

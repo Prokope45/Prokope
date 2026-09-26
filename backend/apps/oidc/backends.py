@@ -1,5 +1,6 @@
 from django.utils import timezone
 from mozilla_django_oidc.auth import OIDCAuthenticationBackend
+
 from .models import OIDCUserProfile
 
 

@@ -3,12 +3,12 @@
 Author: Jared Paubel
 Version: 0.1
 """
-from unittest.mock import patch, Mock
+from unittest.mock import Mock, patch
+
 from django.test import TestCase
-from apps.gallery.models import (
-    City, Country, CountryAlbum, CityPhoto, CityGallery
-)
 from django.utils.text import slugify
+
+from apps.gallery.models import City, CityGallery, CityPhoto, Country, CountryAlbum
 
 
 class CountryAlbumModelTests(TestCase):

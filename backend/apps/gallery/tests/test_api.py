@@ -7,9 +7,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 
-from apps.gallery.models import (
-    City, Country, CountryAlbum, CityGallery, CityPhoto
-)
+from apps.gallery.models import City, CityGallery, CityPhoto, Country, CountryAlbum
 
 
 class GalleryAPITests(TestCase):

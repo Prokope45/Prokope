@@ -1,20 +1,20 @@
 import re
 
 from django.conf import settings
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 from django.db.models import Q
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from taggit.models import TaggedItem
 
-from apps.index.models import Index
 from apps.blog.models import Post
-from apps.gallery.models import CountryAlbum
 from apps.common.api.serializers import (
-    IndexSearchSerializer,
     BlogSearchSerializer,
     GallerySearchSerializer,
+    IndexSearchSerializer,
 )
+from apps.gallery.models import CountryAlbum
+from apps.index.models import Index
 
 
 class EnvironmentAPIView(APIView):

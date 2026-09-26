@@ -1,6 +1,7 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from apps.blog.api.views import PostViewSet, TagListView, ContactCreateView
+
+from apps.blog.api.views import ContactCreateView, PostViewSet, TagListView
 
 router = DefaultRouter()
 router.register('posts', PostViewSet, basename='post')

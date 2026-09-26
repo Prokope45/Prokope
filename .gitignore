@@ -1,6 +1,7 @@
 .opencode/
 .venv/
 venv/
+.ruff_cache
 .env
 .coverage*
 backend/media/photologue/
