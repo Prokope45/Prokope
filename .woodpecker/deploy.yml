@@ -17,7 +17,7 @@ steps:
       - git config --global user.email "ci@woodpecker"
       - git config --global user.name "Woodpecker CI"
       - git remote add heroku https://git.heroku.com/$HEROKU_APP.git
-      - git push heroku main
+      - git push --force heroku main
     when:
       - event: push
         branch: main
