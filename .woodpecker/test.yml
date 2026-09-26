@@ -75,26 +75,6 @@ steps:
       DJANGO_SETTINGS_MODULE: prokope.settings
       SECRET_KEY:
         from_secret: secret_key
-      EMAIL_BACKEND:
-        from_secret: email_backend
-      EMAIL_HOST:
-        from_secret: email_host
-      EMAIL_HOST_USER:
-        from_secret: email_host_user
-      EMAIL_HOST_PASSWORD:
-        from_secret: email_host_password
-      EMAIL_PORT:
-        from_secret: email_port
-      EMAIL_USE_SSL:
-        from_secret: email_use_ssl
-      DEFAULT_FROM_EMAIL:
-        from_secret: default_from_email
-      HCAPTCHA_SITEKEY:
-        from_secret: hcaptcha_sitekey
-      HCAPTCHA_SECRET:
-        from_secret: hcaptcha_secret
-      VERIFY_URL:
-        from_secret: verify_url
       DJANGO_SUPERUSER_USERNAME:
         from_secret: django_superuser_username
       DJANGO_SUPERUSER_EMAIL:
