@@ -2,6 +2,14 @@
 #
 # Deploys commits to production instance via heroku cli.
 
+# Perform a full clone of project
+clone:
+  git:
+    image: woodpeckerci/plugin-git
+    settings:
+      partial: false
+      depth: 0
+
 steps:
   deploy:
     image: alpine/git
@@ -17,7 +25,7 @@ steps:
       - git config --global user.email "ci@woodpecker"
       - git config --global user.name "Woodpecker CI"
       - git remote add heroku https://git.heroku.com/$HEROKU_APP.git
-      - git push heroku main
+      - git push --force heroku main
     when:
       - event: push
         branch: main
