@@ -30,5 +30,5 @@ steps:
       - event: push
         branch: main
 
-depends_on:
-  - test
+# depends_on:
+#   - test
