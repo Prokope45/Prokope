@@ -261,6 +261,10 @@ def prod_database_config():
 
 
 if IS_HEROKU_APP:
+    # Note: this is the only branch that derives ENGINE from the DATABASE_URL
+    # scheme, so it is the only one that would need a non-postgres driver
+    # (e.g. MySQLdb) installed. We ship postgres only -- keep DATABASE_URL
+    # postgres:// or this will fail at connect time.
     DATABASES = {
         'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }

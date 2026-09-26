@@ -29,7 +29,6 @@ steps:
         from_secret: secret_key
     commands:
       - cd backend
-      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
       - uv sync --locked
       # Fails fast on misconfiguration that would otherwise only surface at runtime.
       - uv run python manage.py check --deploy

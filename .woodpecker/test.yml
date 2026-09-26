@@ -40,7 +40,6 @@ steps:
       ENVIRONMENT: development
     commands:
       - cd backend
-      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
       - uv sync --locked
       - uv run python manage.py test
 
@@ -61,7 +60,6 @@ steps:
       ENVIRONMENT: development
     commands:
       - cd backend
-      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
       - uv sync --locked
       - uv run pytest -q
 
@@ -91,7 +89,8 @@ steps:
       - matrix:
           PYTHON_VERSION: "3.13"
     commands:
-      - apt-get update && apt-get install -y --no-install-recommends curl ca-certificates default-libmysqlclient-dev pkg-config build-essential
+      # curl is still required to bootstrap uv; no build toolchain is needed.
+      - apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
       - curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
       # Absolute PATH, so it cannot be affected by CI variable substitution.
       - export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
