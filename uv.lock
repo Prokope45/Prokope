@@ -433,7 +433,6 @@ dependencies = [
     { name = "jmespath" },
     { name = "mozilla-django-oidc" },
     { name = "mozilla-django-oidc-db" },
-    { name = "mysqlclient" },
     { name = "packaging" },
     { name = "pillow" },
     { name = "psycopg2-binary" },
@@ -517,7 +516,6 @@ requires-dist = [
     { name = "jmespath", specifier = "==1.1.0" },
     { name = "mozilla-django-oidc", specifier = "==5.0.2" },
     { name = "mozilla-django-oidc-db", specifier = "==2.0.1" },
-    { name = "mysqlclient", specifier = "==2.1.0" },
     { name = "packaging", specifier = "==26.2" },
     { name = "pillow", specifier = "==10.4.0" },
     { name = "psycopg2-binary", specifier = "==2.9.10" },
@@ -857,12 +855,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/a2/6e/371856a3fb9d31ca8
 wheels = [
     { url = "https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl", hash = "sha256:1be4cccdb0f2482337c4743e60421de3a356cd97508abadd57d47403e94f5505", size = 4963, upload-time = "2025-04-22T14:54:22.983Z" },
 ]
-
-[[package]]
-name = "mysqlclient"
-version = "2.1.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/de/79/d02be3cb942afda6c99ca207858847572e38146eb73a7c4bfe3bdf154626/mysqlclient-2.1.0.tar.gz", hash = "sha256:973235686f1b720536d417bf0a0d39b4ab3d5086b2b6ad5e6752393428c02b12", size = 87635, upload-time = "2021-11-18T05:51:40.724Z" }
 
 [[package]]
 name = "packaging"

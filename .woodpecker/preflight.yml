@@ -36,7 +36,6 @@ steps:
       ENVIRONMENT: development
     commands:
       - cd backend
-      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
       - uv sync --locked --group dev
       - uv run ruff check .
 
@@ -47,7 +46,6 @@ steps:
       ENVIRONMENT: development
     commands:
       - cd backend
-      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
       - uv sync --locked --group dev
       # Security-focused static analysis (B-series rules).
       - uv run bandit -c ../pyproject.toml -r .
@@ -59,10 +57,11 @@ steps:
       ENVIRONMENT: development
     commands:
       - cd backend
-      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
       - uv sync --locked --group dev
       - uv run mypy .
 
 when:
-  - event: [push, pull_request]
-    branch: [develop, main]
+  - event: [pull_request]
+    branch: [develop]
+  - event: [push]
+    branch: [main]
