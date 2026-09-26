@@ -2,6 +2,14 @@
 #
 # Deploys commits to production instance via heroku cli.
 
+# Perform a full clone of project
+clone:
+  git:
+    image: woodpeckerci/plugin-git
+    settings:
+      partial: false
+      depth: 0
+
 steps:
   deploy:
     image: alpine/git
