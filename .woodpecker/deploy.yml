@@ -1,0 +1,26 @@
+# Stage 1 of 4 -- Deploy
+#
+# Deploys commits to production instance via heroku cli.
+
+steps:
+  deploy:
+    image: alpine/git
+    environment:
+      HEROKU_API_KEY:
+        from_secret: heroku_api_key
+      HEROKU_APP:
+        from_secret: heroku_app
+    commands:
+      - echo 'echo $HEROKU_API_KEY' > /tmp/askpass.sh
+      - chmod +x /tmp/askpass.sh
+      - export GIT_ASKPASS=/tmp/askpass.sh
+      - git config --global user.email "ci@woodpecker"
+      - git config --global user.name "Woodpecker CI"
+      - git remote add heroku https://git.heroku.com/$HEROKU_APP.git
+      - git push heroku main
+    when:
+      - event: push
+        branch: main
+
+depends_on:
+  - test

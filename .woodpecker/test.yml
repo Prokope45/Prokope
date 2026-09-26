@@ -1,0 +1,174 @@
+# Stage 3 of 4 -- Test
+#
+# Unit, integration and end-to-end tests. Matrixed across the supported Python
+# versions so the suite proves the code behaves identically on all of them.
+# Runs only after the build stage succeeds.
+
+matrix:
+  PYTHON_VERSION:
+    - "3.12"
+    - "3.13"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: test_db
+
+steps:
+  # MARK:- Unit
+  # Fast, in-process model/behaviour checks via Django's own test runner.
+  test-unit:
+    # Astral's official images bundle uv + the matching Python version
+    # preinstalled -- replaces astral-sh/setup-uv entirely, no separate
+    # install step needed.
+    image: ghcr.io/astral-sh/uv:python${PYTHON_VERSION}-bookworm-slim
+    environment:
+      DJANGO_SETTINGS_MODULE: prokope.settings
+      SECRET_KEY:
+        from_secret: secret_key
+      EMAIL_BACKEND:
+        from_secret: email_backend
+      EMAIL_HOST:
+        from_secret: email_host
+      EMAIL_HOST_USER:
+        from_secret: email_host_user
+      EMAIL_HOST_PASSWORD:
+        from_secret: email_host_password
+      EMAIL_PORT:
+        from_secret: email_port
+      EMAIL_USE_SSL:
+        from_secret: email_use_ssl
+      DEFAULT_FROM_EMAIL:
+        from_secret: default_from_email
+      HCAPTCHA_SITEKEY:
+        from_secret: hcaptcha_sitekey
+      HCAPTCHA_SECRET:
+        from_secret: hcaptcha_secret
+      VERIFY_URL:
+        from_secret: verify_url
+      DJANGO_SUPERUSER_USERNAME:
+        from_secret: django_superuser_username
+      DJANGO_SUPERUSER_EMAIL:
+        from_secret: django_superuser_email
+      DJANGO_SUPERUSER_PASSWORD:
+        from_secret: django_superuser_password
+      # Pinned so the suite always runs against the ephemeral `db` service
+      # defined above. A test run must never reach the QA/production database.
+      ENVIRONMENT: development
+    commands:
+      - cd backend
+      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
+      - uv sync --locked
+      - uv run python manage.py test
+
+  # MARK:- Integration
+  # Exercises the REST API surface through Django's test client, via pytest.
+  test-integration:
+    image: ghcr.io/astral-sh/uv:python${PYTHON_VERSION}-bookworm-slim
+    environment:
+      DJANGO_SETTINGS_MODULE: prokope.settings
+      SECRET_KEY:
+        from_secret: secret_key
+      EMAIL_BACKEND:
+        from_secret: email_backend
+      EMAIL_HOST:
+        from_secret: email_host
+      EMAIL_HOST_USER:
+        from_secret: email_host_user
+      EMAIL_HOST_PASSWORD:
+        from_secret: email_host_password
+      EMAIL_PORT:
+        from_secret: email_port
+      EMAIL_USE_SSL:
+        from_secret: email_use_ssl
+      DEFAULT_FROM_EMAIL:
+        from_secret: default_from_email
+      HCAPTCHA_SITEKEY:
+        from_secret: hcaptcha_sitekey
+      HCAPTCHA_SECRET:
+        from_secret: hcaptcha_secret
+      VERIFY_URL:
+        from_secret: verify_url
+      DJANGO_SUPERUSER_USERNAME:
+        from_secret: django_superuser_username
+      DJANGO_SUPERUSER_EMAIL:
+        from_secret: django_superuser_email
+      DJANGO_SUPERUSER_PASSWORD:
+        from_secret: django_superuser_password
+      ENVIRONMENT: development
+    commands:
+      - cd backend
+      - apt-get update && apt-get install -y --no-install-recommends default-libmysqlclient-dev pkg-config build-essential
+      - uv sync --locked
+      - uv run pytest -q
+
+  # MARK:- End-to-end
+  # Drives the real SPA in Chromium against a live Django + Vite pair started
+  # by playwright.config.ts. The official Playwright image already ships Node
+  # and the browser binaries, so only Python/uv are added here.
+  test-e2e:
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    environment:
+      DJANGO_SETTINGS_MODULE: prokope.settings
+      SECRET_KEY:
+        from_secret: secret_key
+      EMAIL_BACKEND:
+        from_secret: email_backend
+      EMAIL_HOST:
+        from_secret: email_host
+      EMAIL_HOST_USER:
+        from_secret: email_host_user
+      EMAIL_HOST_PASSWORD:
+        from_secret: email_host_password
+      EMAIL_PORT:
+        from_secret: email_port
+      EMAIL_USE_SSL:
+        from_secret: email_use_ssl
+      DEFAULT_FROM_EMAIL:
+        from_secret: default_from_email
+      HCAPTCHA_SITEKEY:
+        from_secret: hcaptcha_sitekey
+      HCAPTCHA_SECRET:
+        from_secret: hcaptcha_secret
+      VERIFY_URL:
+        from_secret: verify_url
+      DJANGO_SUPERUSER_USERNAME:
+        from_secret: django_superuser_username
+      DJANGO_SUPERUSER_EMAIL:
+        from_secret: django_superuser_email
+      DJANGO_SUPERUSER_PASSWORD:
+        from_secret: django_superuser_password
+      # The dev-server must be able to reach the backend it proxies to.
+      VITE_PROXY_TARGET: http://127.0.0.1:8000
+      # Pinned to the `db` service below, never QA/production.
+      ENVIRONMENT: development
+    # E2E is behaviour-level, not version-level: run it once instead of
+    # repeating the same browser suite for every matrix combination.
+    when:
+      - matrix:
+          PYTHON_VERSION: "3.13"
+    commands:
+      - apt-get update && apt-get install -y --no-install-recommends curl ca-certificates default-libmysqlclient-dev pkg-config build-essential
+      - curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
+      # Absolute PATH, so it cannot be affected by CI variable substitution.
+      - export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+      - cd backend
+      - uv sync --locked
+      # Postgres needs a moment after the container starts, so block until the
+      # port answers; otherwise the migration below races the service and fails.
+      - for attempt in $(seq 1 60); do uv run python -c "import socket; socket.create_connection(('db', 5432), 2).close()" 2>/dev/null && break; sleep 1; done
+      - uv run python -c "import socket; socket.create_connection(('db', 5432), 2).close()"
+      - uv run python manage.py migrate --noinput
+      - cd ../frontend
+      - npm ci
+      - npx playwright test
+
+when:
+  - event: [push, pull_request]
+    branch: [develop, main]
+
+depends_on:
+  - build
