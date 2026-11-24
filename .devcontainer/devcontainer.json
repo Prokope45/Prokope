@@ -28,7 +28,8 @@
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
         "batisteo.vscode-django",
-        "firefox-devtools.vscode-firefox-debug"
+        "firefox-devtools.vscode-firefox-debug",
+        "mtxr.sqltools"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
@@ -39,7 +40,7 @@
   },
   "features": {
     "ghcr.io/danzilberdan/devcontainers/opencode:0": {},
-    "ghcr.io/devcontainers/features/node:1": {
+    "ghcr.io/devcontainers/features/node:2": {
       "version": "lts"
     }
   },
