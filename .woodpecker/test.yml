@@ -64,13 +64,14 @@ steps:
       - uv run pytest -q
 
   # MARK:- Frontend
-  frontend-test-unit:
-    image: mcr.microsoft.com/playwright:v1.63.0-noble
-    environment:
-      VITE_PROXY_TARGET: http://127.0.0.1:8000
-    commands:
-      - cd frontend
-      - npm run test
+  # TODO: add unit tests and execute using npm script
+  # frontend-test-unit:
+  #   image: mcr.microsoft.com/playwright:v1.63.0-noble
+  #   environment:
+  #     VITE_PROXY_TARGET: http://127.0.0.1:8000
+  #   commands:
+  #     - cd frontend
+  #     - npm run test
 
   # MARK:- End-to-end
   # Drives the real SPA in Chromium against a live Django + Vite pair started
