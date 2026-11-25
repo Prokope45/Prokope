@@ -5,11 +5,12 @@
   "service": "app",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
- 
+  "remoteUser": "vscode",
+
   // Installs deps (including the dev group) into /workspace/.venv on container create,
   // then installs frontend npm dependencies
   "postCreateCommand": "bash .devcontainer/../backend/scripts/post-create.sh; (cd frontend && npm install)",
- 
+  
   "remoteEnv": {
     "DATABASE_URL": "postgres://user:password@db:5432/test_db"
   },
@@ -40,10 +41,7 @@
     }
   },
   "features": {
-    "ghcr.io/danzilberdan/devcontainers/opencode:0": {},
-    "ghcr.io/devcontainers/features/node:2": {
-      "version": "lts"
-    }
+    "ghcr.io/danzilberdan/devcontainers/opencode:0": {}
   },
   "mounts": [
     {
