@@ -42,6 +42,11 @@ steps:
       - cd backend
       - uv sync --locked
       - uv run python manage.py test
+    when:
+      - event: [pull_request]
+        branch: [develop]
+      - event: [push]
+        branch: [main]
 
   # MARK:- Integration
   # Exercises the REST API surface through Django's test client, via pytest.
@@ -62,6 +67,11 @@ steps:
       - cd backend
       - uv sync --locked
       - uv run pytest -q
+    when:
+      - event: [pull_request]
+        branch: [develop]
+      - event: [push]
+        branch: [main]
 
   # MARK:- Frontend
   frontend-test-unit:
@@ -71,6 +81,11 @@ steps:
     commands:
       - cd ../frontend
       - npm run test
+    when:
+      - event: [pull_request]
+        branch: [develop]
+      - event: [push]
+        branch: [main]
 
   # MARK:- End-to-end
   # Drives the real SPA in Chromium against a live Django + Vite pair started
@@ -117,11 +132,11 @@ steps:
       - event: [push]
         branch: [main]
 
-when:
-  - event: [pull_request]
-    branch: [develop]
-  - event: [push]
-    branch: [main]
+# when:
+#   - event: [pull_request]
+#     branch: [develop]
+#   - event: [push]
+#     branch: [main]
 
 depends_on:
   - build
