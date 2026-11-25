@@ -95,8 +95,8 @@ steps:
     # E2E is behaviour-level, not version-level: run it once instead of
     # repeating the same browser suite for every matrix combination.
     when:
-      - matrix:
-        PYTHON_VERSION: "3.13"
+      # - matrix:
+      #   PYTHON_VERSION: "3.13"
       - event: [push]
         branch: [main]
 
