@@ -42,11 +42,6 @@ steps:
       - cd backend
       - uv sync --locked
       - uv run python manage.py test
-    when:
-      - event: [pull_request]
-        branch: [develop]
-      - event: [push]
-        branch: [main]
 
   # MARK:- Integration
   # Exercises the REST API surface through Django's test client, via pytest.
@@ -67,11 +62,6 @@ steps:
       - cd backend
       - uv sync --locked
       - uv run pytest -q
-    when:
-      - event: [pull_request]
-        branch: [develop]
-      - event: [push]
-        branch: [main]
 
   # MARK:- Frontend
   frontend-test-unit:
@@ -81,11 +71,6 @@ steps:
     commands:
       - cd ../frontend
       - npm run test
-    when:
-      - event: [pull_request]
-        branch: [develop]
-      - event: [push]
-        branch: [main]
 
   # MARK:- End-to-end
   # Drives the real SPA in Chromium against a live Django + Vite pair started
@@ -107,11 +92,6 @@ steps:
       VITE_PROXY_TARGET: http://127.0.0.1:8000
       # Pinned to the `db` service below, never QA/production.
       ENVIRONMENT: development
-    # E2E is behaviour-level, not version-level: run it once instead of
-    # repeating the same browser suite for every matrix combination.
-    when:
-      - matrix:
-          PYTHON_VERSION: "3.13"
     commands:
       # curl is still required to bootstrap uv; no build toolchain is needed.
       - apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
@@ -129,8 +109,18 @@ steps:
       - npm ci
       - npx playwright test
     when:
+      # E2E is behaviour-level, not version-level: run it once instead of
+      # repeating the same browser suite for every matrix combination.
+      - matrix:
+        PYTHON_VERSION: "3.13"
       - event: [push]
         branch: [main]
+
+when:
+  - event: [pull_request]
+    branch: [develop]
+  - event: [push]
+    branch: [main]
 
 depends_on:
   - build
