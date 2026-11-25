@@ -132,11 +132,5 @@ steps:
       - event: [push]
         branch: [main]
 
-# when:
-#   - event: [pull_request]
-#     branch: [develop]
-#   - event: [push]
-#     branch: [main]
-
 depends_on:
   - build
