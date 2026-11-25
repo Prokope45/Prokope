@@ -29,7 +29,8 @@
         "charliermarsh.ruff",
         "batisteo.vscode-django",
         "firefox-devtools.vscode-firefox-debug",
-        "mtxr.sqltools"
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
