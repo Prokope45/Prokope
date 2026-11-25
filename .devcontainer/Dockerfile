@@ -1,5 +1,19 @@
 FROM python:3.13-slim-bookworm
 
+ARG USER=vscode
+
+RUN adduser \
+   --system \
+   --shell /bin/bash \
+   --gecos $USER \
+   --group \
+   --disabled-password \
+   --home /home/$USER \
+   $USER
+
+# Switch to root to install dependencies
+USER root
+
 # System dependencies needed to BUILD some packages from requirements.txt:
 #   - libjpeg62-turbo-dev, zlib1g-dev                            -> pillow (fallback if no wheel)
 #   - libpq-dev                                                  -> psycopg2 fallback (psycopg2-binary usually skips this)
@@ -41,3 +55,6 @@ WORKDIR /workspace
 
 # Keep the container alive; devcontainer attaches a shell/VS Code to it.
 CMD ["sleep", "infinity"]
+
+# Switch to vscode user to limit privileges
+USER ${USER}

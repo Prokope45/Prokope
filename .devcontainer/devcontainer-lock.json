@@ -4,11 +4,6 @@
       "version": "0.0.6",
       "resolved": "ghcr.io/danzilberdan/devcontainers/opencode@sha256:e43ac479f99686e96b77dd27edfb5004b922bca3049dc2995c450177bda3bcb9",
       "integrity": "sha256:e43ac479f99686e96b77dd27edfb5004b922bca3049dc2995c450177bda3bcb9"
-    },
-    "ghcr.io/devcontainers/features/node:2": {
-      "version": "2.1.2",
-      "resolved": "ghcr.io/devcontainers/features/node@sha256:20ac718cc67e7999a9d3fbb8387f1a3a5d53ecbd41fe7c075ebadb8e9b431b17",
-      "integrity": "sha256:20ac718cc67e7999a9d3fbb8387f1a3a5d53ecbd41fe7c075ebadb8e9b431b17"
     }
   }
 }
