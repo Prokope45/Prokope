@@ -20,7 +20,7 @@ services:
 steps:
   # MARK:- Unit
   # Fast, in-process model/behaviour checks via Django's own test runner.
-  test-unit:
+  backend-test-unit:
     # Astral's official images bundle uv + the matching Python version
     # preinstalled -- replaces astral-sh/setup-uv entirely, no separate
     # install step needed.
@@ -45,7 +45,7 @@ steps:
 
   # MARK:- Integration
   # Exercises the REST API surface through Django's test client, via pytest.
-  test-integration:
+  backend-test-integration:
     image: ghcr.io/astral-sh/uv:python${PYTHON_VERSION}-bookworm-slim
     environment:
       DJANGO_SETTINGS_MODULE: prokope.settings
@@ -62,6 +62,15 @@ steps:
       - cd backend
       - uv sync --locked
       - uv run pytest -q
+
+  # MARK:- Frontend
+  frontend-test-unit:
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    environment:
+      VITE_PROXY_TARGET: http://127.0.0.1:8000
+    commands:
+      - cd ../frontend
+      - npm run test
 
   # MARK:- End-to-end
   # Drives the real SPA in Chromium against a live Django + Vite pair started
@@ -104,6 +113,9 @@ steps:
       - cd ../frontend
       - npm ci
       - npx playwright test
+    when:
+      - event: [push]
+        branch: [main]
 
 when:
   - event: [pull_request]
